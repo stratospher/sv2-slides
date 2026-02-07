@@ -35,7 +35,6 @@ window.SLIDES = [
     "sv2-server-auth.html",
     "why-mitm-fails-sv2.html",
     "job-negotiation.html",
-    "sri-implementation.html",
     "sri-details.html",
     "sv1-vs-sv2-comparison.html",
     "how-v2-blocks-attacks.html",

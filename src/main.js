@@ -35,7 +35,6 @@ const SLIDES = [
   { file: "slides/sv2-server-auth.html",           label: "SV2 Server Auth" },
   { file: "slides/why-mitm-fails-sv2.html",       label: "Why MITM Fails in SV2" },
   { file: "slides/job-negotiation.html",           label: "Job Negotiation" },
-  { file: "slides/sri-implementation.html",        label: "SRI Implementation" },
   { file: "slides/sri-details.html",              label: "SRI Details" },
   { file: "slides/sv1-vs-sv2-comparison.html",     label: "SV1 vs SV2 Comparison" },
   { file: "slides/how-v2-blocks-attacks.html",     label: "How V2 Blocks Attacks" },

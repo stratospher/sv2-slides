@@ -134,7 +134,7 @@
             border: 2px dashed #EF4444;
             position: absolute;
             right: 0;
-            top: 180px; /* Position below legit pool */
+            top: 100px; /* Position below legit pool */
         }
         
         .connection-line {
@@ -266,9 +266,12 @@
             border-bottom: 2px dashed #EF4444;
             height: 140px;
             width: 32%;
-            top: 100px;
+            top: 260px;
             left: 50%;
             z-index: 0;
+
+            transform: scaleY(-1);
+            transform-origin: top;
         }
         
         .traffic-badge {
