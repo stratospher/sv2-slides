@@ -1,15 +1,45 @@
 const SLIDES = [
-  "slides/slide0.html","slides/slide1.html","slides/slide1.1.html","slides/slide2.html",
-  "slides/slide2.2.html","slides/slide2.3.html","slides/slide2.4.html","slides/slide2.5.html",
-  "slides/slide2.6.html","slides/slide3.html","slides/slide3.1.html","slides/slide4.html",
-  "slides/slide5.html","slides/slide5.1.html","slides/slide6.html","slides/slide7.html",
-  "slides/slide8.html","slides/slide9.html","slides/slide10.html","slides/slide11.html",
-  "slides/slide12.html","slides/slide13.html","slides/slide14.html","slides/slide15.html",
-  "slides/slide16.html","slides/slide17.html","slides/slide18.html","slides/slide19.html",
-  "slides/slide20.html","slides/slide21.html","slides/slide22.html","slides/slide23.html",
-  "slides/slide24.html","slides/slide25.html","slides/slide26.html","slides/slide27.html",
-  "slides/slide28.html","slides/slide29.html","slides/slide30.html","slides/slide31.html",
-  "slides/slide32.html"
+  { file: "slides/title-slide.html",              label: "Title Slide" },
+  { file: "slides/sv1-basic-setup.html",           label: "SV1 Basic Setup" },
+  { file: "slides/sv1-architecture.html",          label: "SV1 Architecture" },
+  { file: "slides/sv1-message-flow.html",          label: "SV1 Message Flow" },
+  { file: "slides/connection-setup.html",          label: "Connection Setup" },
+  { file: "slides/mining-subscribe.html",          label: "mining.subscribe" },
+  { file: "slides/mining-authorize.html",          label: "mining.authorize" },
+  { file: "slides/mining-notify.html",             label: "mining.notify" },
+  { file: "slides/difficulty-and-shares.html",     label: "Difficulty & Shares" },
+  { file: "slides/coinbase-construction.html",     label: "Coinbase Construction" },
+  { file: "slides/building-coinbase-tx.html",      label: "Building Coinbase Tx" },
+  { file: "slides/block-header-assembly.html",     label: "Block Header Assembly" },
+  { file: "slides/sv1-plaintext-weakness.html",    label: "SV1 Plaintext Weakness" },
+  { file: "slides/protocol-vulnerabilities.html",  label: "Protocol Vulnerabilities" },
+  { file: "slides/blackhat-mitm-preconditions.html", label: "BlackHat MITM Preconditions" },
+  { file: "slides/hashrate-stealing-intro.html",   label: "Hashrate Stealing Intro" },
+  { file: "slides/attack-preconditions.html",      label: "Attack Preconditions" },
+  { file: "slides/job-injection-extranonce.html",  label: "Job Injection: Extranonce" },
+  { file: "slides/job-injection-exploit.html",     label: "Job Injection: Exploit" },
+  { file: "slides/job-injection-diagram.html",     label: "Job Injection: Diagram" },
+  { file: "slides/time-segment-overview.html",     label: "Time-Segment Overview" },
+  { file: "slides/time-segment-injection.html",    label: "Time-Segment Injection" },
+  { file: "slides/time-segment-timeline.html",     label: "Time-Segment Timeline" },
+  { file: "slides/why-attacks-work.html",          label: "Why Attacks Work" },
+  { file: "slides/speaking-privately.html",        label: "Speaking Privately" },
+  { file: "slides/encrypting-not-enough.html",     label: "Encrypting Isn't Enough" },
+  { file: "slides/diffie-hellman-insight.html",    label: "Diffie-Hellman Insight" },
+  { file: "slides/diffie-hellman-visual.html",     label: "Diffie-Hellman Visual" },
+  { file: "slides/secrecy-to-integrity.html",      label: "Secrecy to Integrity: AEAD" },
+  { file: "slides/key-authenticity.html",          label: "Key Authenticity" },
+  { file: "slides/noise-protocol.html",            label: "Noise Protocol" },
+  { file: "slides/sv2-security-by-design.html",    label: "SV2 Security by Design" },
+  { file: "slides/sv2-three-layer-security.html",  label: "SV2 Three-Layer Security" },
+  { file: "slides/sv2-server-auth.html",           label: "SV2 Server Auth" },
+  { file: "slides/why-mitm-fails-sv2.html",       label: "Why MITM Fails in SV2" },
+  { file: "slides/job-negotiation.html",           label: "Job Negotiation" },
+  { file: "slides/sri-implementation.html",        label: "SRI Implementation" },
+  { file: "slides/sri-details.html",              label: "SRI Details" },
+  { file: "slides/sv1-vs-sv2-comparison.html",     label: "SV1 vs SV2 Comparison" },
+  { file: "slides/how-v2-blocks-attacks.html",     label: "How V2 Blocks Attacks" },
+  { file: "slides/conclusion-and-roadmap.html",    label: "Conclusion & Roadmap" },
 ];
 
 let currentIndex = 0;
@@ -38,7 +68,7 @@ function goTo(index) {
   slideFrame.classList.remove('slide-enter');
   void slideFrame.offsetWidth; // reflow
   slideFrame.classList.add('slide-enter');
-  slideFrame.src = SLIDES[currentIndex];
+  slideFrame.src = SLIDES[currentIndex].file;
   updateUI();
   closeDrawer();
   updateHash();
@@ -110,14 +140,14 @@ function buildDrawer() {
     thumb.dataset.index = i;
 
     const iframe = document.createElement('iframe');
-    iframe.src = slide;
+    iframe.src = slide.file;
     iframe.loading = 'lazy';
     iframe.sandbox = 'allow-scripts allow-same-origin';
     iframe.tabIndex = -1;
 
     const label = document.createElement('div');
     label.className = 'drawer-thumb-label';
-    label.textContent = (i + 1) + ' / ' + SLIDES.length;
+    label.textContent = slide.label;
 
     thumb.appendChild(iframe);
     thumb.appendChild(label);
@@ -190,7 +220,7 @@ function init() {
   const idx = parseInt(hash, 10);
   if (!isNaN(idx) && idx >= 0 && idx < SLIDES.length) {
     currentIndex = idx;
-    slideFrame.src = SLIDES[currentIndex];
+    slideFrame.src = SLIDES[currentIndex].file;
   }
   updateUI();
   rescale();
