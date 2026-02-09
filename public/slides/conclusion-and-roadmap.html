@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Conclusion and Adoption Roadmap</title>
+<title>Conclusion</title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&amp;family=Space+Grotesk:wght@500;700&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
@@ -26,15 +26,15 @@
             color: #F3F4F6;
             overflow: hidden;
         }
-        /* SVG Background Pattern to replace CSS Gradients */
         .bg-pattern {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 39h40M39 0v40' stroke='%231E293B' stroke-width='1' fill='none' opacity='0.5'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231E293B' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             z-index: 0;
+            opacity: 0.3;
         }
         .header {
             position: relative;
@@ -55,173 +55,153 @@
             flex: 1;
             position: relative;
             z-index: 10;
-            padding: 2rem 3rem;
-            gap: 3rem;
-        }
-
-        /* Left Column: Takeaways & CTA */
-        .left-col {
-            flex: 0 0 35%;
-            display: flex;
+            padding: 2.5rem 4rem;
             flex-direction: column;
-            gap: 2rem;
+            justify-content: center;
         }
 
-        .card-box {
-            background-color: #111827;
-            border: 1px solid #374151;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            position: relative;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-        }
-
-        .problem-card {
-            border-left: 4px solid #EF4444;
-        }
-
-        .solution-card {
-            border-left: 4px solid #10B981;
-            margin-top: 1rem;
-        }
-
-        .card-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .cta-container {
-            margin-top: auto;
-            background-color: rgba(31, 41, 55, 0.5);
-            border: 1px dashed #4B5563;
-            border-radius: 1rem;
-            padding: 1.5rem;
-        }
-
-        .cta-header {
-            color: #93C5FD;
+        .section-label {
+            text-align: center;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #60A5FA;
+            margin-bottom: 2.5rem;
             font-weight: 600;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
-        .cta-grid {
+        .takeaways-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 0.75rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 2.5rem;
         }
 
-        .cta-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            background-color: #1F2937;
-            padding: 0.75rem;
-            border-radius: 0.5rem;
+        .takeaway-box {
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.9) 0%, rgba(31, 41, 55, 0.6) 100%);
             border: 1px solid #374151;
-            font-size: 0.9rem;
-            color: #D1D5DB;
-        }
-
-        /* Right Column: Roadmap */
-        .right-col {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .section-header {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            color: #F3F4F6;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .roadmap-container {
+            border-radius: 1rem;
+            padding: 2rem 1.5rem;
+            text-align: center;
             position: relative;
-            padding-left: 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .timeline-line {
-            position: absolute;
-            left: 0.6rem;
-            top: 1rem;
-            bottom: 2rem;
-            width: 2px;
-            background-color: #374151;
-        }
-
-        .roadmap-step {
-            position: relative;
-            background-color: #111827;
-            border: 1px solid #374151;
-            padding: 1.25rem;
-            border-radius: 0.75rem;
+            overflow: hidden;
             transition: all 0.3s ease;
         }
 
-        .roadmap-step:hover {
-            border-color: #60A5FA;
-            transform: translateX(5px);
-            background-color: #1F2937;
+        .takeaway-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .step-dot {
-            position: absolute;
-            left: -1.85rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 1.5rem;
-            height: 1.5rem;
-            background-color: #1F2937;
-            border: 2px solid #3B82F6;
+        .takeaway-box:hover::before {
+            opacity: 1;
+        }
+
+        .takeaway-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .takeaway-box.red {
+            --accent-color: #EF4444;
+        }
+
+        .takeaway-box.green {
+            --accent-color: #10B981;
+        }
+
+        .takeaway-box.blue {
+            --accent-color: #3B82F6;
+        }
+
+        .takeaway-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 5;
-            color: #3B82F6;
-            font-size: 0.75rem;
-            font-weight: bold;
+            position: relative;
         }
 
-        .step-title {
-            color: #60A5FA;
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 0.25rem;
+        .takeaway-box.red .takeaway-icon-wrapper {
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.2) 0%, rgba(239, 68, 68, 0.05) 70%, transparent 100%);
+            border: 2px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .takeaway-box.green .takeaway-icon-wrapper {
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0.05) 70%, transparent 100%);
+            border: 2px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .takeaway-box.blue .takeaway-icon-wrapper {
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.05) 70%, transparent 100%);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .takeaway-icon {
+            font-size: 2.5rem;
+        }
+
+        .takeaway-title {
             font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.375rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.3;
         }
 
-        .step-desc {
-            color: #9CA3AF;
-            font-size: 0.95rem;
-            line-height: 1.4;
+        .takeaway-box.red .takeaway-title {
+            color: #FCA5A5;
         }
 
-        .tech-tag {
-            display: inline-block;
-            background-color: rgba(55, 65, 81, 0.5);
+        .takeaway-box.green .takeaway-title {
+            color: #6EE7B7;
+        }
+
+        .takeaway-box.blue .takeaway-title {
+            color: #93C5FD;
+        }
+
+        .takeaway-text {
+            font-size: 1rem;
+            line-height: 1.6;
             color: #D1D5DB;
-            font-family: 'Roboto Mono', monospace;
-            font-size: 0.75rem;
-            padding: 2px 6px;
-            border-radius: 4px;
-            margin-top: 0.5rem;
-            margin-right: 0.5rem;
+        }
+
+        .closing-section {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(31, 41, 55, 0.4) 0%, rgba(17, 24, 39, 0.6) 100%);
+            border-radius: 1rem;
+            border: 1px solid #374151;
+        }
+
+        .thank-you-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #60A5FA 0%, #A78BFA 50%, #F472B6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .questions-text {
+            font-size: 1.25rem;
+            color: #9CA3AF;
+            font-weight: 500;
         }
     </style>
 </head>
@@ -231,115 +211,61 @@
 <div class="bg-pattern"></div>
 <!-- Header -->
 <div class="header">
-<h1>Conclusion &amp; Roadmap</h1>
+<h1>Conclusion</h1>
 <div class="absolute bottom-0 left-0 w-full h-px bg-gray-800"></div>
-<div class="absolute bottom-0 left-12 w-64 h-1 bg-blue-500"></div>
+<div class="absolute bottom-0 left-12 w-64 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
 </div>
 <!-- Main Content -->
 <div class="main-content">
-<!-- Left Column -->
-<div class="left-col">
-<div>
-<h2 class="text-gray-400 text-sm font-bold uppercase tracking-widest mb-4">Key Takeaways</h2>
-<!-- Problem Summary -->
-<div class="card-box problem-card">
-<div class="card-title text-red-400">
-<i class="fas fa-exclamation-triangle"></i>
-                            The Legacy Flaw
-                        </div>
-<p class="text-gray-400 text-sm leading-relaxed">
-                            Stratum V1 prioritized throughput over security, leaving miners exposed to plaintext hashrate theft and MITM attacks.
-                        </p>
+<div class="section-label">
+<i class="fas fa-lightbulb mr-2"></i>Key Takeaways
+        </div>
+
+<div class="takeaways-grid">
+<!-- Problem -->
+<div class="takeaway-box red">
+<div class="takeaway-icon-wrapper">
+<i class="fas fa-exclamation-triangle takeaway-icon text-red-400"></i>
 </div>
-<!-- Solution Summary -->
-<div class="card-box solution-card">
-<div class="card-title text-green-400">
-<i class="fas fa-shield-alt"></i>
-                            The SV2 Fix
-                        </div>
-<p class="text-gray-300 text-sm leading-relaxed">
-                            SV2 + Noise Framework delivers mandatory confidentiality, data integrity, and server identity verification by design.
-                        </p>
-</div>
-</div>
-<!-- Call to Action -->
-<div class="cta-container">
-<div class="cta-header">
-<i class="fas fa-rocket"></i> Call to Action
-                    </div>
-<div class="cta-grid">
-<div class="cta-item">
-<i class="fas fa-flask text-blue-400"></i>
-<span>Pilot SV2 in Testnet</span>
-</div>
-<div class="cta-item">
-<i class="fas fa-key text-purple-400"></i>
-<span>Audit &amp; Pin Pool Keys</span>
-</div>
-<div class="cta-item">
-<i class="fas fa-tachometer-alt text-green-400"></i>
-<span>Measure Performance</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Right Column -->
-<div class="right-col">
-<div class="section-header">
-<i class="fas fa-map-signs text-blue-500"></i>
-                    Adoption Roadmap
+<div class="takeaway-title">
+                    The Vulnerability
                 </div>
-<div class="roadmap-container">
-<div class="timeline-line"></div>
-<!-- Step 1 -->
-<div class="roadmap-step">
-<div class="step-dot">1</div>
-<div class="step-title">Deploy SRI Components</div>
-<p class="step-desc">
-                            Integrate Rust-based reference libraries into pool servers and mining proxies.
-                        </p>
-<div class="mt-1">
-<span class="tech-tag">noise_sv2</span>
-<span class="tech-tag">framing_sv2</span>
+<p class="takeaway-text">
+                    SV1's plaintext protocol enables hashrate theft through MITM attacks, job injection, and time-segment exploits.
+                </p>
+</div>
+
+<!-- Solution -->
+<div class="takeaway-box green">
+<div class="takeaway-icon-wrapper">
+<i class="fas fa-shield-alt takeaway-icon text-green-400"></i>
+</div>
+<div class="takeaway-title">
+                    The Solution
+                </div>
+<p class="takeaway-text">
+                    SV2 with Noise Protocol provides encryption, authentication, and integrity—blocking all known attack vectors.
+                </p>
+</div>
+
+<!-- Impact -->
+<div class="takeaway-box blue">
+<div class="takeaway-icon-wrapper">
+<i class="fas fa-lock takeaway-icon text-blue-400"></i>
+</div>
+<div class="takeaway-title">
+                    The Impact
+                </div>
+<p class="takeaway-text">
+                    Miners gain verifiable security while maintaining decentralization through job negotiation.
+                </p>
 </div>
 </div>
-<!-- Step 2 -->
-<div class="roadmap-step">
-<div class="step-dot">2</div>
-<div class="step-title">Secure Firmware Updates</div>
-<p class="step-desc">
-                            Roll out miner firmware supporting V2. Distribute pool authority public keys for pinning via secure channels.
-                        </p>
-<div class="mt-1">
-<span class="tech-tag">Key Pinning</span>
-<span class="tech-tag">OTA Update</span>
-</div>
-</div>
-<!-- Step 3 -->
-<div class="roadmap-step">
-<div class="step-dot">3</div>
-<div class="step-title">Phased Migration</div>
-<p class="step-desc">
-                            Use Translators (sv2-proxy) to bridge legacy SV1 hardware to SV2 pools without replacing fleets immediately.
-                        </p>
-<div class="mt-1">
-<span class="tech-tag">sv2-proxy</span>
-<span class="tech-tag">Backward Compat</span>
-</div>
-</div>
-<!-- Step 4 -->
-<div class="roadmap-step" style="border-color: #10B981; background-color: rgba(6, 78, 59, 0.1);">
-<div class="step-dot" style="border-color: #10B981; color: #10B981;">4</div>
-<div class="step-title" style="color: #34D399;">Decentralization</div>
-<p class="step-desc">
-                            Enable Job Negotiation subprotocol. Miners construct their own templates, reducing pool censorship power.
-                        </p>
-<div class="mt-1">
-<span class="tech-tag">Job Negotiation</span>
-<span class="tech-tag">Censorship Resistance</span>
-</div>
-</div>
-</div>
+
+<!-- Closing -->
+<div class="closing-section">
+<div class="thank-you-text">Thank You</div>
+<p class="questions-text">Questions?</p>
 </div>
 </div>
 </div>
