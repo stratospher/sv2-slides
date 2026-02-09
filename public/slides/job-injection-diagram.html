@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Attack 1: Job Injection Architecture</title>
+<title>Attack 1: Job Injection Attack</title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&amp;family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
@@ -28,48 +28,7 @@
         .glass-panel {
             background: rgba(15, 23, 42, 0.6);
             backdrop-filter: blur(8px);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-        }
-        /* Diagram Specifics */
-        .node-box {
-            fill: #1E293B;
-            stroke: #3B82F6;
-            stroke-width: 2;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
-        }
-        .node-box-attacker {
-            fill: #1E293B;
-            stroke: #EF4444;
-            stroke-width: 2;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
-        }
-        .node-box-proxy {
-            fill: #1E293B;
-            stroke: #F59E0B;
-            stroke-width: 2;
-            stroke-dasharray: 4 4;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
-        }
-        .flow-line {
-            stroke: #3B82F6;
-            stroke-width: 2;
-            marker-end: url(#arrowhead);
-        }
-        .flow-line-attack {
-            stroke: #EF4444;
-            stroke-width: 2;
-            marker-end: url(#arrowhead-red);
-        }
-        .text-title {
-            font-family: 'Inter', sans-serif;
-            fill: #F8FAFC;
-            font-weight: 700;
-            font-size: 16px;
-        }
-        .text-label {
-            font-family: 'Roboto Mono', monospace;
-            fill: #94A3B8;
-            font-size: 10px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
         }
     </style>
 </head>
@@ -89,81 +48,142 @@
 </div>
 <div class="text-right">
 <p class="text-gray-400 text-sm max-w-md text-right mono-font">
-                Visualizing the interception and injection of malicious work
+                Sequence diagram showing MITM job injection attack
             </p>
 </div>
 </header>
 <!-- Main Diagram Area -->
-<main class="relative z-10 flex-1 w-full h-full flex items-center justify-center p-8">
-<div class="w-full h-full relative glass-panel rounded-xl">
-<svg height="100%" preserveaspectratio="xMidYMid meet" viewbox="0 0 1152 480" width="100%">
+<main class="relative z-10 flex-1 w-full h-full flex items-center justify-center p-6">
+<div class="w-full h-full relative glass-panel rounded-xl p-4">
+<svg width="100%" height="100%" viewBox="0 0 1100 520">
 <defs>
-<marker id="arrowhead" markerheight="7" markerwidth="10" orient="auto" refx="9" refy="3.5">
-<polygon fill="#3B82F6" points="0 0, 10 3.5, 0 7"></polygon>
+<marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+<path d="M 0 0 L 8 4 L 0 8 z" fill="#10B981"/>
 </marker>
-<marker id="arrowhead-red" markerheight="7" markerwidth="10" orient="auto" refx="9" refy="3.5">
-<polygon fill="#EF4444" points="0 0, 10 3.5, 0 7"></polygon>
+<marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+<path d="M 0 0 L 8 4 L 0 8 z" fill="#1E40AF"/>
+</marker>
+<marker id="arrowOrange" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+<path d="M 0 0 L 8 4 L 0 8 z" fill="#F59E0B"/>
+</marker>
+<marker id="arrowYellow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+<path d="M 0 0 L 8 4 L 0 8 z" fill="#EAB308"/>
 </marker>
 </defs>
-<!-- MITM Area -->
-<rect fill="rgba(245, 158, 11, 0.05)" height="300" rx="8" stroke="#F59E0B" stroke-dasharray="4,4" width="200" x="476" y="90"></rect>
-<text class="text-label" fill="#F59E0B" font-weight="bold" text-anchor="middle" x="576" y="80">MITM / ATTACKER PROXY</text>
-<!-- Node: Miner (Left) -->
-<g transform="translate(60, 180)">
-<rect class="node-box" height="120" rx="8" width="140" x="0" y="0"></rect>
-<text fill="#3B82F6" font-family="FontAwesome" font-size="24" text-anchor="middle" x="70" y="50"></text>
-<text class="text-title" text-anchor="middle" x="70" y="80">VICTIM MINER</text>
-<text class="text-label" text-anchor="middle" x="70" y="100">Unaware</text>
-</g>
-<!-- Node: Attacker Proxy Logic (Center) -->
-<g transform="translate(506, 180)">
-<rect class="node-box-proxy" height="120" rx="8" width="140" x="0" y="0"></rect>
-<text fill="#F59E0B" font-family="FontAwesome" font-size="24" text-anchor="middle" x="70" y="50"></text>
-<text class="text-title" text-anchor="middle" x="70" y="80">MALICIOUS PROXY</text>
-<text class="text-label" text-anchor="middle" x="70" y="100">Injects Jobs</text>
-</g>
-<!-- Node: Legit Pool (Top Right) -->
-<g transform="translate(900, 80)">
-<rect class="node-box" height="120" rx="8" width="140" x="0" y="0"></rect>
-<text fill="#3B82F6" font-family="FontAwesome" font-size="24" text-anchor="middle" x="70" y="50"></text>
-<text class="text-title" text-anchor="middle" x="70" y="80">LEGIT POOL</text>
-<text class="text-label" text-anchor="middle" x="70" y="100">Target</text>
-</g>
-<!-- Node: Attacker Pool (Bottom Right) -->
-<g transform="translate(900, 280)">
-<rect class="node-box-attacker" height="120" rx="8" width="140" x="0" y="0"></rect>
-<text fill="#EF4444" font-family="FontAwesome" font-size="24" text-anchor="middle" x="70" y="50"></text>
-<text class="text-title" text-anchor="middle" x="70" y="80">ATTACKER POOL</text>
-<text class="text-label" text-anchor="middle" x="70" y="100">Hashrate Thief</text>
-</g>
-<!-- Connections -->
-<!-- Miner <-> Proxy -->
-<path class="flow-line" d="M 200 240 L 500 240"></path>
-<!-- Proxy <-> Legit Pool -->
-<path class="flow-line" d="M 646 220 C 750 220, 750 140, 900 140"></path>
-<!-- Proxy <-> Attacker Pool -->
-<path class="flow-line-attack" d="M 646 260 C 750 260, 750 340, 900 340"></path>
-<!-- Labels on lines -->
-<g transform="translate(300, 220)">
-<rect fill="#0F172A" height="20" rx="4" width="100" x="0" y="0"></rect>
-<text class="text-label" fill="#94A3B8" text-anchor="middle" x="50" y="14">Normal Traffic</text>
-</g>
-<g transform="translate(740, 160)">
-<rect fill="#0F172A" height="20" rx="4" width="100" x="0" y="0"></rect>
-<text class="text-label" fill="#3B82F6" text-anchor="middle" x="50" y="14">Proxy Relays</text>
-</g>
-<g transform="translate(740, 310)">
-<rect fill="#0F172A" height="20" rx="4" width="120" x="-10" y="0"></rect>
-<text class="text-label" fill="#EF4444" font-weight="bold" text-anchor="middle" x="50" y="14">Job Source</text>
-</g>
-<!-- Injection Callout -->
-<g transform="translate(320, 320)">
-<path d="M 506 280 Q 400 340 380 340" fill="none" stroke="#EF4444" stroke-dasharray="4,4" stroke-width="2"></path>
-<rect fill="#1E293B" height="60" rx="4" stroke="#EF4444" width="220" x="140" y="320"></rect>
-<text class="text-label" fill="#EF4444" font-weight="bold" x="150" y="340">INJECTION EVENT:</text>
-<text class="text-label" fill="#CBD5E1" x="150" y="355">mining.set_extranonce(...)</text>
-<text class="text-label" fill="#94A3B8" x="150" y="370">Forces miner to switch context</text>
-</g>
+
+<!-- Actor Boxes -->
+<!-- Miner -->
+<rect x="50" y="10" width="120" height="45" rx="6" fill="#047857" stroke="#10B981" stroke-width="2"/>
+<text x="110" y="37" text-anchor="middle" fill="#F0FDF4" font-family="Inter" font-size="14" font-weight="700">Miner</text>
+
+<!-- Attacker -->
+<rect x="280" y="10" width="120" height="45" rx="6" fill="#1E3A8A" stroke="#1E40AF" stroke-width="2"/>
+<text x="340" y="37" text-anchor="middle" fill="#DBEAFE" font-family="Inter" font-size="14" font-weight="700">Attacker</text>
+
+<!-- Malicious Pool -->
+<rect x="630" y="10" width="150" height="45" rx="6" fill="#C2410C" stroke="#F59E0B" stroke-width="2"/>
+<text x="705" y="37" text-anchor="middle" fill="#FEF3C7" font-family="Inter" font-size="14" font-weight="700">Malicious Pool</text>
+
+<!-- Normal Pool -->
+<rect x="900" y="10" width="140" height="45" rx="6" fill="#CA8A04" stroke="#EAB308" stroke-width="2"/>
+<text x="970" y="37" text-anchor="middle" fill="#FEF9C3" font-family="Inter" font-size="14" font-weight="700">Normal Pool</text>
+
+<!-- Lifelines -->
+<line x1="110" y1="55" x2="110" y2="510" stroke="#475569" stroke-width="2" stroke-dasharray="5,5"/>
+<line x1="340" y1="55" x2="340" y2="510" stroke="#475569" stroke-width="2" stroke-dasharray="5,5"/>
+<line x1="705" y1="55" x2="705" y2="510" stroke="#475569" stroke-width="2" stroke-dasharray="5,5"/>
+<line x1="970" y1="55" x2="970" y2="510" stroke="#475569" stroke-width="2" stroke-dasharray="5,5"/>
+
+<!-- Activation Boxes (showing when actors are processing) -->
+<!-- Miner activation -->
+<rect x="105" y="70" width="10" height="50" fill="#10B981" opacity="0.3"/>
+<rect x="105" y="335" width="10" height="115" fill="#10B981" opacity="0.3"/>
+
+<!-- Attacker activation -->
+<rect x="335" y="125" width="10" height="145" fill="#1E40AF" opacity="0.3"/>
+<rect x="335" y="335" width="10" height="115" fill="#1E40AF" opacity="0.3"/>
+
+<!-- Malicious Pool activation -->
+<rect x="700" y="125" width="10" height="200" fill="#F59E0B" opacity="0.3"/>
+
+<!-- Normal Pool activation -->
+<rect x="965" y="345" width="10" height="90" fill="#EAB308" opacity="0.3"/>
+
+<!-- Waiting Note on Miner -->
+<rect x="10" y="70" width="85" height="40" rx="4" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1"/>
+<text x="52" y="85" text-anchor="middle" fill="#92400E" font-family="Roboto Mono" font-size="8" font-weight="600">Waiting for</text>
+<text x="52" y="97" text-anchor="middle" fill="#92400E" font-family="Roboto Mono" font-size="8" font-weight="600">connection</text>
+
+<!-- Attacker -> Malicious Pool: mining.subscribe -->
+<line x1="345" y1="130" x2="695" y2="130" stroke="#F59E0B" stroke-width="2" marker-end="url(#arrowOrange)"/>
+<text x="520" y="125" text-anchor="middle" fill="#F59E0B" font-family="Roboto Mono" font-size="9">mining.subscribe</text>
+
+<!-- Malicious Pool -> Attacker: result -->
+<line x1="695" y1="145" x2="350" y2="145" stroke="#F59E0B" stroke-width="2" marker-end="url(#arrowOrange)" stroke-dasharray="3,3"/>
+<text x="520" y="160" text-anchor="middle" fill="#F59E0B" font-family="Roboto Mono" font-size="9">result</text>
+
+<!-- Self-arrow on Attacker: save extranonce -->
+<path d="M 345 165 L 375 165 L 375 185 L 345 185" stroke="#1E40AF" stroke-width="2" fill="none" marker-end="url(#arrowBlue)"/>
+<rect x="380" y="165" width="120" height="30" rx="3" fill="#DBEAFE" stroke="#1E40AF" stroke-width="1"/>
+<text x="440" y="177" text-anchor="middle" fill="#1E3A8A" font-family="Roboto Mono" font-size="7" font-weight="600">Save extranonce1</text>
+<text x="440" y="188" text-anchor="middle" fill="#1E3A8A" font-family="Roboto Mono" font-size="7" font-weight="600">extranonce2_size</text>
+
+<!-- Attacker -> Malicious Pool: mining.authorize -->
+<line x1="345" y1="205" x2="695" y2="205" stroke="#F59E0B" stroke-width="2" marker-end="url(#arrowOrange)"/>
+<text x="520" y="200" text-anchor="middle" fill="#F59E0B" font-family="Roboto Mono" font-size="9">mining.authorize</text>
+
+<!-- Malicious Pool -> Attacker: result -->
+<line x1="695" y1="220" x2="350" y2="220" stroke="#F59E0B" stroke-width="2" marker-end="url(#arrowOrange)" stroke-dasharray="3,3"/>
+<text x="520" y="235" text-anchor="middle" fill="#F59E0B" font-family="Roboto Mono" font-size="9">result</text>
+
+<!-- Malicious Pool -> Attacker: mining.set_difficulty -->
+<line x1="695" y1="245" x2="350" y2="245" stroke="#F59E0B" stroke-width="2" marker-end="url(#arrowOrange)" stroke-dasharray="3,3"/>
+<text x="520" y="240" text-anchor="middle" fill="#F59E0B" font-family="Roboto Mono" font-size="9">mining.set_difficulty</text>
+
+<!-- Malicious Pool -> Attacker: mining.notify -->
+<line x1="695" y1="265" x2="350" y2="265" stroke="#F59E0B" stroke-width="2" marker-end="url(#arrowOrange)" stroke-dasharray="3,3"/>
+<text x="520" y="280" text-anchor="middle" fill="#F59E0B" font-family="Roboto Mono" font-size="9">mining.notify</text>
+
+<!-- Self-arrow on Attacker: save jobs -->
+<path d="M 345 285 L 375 285 L 375 305 L 345 305" stroke="#1E40AF" stroke-width="2" fill="none" marker-end="url(#arrowBlue)"/>
+<rect x="380" y="280" width="135" height="30" rx="3" fill="#DBEAFE" stroke="#1E40AF" stroke-width="1"/>
+<text x="447" y="292" text-anchor="middle" fill="#1E3A8A" font-family="Roboto Mono" font-size="7" font-weight="600">Use queue to save</text>
+<text x="447" y="303" text-anchor="middle" fill="#1E3A8A" font-family="Roboto Mono" font-size="7" font-weight="600">malicious pool jobs</text>
+
+<!-- Miner -> Attacker: mining.subscribe -->
+<line x1="115" y1="340" x2="330" y2="340" stroke="#10B981" stroke-width="2" marker-end="url(#arrowGreen)"/>
+<text x="222" y="335" text-anchor="middle" fill="#10B981" font-family="Roboto Mono" font-size="9">mining.subscribe</text>
+
+<!-- Attacker -> Normal Pool: mining.subscribe -->
+<line x1="345" y1="355" x2="960" y2="355" stroke="#EAB308" stroke-width="2" marker-end="url(#arrowYellow)"/>
+<text x="652" y="350" text-anchor="middle" fill="#EAB308" font-family="Roboto Mono" font-size="9">mining.subscribe</text>
+
+<!-- Normal Pool -> Attacker: result -->
+<line x1="960" y1="370" x2="350" y2="370" stroke="#EAB308" stroke-width="2" marker-end="url(#arrowYellow)" stroke-dasharray="3,3"/>
+<text x="652" y="385" text-anchor="middle" fill="#EAB308" font-family="Roboto Mono" font-size="9">result</text>
+
+<!-- Self-arrow on Attacker: save normal pool extranonce -->
+<path d="M 345 390 L 375 390 L 375 410 L 345 410" stroke="#1E40AF" stroke-width="2" fill="none" marker-end="url(#arrowBlue)"/>
+<rect x="220" y="390" width="105" height="25" rx="3" fill="#DBEAFE" stroke="#1E40AF" stroke-width="1"/>
+<text x="272" y="400" text-anchor="middle" fill="#1E3A8A" font-family="Roboto Mono" font-size="7" font-weight="600">Save normal</text>
+<text x="272" y="410" text-anchor="middle" fill="#1E3A8A" font-family="Roboto Mono" font-size="7" font-weight="600">pool extranonce</text>
+
+<!-- Attacker -> Miner: result (forwarding modified) -->
+<line x1="330" y1="420" x2="120" y2="420" stroke="#10B981" stroke-width="2" marker-end="url(#arrowGreen)" stroke-dasharray="3,3"/>
+<text x="222" y="435" text-anchor="middle" fill="#10B981" font-family="Roboto Mono" font-size="9">result (modified)</text>
+
+<!-- Miner -> Attacker: mining.authorize -->
+<line x1="115" y1="455" x2="330" y2="455" stroke="#10B981" stroke-width="2" marker-end="url(#arrowGreen)"/>
+<text x="180" y="450" text-anchor="middle" fill="#10B981" font-family="Roboto Mono" font-size="8">mining.authorize</text>
+
+<!-- Attacker -> Miner: result -->
+<line x1="330" y1="470" x2="120" y2="470" stroke="#10B981" stroke-width="2" marker-end="url(#arrowGreen)" stroke-dasharray="3,3"/>
+<text x="180" y="485" text-anchor="middle" fill="#10B981" font-family="Roboto Mono" font-size="8">result</text>
+
+<!-- Attacker -> Miner: inject malicious jobs -->
+<line x1="330" y1="495" x2="120" y2="495" stroke="#EF4444" stroke-width="3" marker-end="url(#arrowGreen)" stroke-dasharray="5,5"/>
+<text x="225" y="490" text-anchor="middle" fill="#EF4444" font-family="Roboto Mono" font-size="9" font-weight="700">⚠ Inject malicious jobs</text>
+
 </svg>
 </div>
 </main>
@@ -175,16 +195,16 @@
 </div>
 <div class="flex items-center space-x-6">
 <div class="flex items-center space-x-2">
-<div class="w-2 h-2 rounded-full bg-blue-500"></div>
-<span class="text-xs text-gray-400 uppercase tracking-wider">Legitimate Path</span>
+<div class="w-2 h-2 rounded-full bg-green-500"></div>
+<span class="text-xs text-gray-400 uppercase tracking-wider">Miner Traffic</span>
 </div>
 <div class="flex items-center space-x-2">
-<div class="w-2 h-2 rounded-full bg-red-500"></div>
-<span class="text-xs text-gray-400 uppercase tracking-wider">Attack Path</span>
+<div class="w-2 h-2 rounded-full bg-orange-500"></div>
+<span class="text-xs text-gray-400 uppercase tracking-wider">Malicious Pool</span>
 </div>
 <div class="flex items-center space-x-2">
 <div class="w-2 h-2 rounded-full bg-yellow-500"></div>
-<span class="text-xs text-gray-400 uppercase tracking-wider">MITM Proxy</span>
+<span class="text-xs text-gray-400 uppercase tracking-wider">Normal Pool</span>
 </div>
 </div>
 </footer>
