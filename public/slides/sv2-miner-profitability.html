@@ -16,7 +16,6 @@
     }
     body { margin:0; padding:0; overflow:hidden; background-color:#000000; font-family:'Inter',sans-serif; }
 
-    /* ── Gradient orbs ── */
     .hero-gradient-1 {
         position:absolute; top:-20%; left:25%;
         width:600px; height:600px; border-radius:9999px;
@@ -57,97 +56,114 @@
 
     .mono-font { font-family:'JetBrains Mono',monospace; }
 
-    /* Stat cards */
-    .stat-card {
-        background:rgba(0,0,0,0.45);
-        backdrop-filter:blur(10px);
-        border:1px solid rgba(6,182,212,0.15);
-        border-radius:0.75rem;
-        padding:0.875rem 1rem;
-        display:flex;
-        align-items:center;
-        gap:1rem;
+    /* Comparison panels */
+    .compare-panel {
+        flex:1;
+        border-radius:1rem;
+        padding:2rem 2rem 1.5rem;
+        display:flex; flex-direction:column; justify-content:space-between;
+        position:relative; overflow:hidden;
     }
 
-    .stat-icon {
-        width:2.75rem; height:2.75rem; flex-shrink:0;
-        border-radius:50%;
-        background:rgba(6,182,212,0.1);
-        border:1px solid rgba(6,182,212,0.3);
-        display:flex; align-items:center; justify-content:center;
-        color:#22d3ee; font-size:1.1rem;
-    }
-
-    .before-after {
-        display:flex; align-items:center; gap:0.5rem;
-        font-family:'JetBrains Mono',monospace;
-        font-size:0.8rem; margin-top:0.3rem;
-    }
-
-    .val-before {
-        color:#F87171;
-        background:rgba(239,68,68,0.1);
-        padding:1px 6px; border-radius:4px;
+    .compare-panel.sv1 {
+        background:rgba(69,10,10,0.35);
+        backdrop-filter:blur(12px);
         border:1px solid rgba(239,68,68,0.3);
     }
-    .val-after {
-        color:#22d3ee;
-        background:rgba(6,182,212,0.1);
-        padding:1px 6px; border-radius:4px;
-        border:1px solid rgba(6,182,212,0.3);
-    }
 
-    .gain-badge {
-        font-family:'JetBrains Mono',monospace;
-        font-size:0.75rem; font-weight:700;
-        color:#A5F3FC;
-        background:rgba(6,182,212,0.12);
-        padding:2px 8px; border-radius:4px;
-        border:1px solid rgba(6,182,212,0.3);
-        white-space:nowrap;
-    }
-
-    /* Summary panel */
-    .summary-panel {
-        background:rgba(0,0,0,0.55);
+    .compare-panel.sv2 {
+        background:rgba(14,79,95,0.25);
         backdrop-filter:blur(12px);
-        border:1px solid rgba(6,182,212,0.25);
-        border-radius:1rem;
-        padding:1.75rem;
-        display:flex; flex-direction:column; justify-content:center;
-        height:100%;
+        border:1px solid rgba(6,182,212,0.3);
     }
 
-    .total-profit {
-        font-family:'Space Grotesk',sans-serif;
-        font-size:4.5rem; font-weight:700; line-height:1;
-        background:linear-gradient(135deg, #22d3ee 0%, #A5F3FC 100%);
-        -webkit-background-clip:text;
-        -webkit-text-fill-color:transparent;
-        background-clip:text;
-    }
-
-    .source-link {
+    .panel-badge {
+        display:inline-flex; align-items:center; gap:0.5rem;
         font-family:'JetBrains Mono',monospace;
-        font-size:0.72rem;
-        color:rgba(6,182,212,0.6);
-        border:1px solid rgba(6,182,212,0.2);
-        background:rgba(0,0,0,0.4);
-        padding:0.5rem 0.75rem;
-        border-radius:0.5rem;
-        word-break:break-all;
-        line-height:1.5;
+        font-size:0.72rem; font-weight:700;
+        text-transform:uppercase; letter-spacing:0.1em;
+        padding:0.3rem 0.75rem; border-radius:4px;
+        margin-bottom:1.25rem; align-self:flex-start;
     }
 
-    .divider {
-        height:1px;
-        background:linear-gradient(90deg, transparent, rgba(6,182,212,0.3), transparent);
-        margin:1rem 0;
+    .panel-badge.sv1 {
+        background:rgba(239,68,68,0.15);
+        color:#F87171;
+        border:1px solid rgba(239,68,68,0.35);
+    }
+
+    .panel-badge.sv2 {
+        background:rgba(6,182,212,0.12);
+        color:#22d3ee;
+        border:1px solid rgba(6,182,212,0.35);
+    }
+
+    .assumption-row {
+        display:flex; gap:0.75rem; margin-bottom:1.25rem;
+    }
+
+    .assumption-chip {
+        font-family:'JetBrains Mono',monospace;
+        font-size:0.78rem;
+        padding:0.35rem 0.75rem;
+        border-radius:0.375rem;
+        border:1px solid;
+    }
+
+    .big-number {
+        font-family:'Space Grotesk',sans-serif;
+        font-size:5rem; font-weight:700; line-height:1;
+        margin-bottom:0.35rem;
+    }
+
+    .big-number-label {
+        font-family:'JetBrains Mono',monospace;
+        font-size:0.78rem; text-transform:uppercase;
+        letter-spacing:0.08em;
+    }
+
+    .detail-row {
+        font-size:0.85rem;
+        line-height:1.55;
+        margin-top:1rem;
+        padding-top:1rem;
+        border-top:1px solid;
+    }
+
+    /* VS divider */
+    .vs-col {
+        display:flex; flex-direction:column;
+        align-items:center; justify-content:center;
+        gap:0.5rem; flex-shrink:0; width:56px;
+    }
+
+    .vs-badge {
+        font-family:'Space Grotesk',sans-serif;
+        font-size:0.9rem; font-weight:700;
+        color:rgba(148,163,184,0.5);
+        background:rgba(0,0,0,0.5);
+        border:1px solid rgba(148,163,184,0.15);
+        padding:0.4rem 0.6rem;
+        border-radius:0.5rem;
+    }
+
+    .vs-line {
+        flex:1; width:1px;
+        background:linear-gradient(to bottom, transparent, rgba(148,163,184,0.15), transparent);
+    }
+
+    /* Case study banner */
+    .case-study-banner {
+        background:rgba(0,0,0,0.5);
+        backdrop-filter:blur(10px);
+        border:1px solid rgba(6,182,212,0.2);
+        border-radius:0.75rem;
+        padding:0.875rem 1.5rem;
+        display:flex; align-items:center; gap:1.25rem;
     }
 </style>
 </head>
 <body>
-<!-- Gradient orbs -->
 <div class="hero-gradient-1"></div>
 <div class="hero-gradient-2"></div>
 <div class="hero-gradient-3"></div>
@@ -168,133 +184,114 @@
         </div>
         <h1 class="text-3xl font-black tracking-tight text-white uppercase"
             style="font-family:'Space Grotesk',sans-serif; letter-spacing:-0.02em;">
-            SV2 Isn't Just Secure: <span style="color:#22d3ee;">It's More Profitable</span>
+            Hashrate Hijacking: <span style="color:#22d3ee;">What SV2 Saves You</span>
         </h1>
     </div>
     <div class="text-right">
         <p class="text-sm mono-font" style="color:rgba(148,163,184,0.7);">
-            Stale shares · Latency · Fee revenue
+            0.5% hijacked · 10% margin · Real impact
         </p>
     </div>
 </div>
 
 <!-- Main Content -->
-<div class="relative z-10 flex-1 px-12 py-5 flex gap-7 overflow-hidden" style="min-height:0;">
+<div class="relative z-10 flex-1 px-12 py-5 flex flex-col gap-4 overflow-hidden" style="min-height:0;">
 
-    <!-- Left Column: Stat Cards -->
-    <div style="flex:1.1; display:flex; flex-direction:column; gap:0.85rem; justify-content:center;">
+    <!-- Comparison Row -->
+    <div style="flex:1; display:flex; gap:0; min-height:0;">
 
-        <!-- Stale Shares -->
-        <div class="stat-card">
-            <div class="stat-icon"><i class="fas fa-percentage"></i></div>
-            <div style="flex:1;">
-                <div style="display:flex; align-items:center; justify-content:space-between;">
-                    <p class="font-bold" style="color:#F8FAFC; font-family:'Space Grotesk',sans-serif; font-size:1rem;">Stale Share Waste</p>
-                    <span class="gain-badge">+2.0% net profit</span>
+        <!-- SV1 Panel -->
+        <div class="compare-panel sv1">
+            <div>
+                <div class="panel-badge sv1"><i class="fas fa-unlock"></i> Stratum V1</div>
+
+                <!-- Assumptions -->
+                <div class="assumption-row">
+                    <div class="assumption-chip" style="color:#F87171; border-color:rgba(239,68,68,0.3); background:rgba(239,68,68,0.08);">
+                        <i class="fas fa-user-secret mr-1"></i>0.5% hashrate hijacked
+                    </div>
+                    <div class="assumption-chip" style="color:rgba(252,165,165,0.7); border-color:rgba(239,68,68,0.2); background:rgba(239,68,68,0.05);">
+                        10% profit margin
+                    </div>
                 </div>
-                <p style="color:rgba(148,163,184,0.75); font-size:0.82rem; margin-top:0.2rem;">
-                    Wasted hashing power on stale shares, recovered with SV2.
-                </p>
-                <div class="before-after">
-                    <span class="val-before">SV1: 0.1–0.2%</span>
-                    <i class="fas fa-arrow-right" style="color:rgba(148,163,184,0.4);"></i>
-                    <span class="val-after">SV2: ~0.08%</span>
+
+                <!-- Big number -->
+                <div class="big-number" style="color:#F87171;">−5%</div>
+                <div class="big-number-label" style="color:rgba(252,165,165,0.6);">
+                    <i class="fas fa-arrow-trend-down mr-1"></i>net profit lost to attacker
+                </div>
+
+                <div class="detail-row" style="color:rgba(252,165,165,0.65); border-color:rgba(239,68,68,0.15);">
+                    A 0.5% revenue loss hits <strong style="color:#FCA5A5;">5× harder</strong> when margins are thin.
+                    The attacker silently redirects your work — you never know it's happening.
                 </div>
             </div>
+
+            <!-- Decorative corner glow -->
+            <div style="position:absolute; bottom:-30px; right:-30px; width:120px; height:120px; border-radius:9999px;
+                        background:#EF4444; filter:blur(50px); opacity:0.12; pointer-events:none;"></div>
         </div>
 
-        <!-- Block Change Latency -->
-        <div class="stat-card">
-            <div class="stat-icon"><i class="fas fa-bolt"></i></div>
-            <div style="flex:1;">
-                <div style="display:flex; align-items:center; justify-content:space-between;">
-                    <p class="font-bold" style="color:#F8FAFC; font-family:'Space Grotesk',sans-serif; font-size:1rem;">Block Change Latency</p>
-                    <span class="gain-badge">+0.54% net profit</span>
-                </div>
-                <p style="color:rgba(148,163,184,0.75); font-size:0.82rem; margin-top:0.2rem;">
-                    Time to react to a new block. SV2 is <strong style="color:#22d3ee;">228× faster</strong>.
-                </p>
-                <div class="before-after">
-                    <span class="val-before">SV1: 325 ms</span>
-                    <i class="fas fa-arrow-right" style="color:rgba(148,163,184,0.4);"></i>
-                    <span class="val-after">SV2: 1.42 ms</span>
-                </div>
-            </div>
+        <!-- VS -->
+        <div class="vs-col">
+            <div class="vs-line"></div>
+            <div class="vs-badge">VS</div>
+            <div class="vs-line"></div>
         </div>
 
-        <!-- Job Latency / Fee Revenue -->
-        <div class="stat-card">
-            <div class="stat-icon"><i class="fas fa-coins"></i></div>
-            <div style="flex:1;">
-                <div style="display:flex; align-items:center; justify-content:space-between;">
-                    <p class="font-bold" style="color:#F8FAFC; font-family:'Space Grotesk',sans-serif; font-size:1rem;">Job Latency &amp; Fee Revenue</p>
-                    <span class="gain-badge">+0.4% net profit</span>
-                </div>
-                <p style="color:rgba(148,163,184,0.75); font-size:0.82rem; margin-top:0.2rem;">
-                    SV1 loses ~0.75% of tx fees per block. Annual gain: <strong style="color:#22d3ee;">up to 74 BTC</strong>.
-                </p>
-                <div class="before-after">
-                    <span class="val-before">SV1: 228 ms</span>
-                    <i class="fas fa-arrow-right" style="color:rgba(148,163,184,0.4);"></i>
-                    <span class="val-after">SV2: 2.44 ms</span>
-                </div>
-            </div>
-        </div>
+        <!-- SV2 Panel -->
+        <div class="compare-panel sv2">
+            <div>
+                <div class="panel-badge sv2"><i class="fas fa-lock"></i> Stratum V2</div>
 
-        <!-- Hashrate Protection -->
-        <div class="stat-card">
-            <div class="stat-icon"><i class="fas fa-shield-halved"></i></div>
-            <div style="flex:1;">
-                <div style="display:flex; align-items:center; justify-content:space-between;">
-                    <p class="font-bold" style="color:#F8FAFC; font-family:'Space Grotesk',sans-serif; font-size:1rem;">Hashrate Theft Protection</p>
-                    <span class="gain-badge">+5.0% net profit</span>
+                <!-- Assumptions -->
+                <div class="assumption-row">
+                    <div class="assumption-chip" style="color:#22d3ee; border-color:rgba(6,182,212,0.3); background:rgba(6,182,212,0.08);">
+                        <i class="fas fa-shield-halved mr-1"></i>0% hashrate hijacked
+                    </div>
+                    <div class="assumption-chip" style="color:rgba(165,243,252,0.7); border-color:rgba(6,182,212,0.2); background:rgba(6,182,212,0.05);">
+                        10% profit margin
+                    </div>
                 </div>
-                <p style="color:rgba(148,163,184,0.75); font-size:0.82rem; margin-top:0.2rem;">
-                    Industry estimates: 1–2% of hashrate stolen via SV1 MITM. SV2 eliminates this entirely.
-                </p>
+
+                <!-- Big number -->
+                <div class="big-number" style="color:#22d3ee;">+5%</div>
+                <div class="big-number-label" style="color:rgba(165,243,252,0.6);">
+                    <i class="fas fa-arrow-trend-up mr-1"></i>net profit recovered
+                </div>
+
+                <div class="detail-row" style="color:rgba(165,243,252,0.65); border-color:rgba(6,182,212,0.15);">
+                    Noise Protocol's authenticated encryption makes hijacking
+                    <strong style="color:#A5F3FC;">cryptographically impossible</strong>.
+                    Every hash you compute goes to you.
+                </div>
             </div>
+
+            <!-- Decorative corner glow -->
+            <div style="position:absolute; bottom:-30px; right:-30px; width:120px; height:120px; border-radius:9999px;
+                        background:#06b6d4; filter:blur(50px); opacity:0.15; pointer-events:none;"></div>
         </div>
 
     </div>
 
-    <!-- Right Column: Summary -->
-    <div style="flex:0.85; display:flex; flex-direction:column;">
-        <div class="summary-panel">
-
-            <div class="mono-font text-xs uppercase tracking-widest mb-3" style="color:rgba(6,182,212,0.5);">
-                Combined Net Profit Increase
+    <!-- Case Study Banner -->
+    <div class="case-study-banner">
+        <div style="width:2.5rem; height:2.5rem; border-radius:50%; flex-shrink:0;
+                    background:rgba(6,182,212,0.1); border:1px solid rgba(6,182,212,0.3);
+                    display:flex; align-items:center; justify-content:center; color:#22d3ee;">
+            <i class="fas fa-flask"></i>
+        </div>
+        <div style="flex:1;">
+            <div class="mono-font" style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em; color:rgba(6,182,212,0.5); margin-bottom:0.2rem;">
+                Case Study — HashlabS / Demand Pool
             </div>
-
-            <div class="total-profit">+7.4%</div>
-
-            <p style="color:rgba(148,163,184,0.7); font-size:0.85rem; margin-top:0.5rem; font-family:'Inter',sans-serif;">
-                For miners operating on a <strong style="color:#F8FAFC;">10% profit margin</strong>, upgrading to SV2 with Job Declaration provides a measurable and compounding profitability edge.
-            </p>
-
-            <div class="divider"></div>
-
-            <!-- Annual BTC highlight -->
-            <div style="background:rgba(14,79,95,0.2); border:1px solid rgba(6,182,212,0.25); border-radius:0.5rem; padding:0.875rem; margin-bottom:1rem;">
-                <div class="mono-font" style="font-size:0.72rem; color:rgba(148,163,184,0.55); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.35rem;">
-                    Annual Fee Advantage (Early Adopters)
-                </div>
-                <div style="font-family:'Space Grotesk',sans-serif; font-size:1.75rem; font-weight:700; color:#22d3ee; line-height:1;">
-                    74 BTC / yr
-                </div>
-                <div class="mono-font" style="font-size:0.72rem; color:rgba(148,163,184,0.5); margin-top:0.25rem;">
-                    ≈ $8.17M at $110,000 / BTC
-                </div>
+            <div style="font-size:0.88rem; color:rgba(209,213,219,0.8);">
+                Real-world deployment measuring latency, stale share reduction, and fee revenue gains from switching to SV2 with Job Declaration.
             </div>
-
-            <div class="divider"></div>
-
-            <div class="mono-font text-xs uppercase tracking-widest mb-2" style="color:rgba(6,182,212,0.45);">
-                <i class="fas fa-flask mr-1"></i> Source / Case Study
-            </div>
-            <div class="source-link">
-                stratumprotocol.org/blog/case-study/hashlabs/
-            </div>
-
+        </div>
+        <div class="mono-font" style="font-size:0.72rem; color:rgba(6,182,212,0.55); border:1px solid rgba(6,182,212,0.2);
+                    background:rgba(0,0,0,0.4); padding:0.4rem 0.75rem; border-radius:0.4rem; white-space:nowrap;">
+            stratumprotocol.org/blog/case-study/hashlabs/
         </div>
     </div>
 
