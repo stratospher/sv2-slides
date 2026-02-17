@@ -1,6 +1,5 @@
 const SLIDES = [
   { file: "slides/title-slide.html",              label: "Title Slide" },
-  { file: "slides/sv1-basic-setup.html",           label: "SV1 Basic Setup" },
   { file: "slides/sv1-architecture.html",          label: "SV1 Architecture" },
   { file: "slides/sv1-message-flow.html",          label: "SV1 Message Flow" },
   { file: "slides/connection-setup.html",          label: "Connection Setup" },
