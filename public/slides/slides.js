@@ -1,7 +1,6 @@
 window.SLIDES = [
     "title-slide.html",
     "sv1-architecture.html",
-    "sv1-message-flow.html",
     "connection-setup.html",
     "mining-subscribe.html",
     "mining-authorize.html",

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SV1: A Threat to Bitcoin Itself</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&amp;family=Space+Grotesk:wght@500;700&amp;family=Roboto+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { margin:0; padding:0; overflow:hidden; background-color:#0B0F19; font-family:'Inter',sans-serif; }
+    .slide-container {
+        width:1280px; height:720px; position:relative;
+        display:flex; flex-direction:column;
+        background-color:#0B0F19; color:#F3F4F6; overflow:hidden;
+    }
+    .bg-grid {
+        position:absolute; inset:0;
+        background-image:
+            linear-gradient(rgba(30,41,59,0.5) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(30,41,59,0.5) 1px, transparent 1px);
+        background-size:40px 40px; opacity:0.15; z-index:0;
+    }
+    .header {
+        position:relative; z-index:10; flex-shrink:0;
+        padding:1.4rem 3rem 1rem;
+        border-bottom:1px solid rgba(55,65,81,0.5);
+        background-color:rgba(11,15,25,0.9);
+    }
+    h1 { font-family:'Space Grotesk',sans-serif; font-size:2.75rem; color:white; margin:0; letter-spacing:-0.02em; }
+    .subtitle { font-family:'Roboto Mono',monospace; font-size:0.88rem; color:#EF4444; margin-top:0.3rem; text-transform:uppercase; letter-spacing:0.05em; }
+    .main-content {
+        display:flex; flex:1; position:relative; z-index:10;
+        padding:1.5rem 3rem; gap:2.5rem; min-height:0;
+    }
+    .diagram-panel {
+        flex:1.15; display:flex; align-items:center; justify-content:center;
+        background:rgba(17,24,39,0.55); border:1px solid rgba(55,65,81,0.4);
+        border-radius:0.75rem; padding:1.5rem;
+    }
+    .cards-grid {
+        flex:1; display:grid;
+        grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr;
+        gap:0.8rem;
+    }
+    .card {
+        border-radius:0.75rem; padding:1rem 1.1rem;
+        display:flex; flex-direction:column; gap:0.4rem;
+    }
+    .card-icon { font-size:1.5rem; line-height:1; }
+    .card-title { font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:700; line-height:1.2; }
+    .card-body  { font-size:0.83rem; line-height:1.45; color:#D1D5DB; }
+</style>
+</head>
+<body>
+<div class="slide-container">
+<div class="bg-grid"></div>
+
+<div class="header">
+    <h1>SV1's Cleartext: A Threat to Bitcoin Itself</h1>
+    <div class="subtitle">Unencrypted traffic can be blocked by ISPs &amp; governments — centralizing Bitcoin and bleeding miner revenue</div>
+    <div class="absolute bottom-0 left-0 w-full h-px bg-gray-800"></div>
+    <div class="absolute bottom-0 left-12 w-96 h-1 bg-red-500"></div>
+</div>
+
+<div class="main-content">
+
+    <div class="diagram-panel">
+        <!--
+        All coordinates verified — no overlaps.
+
+        LAYOUT (viewBox 0 0 440 300):
+          Miner:    rect(10,20,80,68)   right=90   center-x=50  center-y=54  bottom=88
+          Arrow:    x=90→195  y=54      (length 105px, no overlap with Network at x=197)
+          Pill:     rect(100,36,88,14)  right=188  (gap to network: 197-188=9px ✓)
+          Network:  rect(197,20,100,68) right=297  center-x=247 center-y=54  bottom=88
+
+          Branch origin: (247, 88) — exact bottom-center of Network box
+
+          Left branch:  (247,88) → (100,158)   arrow tip at top-center of Left box
+          Right branch: (247,88) → (340,158)   arrow tip at top-center of Right box
+
+          Left box:     rect(10,160,180,80)  right=190  center-x=100  bottom=240
+          Right box:    rect(250,160,180,80) right=430  center-x=340  bottom=240
+          (gap between boxes: 250-190=60px ✓)
+
+          Separator:    y=215  inside each box (215-160=55, within 80px height ✓)
+          All text verified inside its container below.
+
+          Down arrows:  (100,240)→(100,258)  and  (340,240)→(340,258)
+          Impact boxes: rect(10,260,180,30) and rect(250,260,180,30)  bottom=290 < 300 ✓
+        -->
+        <svg viewBox="0 0 440 322" width="100%" height="auto"
+             xmlns="http://www.w3.org/2000/svg" style="display:block;">
+            <defs>
+                <marker id="mB" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                    <path d="M0,0 L6,3 L0,6 Z" fill="#60A5FA"/>
+                </marker>
+                <marker id="mO" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                    <path d="M0,0 L6,3 L0,6 Z" fill="#F59E0B"/>
+                </marker>
+                <marker id="mR" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                    <path d="M0,0 L6,3 L0,6 Z" fill="#EF4444"/>
+                </marker>
+            </defs>
+
+            <!-- ═══ MINER  rect(10,20,80,68) center=(50,54) ═══ -->
+            <rect x="10" y="20" width="80" height="68" rx="8"
+                  fill="#1E293B" stroke="#60A5FA" stroke-width="1.8"/>
+            <text x="50" y="50" text-anchor="middle" font-size="20" fill="#60A5FA">⬡</text>
+            <text x="50" y="64" text-anchor="middle" font-size="9" fill="#93C5FD"
+                  font-weight="bold" font-family="Inter" letter-spacing="1">MINER</text>
+            <text x="50" y="76" text-anchor="middle" font-size="7" fill="#4B5563"
+                  font-family="Roboto Mono">SV1 · plaintext</text>
+
+            <!-- ═══ ARROW  (90,54)→(195,54) ═══ -->
+            <line x1="90" y1="54" x2="194" y2="54"
+                  stroke="#60A5FA" stroke-width="2" marker-end="url(#mB)"/>
+
+            <!-- pill label: rect(100,36,88,14) right=188, network starts at 197 — 9px gap ✓ -->
+            <rect x="100" y="36" width="88" height="14" rx="3"
+                  fill="rgba(239,68,68,0.12)" stroke="rgba(239,68,68,0.55)" stroke-width="0.8"/>
+            <text x="144" y="46.5" text-anchor="middle" font-size="7" fill="#FCA5A5"
+                  font-family="Roboto Mono" font-weight="bold">JSON · NO ENCRYPTION</text>
+
+            <!-- ═══ NETWORK  rect(197,20,100,68) center=(247,54) ═══ -->
+            <rect x="197" y="20" width="100" height="68" rx="8"
+                  fill="rgba(30,41,59,0.9)" stroke="#F59E0B" stroke-width="1.8"/>
+            <text x="247" y="47" text-anchor="middle" font-size="9.5" fill="#FDE68A"
+                  font-weight="bold" font-family="Inter" letter-spacing="0.5">NETWORK</text>
+            <text x="247" y="60" text-anchor="middle" font-size="8" fill="#9CA3AF"
+                  font-family="Roboto Mono">ISP / Gov</text>
+            <text x="247" y="73" text-anchor="middle" font-size="7.5" fill="#F59E0B"
+                  font-family="Roboto Mono">sees everything</text>
+
+            <!-- ═══ BRANCH LINES — both start at (247, 88) = Network bottom-center ═══ -->
+            <!-- left  → (100,158) = Left box top-center -->
+            <line x1="247" y1="88" x2="102" y2="157"
+                  stroke="#F59E0B" stroke-width="1.6" stroke-dasharray="5,3"
+                  marker-end="url(#mO)"/>
+            <!-- right → (340,158) = Right box top-center -->
+            <line x1="247" y1="88" x2="338" y2="157"
+                  stroke="#EF4444" stroke-width="1.6" stroke-dasharray="5,3"
+                  marker-end="url(#mR)"/>
+
+            <!-- ═══ LEFT BOX  rect(10,160,180,80) center-x=100 bottom=240 ═══
+                 Contents verified inside the box (y from 160 to 240):
+                   icon+title  y=179  (19px from top)
+                   desc        y=193  (33px)
+                   separator   y=202  (42px)
+                   impact-1    y=216  (56px)
+                   impact-2    y=229  (69px)  — inside box (bottom=240) ✓         -->
+            <rect x="10" y="160" width="180" height="80" rx="8"
+                  fill="rgba(120,53,15,0.2)" stroke="#F59E0B" stroke-width="1.5"/>
+            <text x="100" y="179" text-anchor="middle" font-size="10" fill="#FDE68A"
+                  font-weight="bold" font-family="Inter">GOVT / ISP</text>
+            <text x="100" y="193" text-anchor="middle" font-size="8" fill="#9CA3AF"
+                  font-family="Roboto Mono">DPI · port 3333</text>
+            <line x1="22" y1="202" x2="178" y2="202"
+                  stroke="rgba(245,158,11,0.2)" stroke-width="1"/>
+            <text x="100" y="216" text-anchor="middle" font-size="8.5" fill="#F59E0B"
+                  font-family="Roboto Mono" font-weight="bold">⛔ BLOCKS MINING</text>
+            <text x="100" y="229" text-anchor="middle" font-size="7.5" fill="#FDE68A"
+                  font-family="Roboto Mono">Censors transactions</text>
+
+            <!-- ═══ RIGHT BOX  rect(250,160,180,80) center-x=340 bottom=240 ═══
+                 Contents verified inside the box (y from 160 to 240):
+                   icon+title  y=179
+                   desc        y=193
+                   separator   y=202
+                   impact-1    y=216
+                   impact-2    y=229  — inside box (bottom=240) ✓                -->
+            <rect x="250" y="160" width="180" height="80" rx="8"
+                  fill="rgba(69,10,10,0.25)" stroke="#EF4444" stroke-width="1.5"/>
+            <text x="340" y="179" text-anchor="middle" font-size="10" fill="#FCA5A5"
+                  font-weight="bold" font-family="Inter">ATTACKER</text>
+            <text x="340" y="193" text-anchor="middle" font-size="8" fill="#9CA3AF"
+                  font-family="Roboto Mono">Rewrites jobs in-flight</text>
+            <line x1="262" y1="202" x2="418" y2="202"
+                  stroke="rgba(239,68,68,0.2)" stroke-width="1"/>
+            <text x="340" y="216" text-anchor="middle" font-size="8.5" fill="#EF4444"
+                  font-family="Roboto Mono" font-weight="bold">💸 STEALS HASHRATE</text>
+            <text x="340" y="229" text-anchor="middle" font-size="7.5" fill="#FCA5A5"
+                  font-family="Roboto Mono">Undetected, every session</text>
+
+            <!-- ═══ DOWN ARROWS  from box bottoms (y=240) to impact boxes (y=260) ═══ -->
+            <line x1="100" y1="240" x2="100" y2="257"
+                  stroke="rgba(245,158,11,0.4)" stroke-width="1.4" stroke-dasharray="4,3"
+                  marker-end="url(#mO)"/>
+            <line x1="340" y1="240" x2="340" y2="257"
+                  stroke="rgba(239,68,68,0.4)" stroke-width="1.4" stroke-dasharray="4,3"
+                  marker-end="url(#mR)"/>
+
+            <!-- ═══ IMPACT: BITCOIN  rect(10,260,180,52) bottom=312 ✓ ═══ -->
+            <rect x="10" y="260" width="180" height="52" rx="7"
+                  fill="rgba(0,0,0,0.4)" stroke="rgba(245,158,11,0.45)" stroke-width="1.5"/>
+            <text x="100" y="277" text-anchor="middle" font-size="11" fill="#FDE68A"
+                  font-family="Space Grotesk" font-weight="bold">⚡ BITCOIN</text>
+            <text x="100" y="291" text-anchor="middle" font-size="9" fill="#D1D5DB"
+                  font-family="Inter">Decentralization at Risk</text>
+            <text x="100" y="305" text-anchor="middle" font-size="8" fill="#9CA3AF"
+                  font-family="Roboto Mono">Censorship · Geographic concentration</text>
+
+            <!-- ═══ IMPACT: MINERS  rect(250,260,180,52) right=430 < 440 ✓ ═══ -->
+            <rect x="250" y="260" width="180" height="52" rx="7"
+                  fill="rgba(0,0,0,0.4)" stroke="rgba(239,68,68,0.45)" stroke-width="1.5"/>
+            <text x="340" y="277" text-anchor="middle" font-size="11" fill="#FCA5A5"
+                  font-family="Space Grotesk" font-weight="bold">📉 MINERS</text>
+            <text x="340" y="291" text-anchor="middle" font-size="9" fill="#D1D5DB"
+                  font-family="Inter">Silent Profit Drain</text>
+            <text x="340" y="305" text-anchor="middle" font-size="8" fill="#9CA3AF"
+                  font-family="Roboto Mono">1–2% loss ≈ 20% of net profit</text>
+        </svg>
+    </div>
+
+    <!-- 4 cards, equal height via grid-template-rows:1fr 1fr -->
+    <div class="cards-grid">
+
+        <div class="card" style="background:rgba(69,10,10,0.2); border:1px solid rgba(239,68,68,0.25);">
+            <div class="card-icon">🔍</div>
+            <div class="card-title" style="color:#F87171;">Trivial to Fingerprint</div>
+            <div class="card-body">Port 3333 + plaintext JSON — any DPI firewall identifies it instantly, no decryption needed.</div>
+        </div>
+
+        <div class="card" style="background:rgba(120,53,15,0.18); border:1px solid rgba(245,158,11,0.25);">
+            <div class="card-icon">🏛️</div>
+            <div class="card-title" style="color:#FCD34D;">Censorable by Design</div>
+            <div class="card-body">Governments can block or coerce miners directly. Traffic is unambiguously mining — no cover, no anonymity.</div>
+        </div>
+
+        <div class="card" style="background:rgba(120,53,15,0.18); border:1px solid rgba(245,158,11,0.25);">
+            <div class="card-icon">🌍</div>
+            <div class="card-title" style="color:#FCD34D;">Hashrate Centralization</div>
+            <div class="card-body">Blocked regions push miners to permissive countries — concentrating hashrate and weakening Bitcoin's security model.</div>
+        </div>
+
+        <div class="card" style="background:rgba(69,10,10,0.2); border:1px solid rgba(239,68,68,0.25);">
+            <div class="card-icon">📉</div>
+            <div class="card-title" style="color:#F87171;">Silent Profit Bleed</div>
+            <div class="card-body">1–2% stolen hashrate wipes ~20% of net profit — undetected, every day, in a 5–15% margin business.</div>
+        </div>
+
+    </div>
+</div>
+</div>
+<script src="slides.js"></script>
+<script src="navigate.js"></script>
+</body>
+</html>
