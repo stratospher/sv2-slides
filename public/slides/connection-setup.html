@@ -1,199 +1,267 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Bootstrapping — Connection Setup</title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&amp;family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
 <style>
-        body {
-            width: 1280px;
-            height: 720px;
-            overflow: hidden;
-            font-family: 'Inter', sans-serif;
-            background-color: #0B1120; /* Very Dark Slate */
-            color: #F8FAFC;
-        }
-        .mono-font {
-            font-family: 'Roboto Mono', monospace;
-        }
-        .bg-grid {
-            background-image: url('data:image/svg+xml,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M0 0h40v40H0V0zm1 1h38v38H1V1z" fill="%231E293B" fill-opacity="0.4" fill-rule="evenodd"/%3E%3C/svg%3E');
-        }
-        .glass-panel {
-            background-color: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(51, 65, 85, 0.5);
-        }
-        
-        /* Timeline specific styles */
-        .timeline-line {
-            position: absolute;
-            left: 2.25rem; /* Center of the icon (w-16/2 + ml) */
-            top: 2rem;
-            bottom: 2rem;
-            width: 4px;
-            background-color: #334155;
-            z-index: 0;
-        }
-        
-        .timeline-node {
-            position: relative;
-            z-index: 10;
-            transition: all 0.3s ease;
-        }
-        
-        .arrow-badge {
-            font-size: 0.65rem;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: 'Roboto Mono', monospace;
-            text-transform: uppercase;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-        
-        .arrow-miner-pool {
-            background-color: rgba(59, 130, 246, 0.2);
-            color: #60A5FA;
-            border: 1px solid rgba(59, 130, 246, 0.4);
-        }
-        
-        .arrow-pool-miner {
-            background-color: rgba(139, 92, 246, 0.2);
-            color: #A78BFA;
-            border: 1px solid rgba(139, 92, 246, 0.4);
-        }
-        
-        .method-tag {
-            background-color: #1E293B;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-family: 'Roboto Mono', monospace;
-            color: #E2E8F0;
-            font-size: 0.9rem;
-            border: 1px solid #475569;
-        }
-    </style>
+    :root {
+        --cyan-400: #22d3ee;
+        --cyan-500: #06b6d4;
+        --cyan-600: #0891b2;
+        --blue-600: #2563eb;
+    }
+    body {
+        width: 1280px; height: 720px; overflow: hidden;
+        font-family: 'Inter', sans-serif;
+        background-color: #000000;
+        color: #F8FAFC;
+        position: relative;
+    }
+
+    /* ── Gradient orbs ── */
+    .hero-gradient-1 {
+        position: absolute; top: -20%; left: 25%;
+        width: 600px; height: 600px; border-radius: 9999px;
+        background: var(--cyan-500);
+        filter: blur(120px); mix-blend-mode: screen; opacity: 0.45; z-index: 0;
+        animation: pulse-orb 4s ease-in-out infinite;
+    }
+    .hero-gradient-2 {
+        position: absolute; top: -10%; right: 25%;
+        width: 500px; height: 500px; border-radius: 9999px;
+        background: var(--blue-600);
+        filter: blur(120px); mix-blend-mode: screen; opacity: 0.4; z-index: 0;
+    }
+    .hero-gradient-3 {
+        position: absolute; top: 10%; left: 50%; transform: translateX(-50%);
+        width: 800px; height: 400px; border-radius: 9999px;
+        background: var(--cyan-400);
+        filter: blur(100px); mix-blend-mode: screen; opacity: 0.25; z-index: 0;
+    }
+    @keyframes pulse-orb {
+        0%, 100% { opacity: 0.45; transform: scale(1); }
+        50%       { opacity: 0.55; transform: scale(1.04); }
+    }
+
+    .bg-grid {
+        position: absolute; inset: 0; z-index: 1;
+        background-image:
+            linear-gradient(rgba(6, 182, 212, 0.07) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(6, 182, 212, 0.07) 1px, transparent 1px);
+        background-size: 30px 30px;
+        opacity: 0.5;
+    }
+
+    .mono-font { font-family: 'JetBrains Mono', monospace; }
+
+    /* Timeline */
+    .timeline-line {
+        position: absolute;
+        left: 2.75rem;
+        top: 2rem; bottom: 2rem;
+        width: 1px;
+        background: linear-gradient(to bottom, transparent, rgba(6,182,212,0.3) 10%, rgba(6,182,212,0.3) 90%, transparent);
+        z-index: 0;
+    }
+
+    .timeline-node { position: relative; z-index: 10; }
+
+    /* Direction badges */
+    .arrow-badge {
+        font-size: 0.6rem; padding: 2px 7px; border-radius: 3px;
+        font-family: 'JetBrains Mono', monospace;
+        text-transform: uppercase; font-weight: bold;
+        display: inline-flex; align-items: center; gap: 4px;
+        letter-spacing: 0.05em;
+    }
+    .arrow-miner-pool {
+        background: rgba(6,182,212,0.12);
+        color: var(--cyan-500);
+        border: 1px solid rgba(6,182,212,0.35);
+    }
+    .arrow-pool-miner {
+        background: rgba(34,211,238,0.1);
+        color: var(--cyan-400);
+        border: 1px solid rgba(34,211,238,0.3);
+    }
+
+    /* Method tag */
+    .method-tag {
+        background: rgba(0,0,0,0.5);
+        padding: 3px 9px; border-radius: 4px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.88rem; font-weight: 500;
+        border: 1px solid rgba(6,182,212,0.25);
+    }
+
+    /* Step icon circles */
+    .step-icon {
+        flex-shrink: 0; width: 52px; height: 52px; margin-left: 0.5rem;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        border: 2px solid rgba(6,182,212,0.3);
+        background: rgba(6,182,212,0.08);
+        position: relative; z-index: 2;
+    }
+
+    /* Glass card */
+    .glass-card {
+        background: rgba(0,0,0,0.45);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(6,182,212,0.18);
+        border-radius: 0.75rem;
+        padding: 0.85rem 1.25rem;
+        display: flex; align-items: center; justify-content: space-between;
+    }
+    .glass-card.miner-card { border-left: 3px solid var(--cyan-500); }
+    .glass-card.pool-card  { border-left: 3px solid var(--cyan-400); }
+</style>
 </head>
 <body class="relative flex flex-col justify-between">
-<!-- Background -->
-<div class="absolute inset-0 z-0 bg-grid opacity-30"></div>
-<div class="absolute top-20 left-10 w-96 h-96 bg-blue-900 rounded-full filter blur-3xl opacity-5 pointer-events-none"></div>
+
+<!-- Gradient orbs -->
+<div class="hero-gradient-1"></div>
+<div class="hero-gradient-2"></div>
+<div class="hero-gradient-3"></div>
+<!-- Grid -->
+<div class="bg-grid"></div>
+
 <!-- Header -->
-<header class="relative z-10 px-16 pt-10 pb-4 flex items-end justify-between border-b border-gray-800">
-<div>
-<div class="flex items-center space-x-3 mb-2">
-<span class="px-2 py-1 text-xs font-bold text-blue-900 bg-blue-500 rounded mono-font">SEQUENCE</span>
-<span class="text-xs text-gray-500 mono-font">// INITIALIZATION</span>
-</div>
-<h1 class="text-3xl font-black tracking-tight text-white uppercase">
-                Bootstrapping <span class="text-blue-500">&amp; Connection Setup</span>
-</h1>
-</div>
-<div class="text-right">
-<p class="text-gray-400 text-sm max-w-md text-right mono-font">
-                Chronological message flow from connection to first job
-            </p>
-</div>
+<header class="relative z-10 px-16 pt-9 pb-4 flex items-end justify-between"
+        style="border-bottom: 1px solid rgba(6,182,212,0.2); background: rgba(0,0,0,0.5);">
+    <div>
+        <div class="flex items-center space-x-3 mb-2">
+            <span class="px-2 py-1 text-xs font-bold rounded mono-font"
+                  style="background: rgba(6,182,212,0.15); color: #22d3ee; border: 1px solid rgba(6,182,212,0.3);">
+                SEQUENCE
+            </span>
+            <span class="text-xs mono-font" style="color: rgba(6,182,212,0.5);">// INITIALIZATION</span>
+        </div>
+        <h1 class="text-3xl font-black tracking-tight text-white uppercase"
+            style="font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em;">
+            Bootstrapping <span style="color: var(--cyan-400);">&amp; Connection Setup</span>
+        </h1>
+    </div>
+    <div class="text-right">
+        <p class="text-sm max-w-md text-right mono-font" style="color: rgba(148,163,184,0.7);">
+            Chronological message flow from connection to first job
+        </p>
+    </div>
 </header>
+
 <!-- Main Content -->
-<main class="relative z-10 flex-1 px-16 py-6 overflow-hidden flex flex-col justify-center">
+<main class="relative z-10 flex-1 px-16 py-5 overflow-hidden flex flex-col justify-center">
 <div class="relative max-w-5xl mx-auto w-full">
-<!-- Vertical Line -->
-<div class="timeline-line ml-3"></div>
+<!-- Vertical line -->
+<div class="timeline-line"></div>
+
 <!-- Step 1: TCP Connection -->
-<div class="flex items-start mb-5 timeline-node group">
-<div class="flex-shrink-0 w-14 h-14 ml-3 rounded-full bg-gray-800 border-4 border-gray-900 flex items-center justify-center shadow-lg group-hover:border-blue-500 transition-colors">
-<i class="fas fa-plug text-gray-400 text-lg group-hover:text-blue-400"></i>
+<div class="flex items-center mb-4 timeline-node gap-6">
+    <div class="step-icon">
+        <i class="fas fa-plug" style="color: rgba(6,182,212,0.7); font-size: 1.1rem;"></i>
+    </div>
+    <div class="glass-card miner-card flex-1">
+        <div>
+            <h3 class="text-base font-bold" style="color: #F8FAFC;">TCP Connection Established</h3>
+            <p class="text-sm mt-0.5 mono-font" style="color: rgba(148,163,184,0.7);">
+                Miner initiates socket connection to pool <span style="color: rgba(6,182,212,0.6);">stratum.pool:3333</span>
+            </p>
+        </div>
+        <div class="text-right flex-shrink-0 ml-6">
+            <div><span class="arrow-badge arrow-miner-pool">Miner <i class="fas fa-long-arrow-alt-right mx-1"></i> Pool</span></div>
+            <div class="text-xs mt-1 mono-font" style="color: rgba(148,163,184,0.5);">Transport Layer</div>
+        </div>
+    </div>
 </div>
-<div class="ml-8 flex-1 glass-panel p-4 rounded-xl border-l-4 border-gray-600 flex items-center justify-between">
-<div>
-<h3 class="text-lg font-bold text-gray-200">TCP Connection Established</h3>
-<p class="text-sm text-gray-400 mt-1">Miner initiates socket connection to Pool (e.g., stratum.pool:3333)</p>
-</div>
-<div class="text-right">
-<span class="arrow-badge arrow-miner-pool mb-1">Miner <i class="fas fa-long-arrow-alt-right"></i> Pool</span>
-<div class="text-xs text-gray-500 mono-font">Transport Layer</div>
-</div>
-</div>
-</div>
+
 <!-- Step 2: Subscribe -->
-<div class="flex items-start mb-5 timeline-node group">
-<div class="flex-shrink-0 w-14 h-14 ml-3 rounded-full bg-blue-900 border-4 border-gray-900 flex items-center justify-center shadow-lg group-hover:bg-blue-800 transition-colors">
-<span class="mono-font font-bold text-blue-200">01</span>
+<div class="flex items-center mb-4 timeline-node gap-6">
+    <div class="step-icon">
+        <span class="mono-font font-bold text-sm" style="color: var(--cyan-400);">01</span>
+    </div>
+    <div class="glass-card miner-card flex-1">
+        <div>
+            <div class="flex items-center space-x-3 mb-1">
+                <span class="method-tag" style="color: var(--cyan-400);">mining.subscribe</span>
+            </div>
+            <p class="text-sm mono-font" style="color: rgba(148,163,184,0.7);">
+                Request subscription ID &amp; extranonce1. Sends User Agent info.
+            </p>
+        </div>
+        <div class="text-right flex-shrink-0 ml-6">
+            <div><span class="arrow-badge arrow-miner-pool">Miner <i class="fas fa-long-arrow-alt-right mx-1"></i> Pool</span></div>
+            <div class="text-xs mt-1 mono-font" style="color: rgba(148,163,184,0.5);">JSON-RPC Request</div>
+        </div>
+    </div>
 </div>
-<div class="ml-8 flex-1 glass-panel p-4 rounded-xl border-l-4 border-blue-500 flex items-center justify-between">
-<div>
-<div class="flex items-center space-x-3 mb-1">
-<span class="method-tag text-blue-300">mining.subscribe</span>
-</div>
-<p class="text-sm text-gray-400">Request subscription ID &amp; extranonce1. Sends User Agent info.</p>
-</div>
-<div class="text-right">
-<span class="arrow-badge arrow-miner-pool mb-1">Miner <i class="fas fa-long-arrow-alt-right"></i> Pool</span>
-<div class="text-xs text-gray-500 mono-font">JSON-RPC Request</div>
-</div>
-</div>
-</div>
+
 <!-- Step 3: Authorize -->
-<div class="flex items-start mb-5 timeline-node group">
-<div class="flex-shrink-0 w-14 h-14 ml-3 rounded-full bg-blue-900 border-4 border-gray-900 flex items-center justify-center shadow-lg group-hover:bg-blue-800 transition-colors">
-<span class="mono-font font-bold text-blue-200">02</span>
+<div class="flex items-center mb-4 timeline-node gap-6">
+    <div class="step-icon">
+        <span class="mono-font font-bold text-sm" style="color: var(--cyan-400);">02</span>
+    </div>
+    <div class="glass-card miner-card flex-1">
+        <div>
+            <div class="flex items-center space-x-3 mb-1">
+                <span class="method-tag" style="color: var(--cyan-400);">mining.authorize</span>
+            </div>
+            <p class="text-sm mono-font" style="color: rgba(148,163,184,0.7);">
+                Authenticate worker (username.workername + password).
+            </p>
+        </div>
+        <div class="text-right flex-shrink-0 ml-6">
+            <div><span class="arrow-badge arrow-miner-pool">Miner <i class="fas fa-long-arrow-alt-right mx-1"></i> Pool</span></div>
+            <div class="text-xs mt-1 mono-font" style="color: rgba(148,163,184,0.5);">JSON-RPC Request</div>
+        </div>
+    </div>
 </div>
-<div class="ml-8 flex-1 glass-panel p-4 rounded-xl border-l-4 border-blue-500 flex items-center justify-between">
-<div>
-<div class="flex items-center space-x-3 mb-1">
-<span class="method-tag text-blue-300">mining.authorize</span>
-</div>
-<p class="text-sm text-gray-400">Authenticate worker (username.workername + password).</p>
-</div>
-<div class="text-right">
-<span class="arrow-badge arrow-miner-pool mb-1">Miner <i class="fas fa-long-arrow-alt-right"></i> Pool</span>
-<div class="text-xs text-gray-500 mono-font">JSON-RPC Request</div>
-</div>
-</div>
-</div>
+
 <!-- Step 4: Set Difficulty -->
-<div class="flex items-start mb-5 timeline-node group">
-<div class="flex-shrink-0 w-14 h-14 ml-3 rounded-full bg-purple-900 border-4 border-gray-900 flex items-center justify-center shadow-lg group-hover:bg-purple-800 transition-colors">
-<i class="fas fa-tachometer-alt text-purple-200 text-lg"></i>
+<div class="flex items-center mb-4 timeline-node gap-6">
+    <div class="step-icon">
+        <i class="fas fa-tachometer-alt" style="color: rgba(34,211,238,0.8); font-size: 1.1rem;"></i>
+    </div>
+    <div class="glass-card pool-card flex-1">
+        <div>
+            <div class="flex items-center space-x-3 mb-1">
+                <span class="method-tag" style="color: var(--cyan-400);">mining.set_difficulty</span>
+            </div>
+            <p class="text-sm mono-font" style="color: rgba(148,163,184,0.7);">
+                Pool sets initial share difficulty target for the miner.
+            </p>
+        </div>
+        <div class="text-right flex-shrink-0 ml-6">
+            <div><span class="arrow-badge arrow-pool-miner">Pool <i class="fas fa-long-arrow-alt-right mx-1"></i> Miner</span></div>
+            <div class="text-xs mt-1 mono-font" style="color: rgba(148,163,184,0.5);">Server Push</div>
+        </div>
+    </div>
 </div>
-<div class="ml-8 flex-1 glass-panel p-4 rounded-xl border-l-4 border-purple-500 flex items-center justify-between">
-<div>
-<div class="flex items-center space-x-3 mb-1">
-<span class="method-tag text-purple-300">mining.set_difficulty</span>
+
+<!-- Step 5: Notify -->
+<div class="flex items-center timeline-node gap-6">
+    <div class="step-icon">
+        <i class="fas fa-bolt" style="color: rgba(34,211,238,0.8); font-size: 1.1rem;"></i>
+    </div>
+    <div class="glass-card pool-card flex-1">
+        <div>
+            <div class="flex items-center space-x-3 mb-1">
+                <span class="method-tag" style="color: var(--cyan-400);">mining.notify</span>
+            </div>
+            <p class="text-sm mono-font" style="color: rgba(148,163,184,0.7);">
+                First job pushed. Contains coinbase1/2, merkle branch, version, nbits, ntime.
+            </p>
+        </div>
+        <div class="text-right flex-shrink-0 ml-6">
+            <div><span class="arrow-badge arrow-pool-miner">Pool <i class="fas fa-long-arrow-alt-right mx-1"></i> Miner</span></div>
+            <div class="text-xs mt-1 mono-font" style="color: rgba(148,163,184,0.5);">Broadcasting Job</div>
+        </div>
+    </div>
 </div>
-<p class="text-sm text-gray-400">Pool sets initial share difficulty target for the miner.</p>
-</div>
-<div class="text-right">
-<span class="arrow-badge arrow-pool-miner mb-1">Pool <i class="fas fa-long-arrow-alt-right"></i> Miner</span>
-<div class="text-xs text-gray-500 mono-font">Server Push</div>
-</div>
-</div>
-</div>
-<!-- Step 5: Notify (Job) -->
-<div class="flex items-start timeline-node group">
-<div class="flex-shrink-0 w-14 h-14 ml-3 rounded-full bg-green-900 border-4 border-gray-900 flex items-center justify-center shadow-lg group-hover:bg-green-800 transition-colors">
-<i class="fas fa-bolt text-green-200 text-lg"></i>
-</div>
-<div class="ml-8 flex-1 glass-panel p-4 rounded-xl border-l-4 border-green-500 flex items-center justify-between">
-<div>
-<div class="flex items-center space-x-3 mb-1">
-<span class="method-tag text-green-300">mining.notify</span>
-</div>
-<p class="text-sm text-gray-400">First job pushed. Contains coinbase1/2, merkle branch, version, nbits, ntime.</p>
-</div>
-<div class="text-right">
-<span class="arrow-badge arrow-pool-miner mb-1">Pool <i class="fas fa-long-arrow-alt-right"></i> Miner</span>
-<div class="text-xs text-gray-500 mono-font">Broadcasting Job</div>
-</div>
-</div>
-</div>
+
 </div>
 </main>
 <script src="slides.js"></script>

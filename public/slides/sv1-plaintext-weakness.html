@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -7,273 +6,272 @@
 <title>Why SV1 Is Weak: Plaintext by Design</title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&amp;family=Space+Grotesk:wght@500;700&amp;family=Roboto+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #0B0F19;
-            font-family: 'Inter', sans-serif;
-        }
-        .slide-container {
-            width: 1280px;
-            height: 720px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            background-color: #0B0F19;
-            color: #F3F4F6;
-            overflow: hidden;
-        }
-        .bg-grid {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(30, 41, 59, 0.5) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.15;
-            z-index: 0;
-        }
-        .header {
-            position: relative;
-            z-index: 10;
-            padding: 2rem 3rem 1rem 3rem;
-            border-bottom: 1px solid rgba(55, 65, 81, 0.5);
-            background-color: rgba(11, 15, 25, 0.9);
-        }
-        .main-content {
-            display: flex;
-            flex: 1;
-            position: relative;
-            z-index: 10;
-            padding: 2rem 3rem;
-            gap: 3rem;
-        }
-        .diagram-col {
-            flex: 1;
-            background-color: rgba(17, 24, 39, 0.6);
-            border-radius: 1rem;
-            border: 1px solid rgba(55, 65, 81, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .text-col {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 3rem;
-            color: white;
-            margin: 0;
-            letter-spacing: -0.02em;
-        }
-        h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            color: #EF4444; /* Changed to red for vulnerability theme */
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-        }
-        .mono-text {
-            font-family: 'Roboto Mono', monospace;
-        }
-        .bullet-point {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
-            font-size: 1.25rem;
-            line-height: 1.6;
-            color: #D1D5DB;
-        }
-        .bullet-icon {
-            color: #F87171;
-            margin-right: 1rem;
-            margin-top: 0.25rem;
-            font-size: 1.25rem;
-        }
-        .code-snippet {
-            background-color: #1F2937;
-            padding: 0.2rem 0.5rem;
-            border-radius: 0.25rem;
-            font-family: 'Roboto Mono', monospace;
-            font-size: 0.9em;
-            color: #FCA5A5;
-            border: 1px solid #374151;
-        }
-        /* Network Diagram Elements */
-        .node {
-            width: 100px;
-            height: 100px;
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: absolute;
-            z-index: 2;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-        }
-        .miner-node {
-            background-color: #1E293B;
-            border: 2px solid #60A5FA;
-            left: 80px;
-        }
-        .pool-node {
-            background-color: #1E293B;
-            border: 2px solid #A78BFA;
-            right: 80px;
-        }
-        .eavesdropper-node {
-            width: 80px;
-            height: 80px;
-            background-color: #450a0a;
-            border: 2px dashed #EF4444;
-            left: 50%;
-            top: 25%;
-            transform: translateX(-50%);
-            z-index: 5;
-        }
-        .connection-line {
-            position: absolute;
-            height: 4px;
-            background-color: #4B5563;
-            top: 50%;
-            left: 180px;
-            right: 180px;
-            transform: translateY(-50%);
-            z-index: 1;
-        }
-        .eye-icon {
-            color: #EF4444;
-            font-size: 2rem;
-            animation: pulse 2s infinite;
-        }
-        .data-stream {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40%;
-            height: 40px;
-            z-index: 4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: rgba(31, 41, 55, 0.9);
-            border: 1px solid #EF4444;
-            border-radius: 4px;
-        }
-        .stream-text {
-            font-family: 'Roboto Mono', monospace;
-            font-size: 0.75rem;
-            color: #FCA5A5;
-            white-space: nowrap;
-            overflow: hidden;
-        }
-        .dashed-line {
-            position: absolute;
-            width: 2px;
-            height: 80px;
-            border-left: 2px dashed #EF4444;
-            left: 50%;
-            top: 38%;
-            z-index: 3;
-        }
-        @keyframes pulse {
-            0% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.1); }
-            100% { opacity: 0.5; transform: scale(1); }
-        }
-    </style>
+    :root {
+        --cyan-400: #22d3ee;
+        --cyan-500: #06b6d4;
+        --cyan-600: #0891b2;
+        --blue-600: #2563eb;
+    }
+    body {
+        margin: 0; padding: 0; overflow: hidden;
+        background-color: #000000;
+        font-family: 'Inter', sans-serif;
+    }
+
+    /* ── Gradient orbs ── */
+    .hero-gradient-1 {
+        position: absolute; top: -20%; left: 25%;
+        width: 600px; height: 600px; border-radius: 9999px;
+        background: var(--cyan-500);
+        filter: blur(120px); mix-blend-mode: screen; opacity: 0.45; z-index: 0;
+        animation: pulse-orb 4s ease-in-out infinite;
+    }
+    .hero-gradient-2 {
+        position: absolute; top: -10%; right: 25%;
+        width: 500px; height: 500px; border-radius: 9999px;
+        background: var(--blue-600);
+        filter: blur(120px); mix-blend-mode: screen; opacity: 0.4; z-index: 0;
+    }
+    .hero-gradient-3 {
+        position: absolute; top: 10%; left: 50%; transform: translateX(-50%);
+        width: 800px; height: 400px; border-radius: 9999px;
+        background: var(--cyan-400);
+        filter: blur(100px); mix-blend-mode: screen; opacity: 0.25; z-index: 0;
+    }
+    @keyframes pulse-orb {
+        0%, 100% { opacity: 0.45; transform: scale(1); }
+        50%       { opacity: 0.55; transform: scale(1.04); }
+    }
+
+    .bg-grid {
+        position: absolute; inset: 0; z-index: 1;
+        background-image:
+            linear-gradient(rgba(6, 182, 212, 0.07) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(6, 182, 212, 0.07) 1px, transparent 1px);
+        background-size: 30px 30px; opacity: 0.5;
+    }
+
+    .slide-container {
+        width: 1280px; height: 720px;
+        position: relative; display: flex; flex-direction: column;
+        color: #F8FAFC; overflow: hidden;
+    }
+
+    .mono-font { font-family: 'JetBrains Mono', monospace; }
+
+    .glass-panel {
+        background: rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(6, 182, 212, 0.18);
+    }
+
+    /* Network diagram */
+    .node {
+        width: 96px; height: 96px;
+        border-radius: 12px;
+        display: flex; flex-direction: column;
+        justify-content: center; align-items: center;
+        position: absolute; z-index: 2;
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5);
+    }
+    .miner-node {
+        background: rgba(6,182,212,0.06);
+        border: 2px solid rgba(6,182,212,0.6);
+        left: 60px;
+    }
+    .pool-node {
+        background: rgba(34,211,238,0.06);
+        border: 2px solid rgba(34,211,238,0.5);
+        right: 60px;
+    }
+    .eavesdropper-node {
+        width: 76px; height: 76px;
+        background: rgba(69,10,10,0.7);
+        border: 2px dashed #EF4444;
+        left: 50%; top: 22%;
+        transform: translateX(-50%);
+        z-index: 5;
+    }
+    .connection-line {
+        position: absolute;
+        height: 3px;
+        background: linear-gradient(90deg, rgba(6,182,212,0.6), rgba(34,211,238,0.4), rgba(6,182,212,0.6));
+        top: 50%; left: 156px; right: 156px;
+        transform: translateY(-50%); z-index: 1;
+    }
+    .dashed-line {
+        position: absolute;
+        width: 2px; height: 80px;
+        border-left: 2px dashed rgba(239,68,68,0.7);
+        left: 50%; top: 36%; z-index: 3;
+    }
+    .data-stream {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        width: 42%; height: 38px; z-index: 4;
+        display: flex; justify-content: center; align-items: center;
+        background: rgba(0,0,0,0.8);
+        border: 1px solid rgba(239,68,68,0.6);
+        border-radius: 4px;
+    }
+    .stream-text {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.75rem; color: #FCA5A5; white-space: nowrap;
+    }
+    @keyframes pulse-eye {
+        0%, 100% { opacity: 0.55; transform: scale(1); }
+        50%       { opacity: 1; transform: scale(1.15); }
+    }
+    .eye-icon {
+        color: #EF4444; font-size: 1.75rem;
+        animation: pulse-eye 2s ease-in-out infinite;
+    }
+
+    /* Bullet cards */
+    .bullet-card {
+        background: rgba(0,0,0,0.4);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(6,182,212,0.12);
+        padding: 0.9rem 1rem;
+        border-radius: 0 0.5rem 0.5rem 0;
+    }
+</style>
 </head>
 <body>
-<div class="slide-container">
-<!-- Background Elements -->
+<!-- Gradient orbs -->
+<div class="hero-gradient-1"></div>
+<div class="hero-gradient-2"></div>
+<div class="hero-gradient-3"></div>
 <div class="bg-grid"></div>
+
+<div class="slide-container">
+
 <!-- Header -->
-<div class="header">
-<h1>Why SV1 Is Weak: Plaintext by Design</h1>
-<div class="absolute bottom-0 left-0 w-full h-px bg-gray-800"></div>
-<div class="absolute bottom-0 left-12 w-96 h-1 bg-red-500"></div>
+<div class="relative z-10 px-12 pt-7 pb-3 flex items-end justify-between"
+     style="border-bottom: 1px solid rgba(6,182,212,0.2); background: rgba(0,0,0,0.5);">
+    <div>
+        <div class="flex items-center space-x-3 mb-2">
+            <span class="px-2 py-1 text-xs font-bold rounded mono-font"
+                  style="background: rgba(239,68,68,0.12); color: #f87171; border: 1px solid rgba(239,68,68,0.3);">
+                SECURITY
+            </span>
+            <span class="text-xs mono-font" style="color: rgba(6,182,212,0.5);">// SV1 WEAKNESS</span>
+        </div>
+        <h1 class="text-3xl font-black tracking-tight text-white uppercase"
+            style="font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em;">
+            Plaintext <span style="color: #f87171;">by Design</span>
+        </h1>
+    </div>
+    <div class="text-right">
+        <p class="text-sm mono-font" style="color: rgba(148,163,184,0.7);">
+            Why SV1's lack of encryption is a fundamental flaw
+        </p>
+    </div>
 </div>
+
 <!-- Main Content -->
-<div class="main-content">
-<!-- Left Column: Network Diagram -->
-<div class="diagram-col">
-<!-- Nodes -->
-<div class="node miner-node">
-<i class="fas fa-microchip text-3xl text-blue-400 mb-2"></i>
-<span class="text-xs font-bold text-gray-300">MINER</span>
-</div>
-<div class="node pool-node">
-<i class="fas fa-server text-3xl text-purple-400 mb-2"></i>
-<span class="text-xs font-bold text-gray-300">POOL</span>
-</div>
-<!-- Eavesdropper -->
-<div class="node eavesdropper-node">
-<i class="fas fa-eye eye-icon"></i>
-<span class="text-[10px] text-red-400 font-bold mt-1">SNIFFER</span>
-</div>
-<!-- Connections -->
-<div class="connection-line"></div>
-<div class="dashed-line"></div>
-<!-- Intercepted Data -->
-<div class="data-stream">
-<span class="stream-text">"params": ["user", "pass"]</span>
-</div>
-<!-- Labels -->
-<div class="absolute bottom-4 left-4 text-xs text-gray-500 font-mono">
-                    PROTOCOL: JSON-RPC over TCP
+<div class="relative z-10 flex-1 px-12 py-5 flex gap-8 overflow-hidden">
+
+    <!-- Left Column: Network Diagram -->
+    <div class="flex-1 glass-panel rounded-xl relative overflow-hidden"
+         style="border: 1px solid rgba(6,182,212,0.15);">
+
+        <!-- Miner Node -->
+        <div class="node miner-node" style="top: 50%; transform: translateY(-50%);">
+            <i class="fas fa-microchip text-3xl mb-2" style="color: var(--cyan-500);"></i>
+            <span class="mono-font text-xs font-bold" style="color: rgba(148,163,184,0.9);">MINER</span>
+        </div>
+
+        <!-- Pool Node -->
+        <div class="node pool-node" style="top: 50%; transform: translateY(-50%);">
+            <i class="fas fa-server text-3xl mb-2" style="color: var(--cyan-400);"></i>
+            <span class="mono-font text-xs font-bold" style="color: rgba(148,163,184,0.9);">POOL</span>
+        </div>
+
+        <!-- Eavesdropper -->
+        <div class="node eavesdropper-node">
+            <i class="fas fa-eye eye-icon"></i>
+            <span class="mono-font font-bold mt-1" style="font-size: 0.6rem; color: #f87171;">SNIFFER</span>
+        </div>
+
+        <!-- Connection line -->
+        <div class="connection-line"></div>
+        <!-- Dashed drop line to data stream -->
+        <div class="dashed-line"></div>
+
+        <!-- Intercepted Data -->
+        <div class="data-stream">
+            <span class="stream-text">"params": ["user", "pass"]</span>
+        </div>
+
+        <!-- Bottom labels -->
+        <div class="absolute bottom-3 left-4 mono-font text-xs" style="color: rgba(148,163,184,0.45);">
+            PROTOCOL: JSON-RPC over TCP
+        </div>
+        <div class="absolute bottom-3 right-4 mono-font text-xs font-bold" style="color: #f87171;">
+            STATUS: UNENCRYPTED
+        </div>
+    </div>
+
+    <!-- Right Column: Bullet Points -->
+    <div class="flex-1 flex flex-col justify-center space-y-4">
+
+        <div>
+            <h2 class="font-black uppercase mb-4"
+                style="font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; color: #f87171; letter-spacing: -0.01em;">
+                2012 Design Limitations
+            </h2>
+        </div>
+
+        <!-- Historical Context -->
+        <div class="bullet-card" style="border-left: 3px solid rgba(6,182,212,0.5);">
+            <div class="flex items-start gap-3">
+                <i class="fas fa-history mt-0.5 flex-shrink-0" style="color: var(--cyan-500); font-size: 1.1rem;"></i>
+                <div>
+                    <p class="font-bold mb-1" style="color: #F8FAFC; font-size: 0.97rem;">Historical Context</p>
+                    <p style="color: rgba(148,163,184,0.85); font-size: 0.9rem; line-height: 1.55;">
+                        Designed to replace <code class="mono-font" style="color: var(--cyan-400); font-size: 0.85rem;">getwork</code> for efficiency, not security. Encryption was an afterthought in the early ASIC era.
+                    </p>
                 </div>
-<div class="absolute bottom-4 right-4 text-xs text-red-500 font-mono font-bold">
-                    STATUS: UNENCRYPTED
+            </div>
+        </div>
+
+        <!-- Total Eavesdropping -->
+        <div class="bullet-card" style="border-left: 3px solid #EF4444;">
+            <div class="flex items-start gap-3">
+                <i class="fas fa-user-secret mt-0.5 flex-shrink-0" style="color: #EF4444; font-size: 1.1rem;"></i>
+                <div>
+                    <p class="font-bold mb-1" style="color: #F8FAFC; font-size: 0.97rem;">Total Eavesdropping</p>
+                    <p style="color: rgba(148,163,184,0.85); font-size: 0.9rem; line-height: 1.55; margin-bottom: 0.4rem;">
+                        Passive observers on the network can read everything:
+                    </p>
+                    <div class="space-y-0.5 mono-font" style="font-size: 0.82rem;">
+                        <div style="color: #FCA5A5;">· Worker credentials (user / pass)</div>
+                        <div style="color: #FCA5A5;">· Incoming jobs &amp; difficulty targets</div>
+                        <div style="color: #FCA5A5;">· Submitted shares (proof of work)</div>
+                    </div>
                 </div>
-</div>
-<!-- Right Column: Bullet Points -->
-<div class="text-col">
-<h2>2012 Design Limitations</h2>
-<div class="bullet-point">
-<i class="fas fa-history bullet-icon"></i>
-<div>
-<p class="font-bold text-gray-200">Historical Context</p>
-<p class="text-gray-400 text-base mt-1">
-                            Designed to replace <span class="code-snippet">getwork</span> for efficiency, not security. Encryption was an afterthought in the early ASIC era.
-                        </p>
-</div>
-</div>
-<div class="bullet-point">
-<i class="fas fa-user-secret bullet-icon"></i>
-<div>
-<p class="font-bold text-gray-200">Total Eavesdropping</p>
-<p class="text-gray-400 text-base mt-1">
-                            Passive observers can read:
-                            <br/><span class="text-sm text-red-300">• Worker credentials (user/pass)</span>
-<br/><span class="text-sm text-red-300">• Incoming jobs &amp; difficulty</span>
-<br/><span class="text-sm text-red-300">• Submitted shares (proof of work)</span>
-</p>
-</div>
-</div>
-<div class="bullet-point">
-<i class="fas fa-pen-to-square bullet-icon"></i>
-<div>
-<p class="font-bold text-gray-200">Tampering &amp; Identity Risks</p>
-<p class="text-gray-400 text-base mt-1">
-                            Attackers can modify jobs on the fly.
-                            <br/>Miners cannot verify they are talking to the real pool (No Authentication).
-                        </p>
-</div>
-</div>
-</div>
+            </div>
+        </div>
+
+        <!-- Tampering & Identity Risks -->
+        <div class="bullet-card" style="border-left: 3px solid #F59E0B;">
+            <div class="flex items-start gap-3">
+                <i class="fas fa-pen-to-square mt-0.5 flex-shrink-0" style="color: #F59E0B; font-size: 1.1rem;"></i>
+                <div>
+                    <p class="font-bold mb-1" style="color: #F8FAFC; font-size: 0.97rem;">Tampering &amp; Identity Risks</p>
+                    <p style="color: rgba(148,163,184,0.85); font-size: 0.9rem; line-height: 1.55;">
+                        Attackers can modify jobs on the fly. Miners cannot verify they are talking to the real pool — <strong style="color: #FDE68A;">no cryptographic authentication</strong>.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </div>
 </div>
 <script src="slides.js"></script>

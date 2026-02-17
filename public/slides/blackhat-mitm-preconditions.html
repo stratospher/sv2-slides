@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -7,364 +6,235 @@
 <title>BlackHat Asia 2021: MITM Preconditions</title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&amp;family=Space+Grotesk:wght@500;700&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #0B0F19;
-            font-family: 'Inter', sans-serif;
-        }
-        .slide-container {
-            width: 1280px;
-            height: 720px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            background-color: #0B0F19;
-            color: #F3F4F6;
-            overflow: hidden;
-        }
-        .bg-grid {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #0B0F19;
-            opacity: 1;
-            z-index: 0;
-        }
-        .grid-pattern {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgNDBWMHptNDAgMFYweiIgc3Ryb2tlPSJyZ2JhKDIzOSw2OCw2OCwwLjEpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=');
-            opacity: 0.3;
-            z-index: 0;
-        }
-        .header {
-            position: relative;
-            z-index: 10;
-            padding: 1.5rem 3rem 1rem 3rem;
-            border-bottom: 1px solid rgba(239, 68, 68, 0.3);
-            background-color: rgba(11, 15, 25, 0.95);
-        }
-        h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.5rem;
-            color: white;
-            margin: 0;
-            letter-spacing: -0.02em;
-        }
-        .subtitle {
-            color: #EF4444;
-            font-family: 'Roboto Mono', monospace;
-            font-size: 1rem;
-            margin-top: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        .main-content {
-            display: flex;
-            flex: 1;
-            position: relative;
-            z-index: 10;
-            padding: 2rem 3rem;
-            gap: 2rem;
-        }
-        
-        /* Attack Diagram Layout */
-        .diagram-container {
-            flex: 1.4;
-            background-color: rgba(31, 41, 55, 0.4);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            border-radius: 1rem;
-            position: relative;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .network-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            height: 120px;
-            margin-bottom: 2rem;
-        }
-        
-        .node {
-            width: 110px;
-            height: 110px;
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-            position: relative;
-        }
-        
-        .miner-node {
-            background-color: #1E293B;
-            border: 2px solid #60A5FA;
-        }
-        
-        .attacker-node {
-            background-color: #450a0a;
-            border: 2px solid #EF4444;
-            width: 140px;
-            height: 140px;
-        }
-        
-        .legit-pool-node {
-            background-color: #1E293B;
-            border: 2px solid #A78BFA;
-        }
-        
-        .malicious-pool-node {
-            background-color: #1E293B;
-            border: 2px dashed #EF4444;
-            position: absolute;
-            right: 0;
-            top: 100px; /* Position below legit pool */
-        }
-        
-        .connection-line {
-            position: absolute;
-            height: 4px;
-            top: 50%;
-            z-index: 1;
-            transform: translateY(-50%);
-        }
-        
-        .conn-miner-mitm {
-            left: 110px;
-            right: calc(100% - 50% + 70px);
-            background-color: #60A5FA;
-        }
-        
-        .conn-mitm-legit {
-            left: calc(50% + 70px);
-            right: 110px;
-            background-color: #A78BFA;
-        }
-        
-        .conn-mitm-malicious {
-            position: absolute;
-            width: 4px;
-            background-color: #EF4444;
-            top: 120px; /* Center of attacker node */
-            bottom: -60px; /* Connect to malicious pool */
-            left: 50%;
-            transform: translateX(-50%);
-            height: 140px;
-            border-left: 2px dashed #EF4444;
-            background-color: transparent;
-        }
-        
-        .secondary-conn {
-            position: absolute;
-            height: 2px;
-            border-top: 2px dashed #EF4444;
-            top: 240px;
-            left: 50%;
-            width: 35%; /* Reach malicious pool */
-        }
-        
-        .node-icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .node-label {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.8rem;
-            font-weight: bold;
-            color: #E5E7EB;
-        }
-        
-        .node-sublabel {
-            font-family: 'Roboto Mono', monospace;
-            font-size: 0.7rem;
-            color: #9CA3AF;
-        }
-        
-        .skull-icon {
-            position: absolute;
-            top: -15px;
-            right: -15px;
-            background-color: #111827;
-            border-radius: 50%;
-            padding: 5px;
-            border: 1px solid #EF4444;
-            color: #EF4444;
-            z-index: 20;
-        }
+    :root {
+        --cyan-400: #22d3ee;
+        --cyan-500: #06b6d4;
+        --cyan-600: #0891b2;
+        --blue-600: #2563eb;
+    }
+    body { margin:0; padding:0; overflow:hidden; background-color:#000000; font-family:'Inter',sans-serif; }
 
-        /* Bullet Points Column */
-        .info-col {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .attack-card {
-            background-color: #111827;
-            border-left: 4px solid #EF4444;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-        
-        .attack-card h3 {
-            color: #F87171;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .attack-card p {
-            color: #D1D5DB;
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-        
-        .condition-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .condition-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-            color: #D1D5DB;
-        }
-        
-        .check-icon {
-            color: #EF4444;
-            margin-right: 0.75rem;
-            margin-top: 0.25rem;
-        }
-        
-        .malicious-path {
-            position: absolute;
-            border-left: 2px dashed #EF4444;
-            border-bottom: 2px dashed #EF4444;
-            height: 140px;
-            width: 32%;
-            top: 260px;
-            left: 50%;
-            z-index: 0;
+    /* ── Gradient orbs ── */
+    .hero-gradient-1 {
+        position:absolute; top:-20%; left:25%;
+        width:600px; height:600px; border-radius:9999px;
+        background:var(--cyan-500);
+        filter:blur(120px); mix-blend-mode:screen; opacity:0.45; z-index:0;
+        animation:pulse-orb 4s ease-in-out infinite;
+    }
+    .hero-gradient-2 {
+        position:absolute; top:-10%; right:25%;
+        width:500px; height:500px; border-radius:9999px;
+        background:var(--blue-600);
+        filter:blur(120px); mix-blend-mode:screen; opacity:0.4; z-index:0;
+    }
+    .hero-gradient-3 {
+        position:absolute; top:10%; left:50%; transform:translateX(-50%);
+        width:800px; height:400px; border-radius:9999px;
+        background:var(--cyan-400);
+        filter:blur(100px); mix-blend-mode:screen; opacity:0.25; z-index:0;
+    }
+    @keyframes pulse-orb {
+        0%,100%{ opacity:0.45; transform:scale(1); }
+        50%    { opacity:0.55; transform:scale(1.04); }
+    }
 
-            transform: scaleY(-1);
-            transform-origin: top;
-        }
-        
-        .traffic-badge {
-            position: absolute;
-            background-color: #1F2937;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-family: 'Roboto Mono', monospace;
-            font-size: 0.7rem;
-            color: #EF4444;
-            border: 1px solid #EF4444;
-            z-index: 5;
-        }
-    </style>
+    .bg-grid {
+        position:absolute; inset:0; z-index:1;
+        background-image:
+            linear-gradient(rgba(6,182,212,0.07) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(6,182,212,0.07) 1px, transparent 1px);
+        background-size:30px 30px; opacity:0.5;
+    }
+
+    .slide-container {
+        width:1280px; height:720px;
+        position:relative; display:flex; flex-direction:column;
+        color:#F8FAFC; overflow:hidden;
+    }
+
+    .mono-font { font-family:'JetBrains Mono',monospace; }
+
+    /* Attack cards */
+    .attack-card {
+        background:rgba(0,0,0,0.4);
+        backdrop-filter:blur(8px);
+        border:1px solid rgba(6,182,212,0.12);
+        border-left:3px solid #EF4444;
+        padding:0.9rem 1rem;
+        border-radius:0 0.5rem 0.5rem 0;
+    }
+    .attack-card.cyan-border { border-left-color:var(--cyan-500); }
+    .attack-card h3 {
+        font-family:'Space Grotesk',sans-serif; font-size:0.98rem;
+        margin:0 0 0.35rem 0; display:flex; align-items:center; gap:0.45rem;
+    }
+    .attack-card p { color:rgba(148,163,184,0.85); font-size:0.88rem; line-height:1.5; margin:0; }
+
+    .condition-item {
+        display:flex; align-items:flex-start; gap:0.5rem;
+        color:rgba(148,163,184,0.8); font-size:0.85rem; margin-top:0.4rem;
+    }
+</style>
 </head>
 <body>
-<div class="slide-container">
-<!-- Background Elements -->
+<!-- Gradient orbs -->
+<div class="hero-gradient-1"></div>
+<div class="hero-gradient-2"></div>
+<div class="hero-gradient-3"></div>
 <div class="bg-grid"></div>
-<div class="grid-pattern"></div>
+
+<div class="slide-container">
+
 <!-- Header -->
-<div class="header">
-<h1>How Hashrate Hijacking Is Possible?</h1>
-<div class="absolute bottom-0 left-0 w-full h-px bg-gray-800"></div>
-<div class="absolute bottom-0 left-12 w-64 h-1 bg-red-600"></div>
+<div class="relative z-10 px-12 pt-7 pb-3 flex items-end justify-between"
+     style="border-bottom:1px solid rgba(6,182,212,0.2); background:rgba(0,0,0,0.5);">
+    <div>
+        <div class="flex items-center space-x-3 mb-2">
+            <span class="px-2 py-1 text-xs font-bold rounded mono-font"
+                  style="background:rgba(239,68,68,0.12); color:#f87171; border:1px solid rgba(239,68,68,0.3);">
+                ATTACK VECTOR
+            </span>
+            <span class="text-xs mono-font" style="color:rgba(6,182,212,0.5);">// MITM PRECONDITIONS</span>
+        </div>
+        <h1 class="text-3xl font-black tracking-tight text-white uppercase"
+            style="font-family:'Space Grotesk',sans-serif; letter-spacing:-0.02em;">
+            How Work Hijacking <span style="color:#f87171;">Is Possible</span>
+        </h1>
+    </div>
+    <div class="text-right">
+        <p class="text-sm mono-font" style="color:rgba(148,163,184,0.7);">
+            Three conditions that make SV1 vulnerable to on-path attacks
+        </p>
+    </div>
 </div>
+
 <!-- Main Content -->
-<div class="main-content">
-<!-- Left Column: Attack Diagram -->
-<div class="diagram-container">
-<!-- Top Row: Miner -> Attacker -> Legit Pool -->
-<div class="network-row">
-<!-- Miner -->
-<div class="node miner-node">
-<i class="fas fa-microchip node-icon text-blue-400"></i>
-<span class="node-label">MINER</span>
-<span class="node-sublabel">Victim</span>
-</div>
-<!-- Attacker (MITM) -->
-<div class="node attacker-node">
-<div class="skull-icon"><i class="fas fa-skull"></i></div>
-<i class="fas fa-user-secret node-icon text-red-500"></i>
-<span class="node-label text-red-200">MITM</span>
-<span class="node-sublabel text-red-300">On-Path Attacker</span>
-</div>
-<!-- Legit Pool -->
-<div class="node legit-pool-node">
-<i class="fas fa-server node-icon text-purple-400"></i>
-<span class="node-label">LEGIT POOL</span>
-<span class="node-sublabel">Original Target</span>
-</div>
-<!-- Horizontal Connections -->
-<div class="connection-line conn-miner-mitm"></div>
-<div class="connection-line conn-mitm-legit"></div>
-</div>
-<!-- Malicious Path Visualization -->
-<div class="malicious-path"></div>
-<!-- Bottom Node: Malicious Pool -->
-<div class="node malicious-pool-node">
-<i class="fas fa-server node-icon text-red-500"></i>
-<span class="node-label text-red-400">EVIL POOL</span>
-<span class="node-sublabel">Controlled by Attacker</span>
-</div>
-<!-- Traffic Labels -->
-<div class="traffic-badge" style="top: 85px; left: 25%;">Intercepted TCP</div>
-<div class="traffic-badge" style="top: 85px; right: 25%;">Forwarded Traffic</div>
-<div class="traffic-badge" style="top: 170px; left: 52%;">Hidden Session</div>
-</div>
-<!-- Right Column: Preconditions & Info -->
-<div class="info-col">
-<div class="attack-card">
-<h3><i class="fas fa-network-wired"></i> On-Path Positioning</h3>
-<p>The attacker must sit between the miner and the pool (ISP, LAN, Rogue Wi-Fi, or BGP hijacking) to intercept the TCP connection on port 3333.</p>
-</div>
-<div class="attack-card">
-<h3><i class="fas fa-unlock"></i> Plaintext Visibility</h3>
-<p>Because Stratum V1 sends JSON in cleartext, the attacker can parse every message type (subscribe, authorize, submit) in real-time.</p>
-</div>
-<div class="attack-card">
-<h3><i class="fas fa-plug"></i> Dual Sessions</h3>
-<p>The attacker maintains two active upstream connections:</p>
-<ul class="condition-list mt-2">
-<li class="condition-item">
-<i class="fas fa-check check-icon"></i>
-<span><strong>Legit Pool:</strong> To proxy normal traffic and keep miner happy.</span>
-</li>
-<li class="condition-item">
-<i class="fas fa-check check-icon"></i>
-<span><strong>Evil Pool:</strong> To receive malicious jobs for injection attacks.</span>
-</li>
-</ul>
-</div>
-</div>
+<div class="relative z-10 flex-1 px-12 py-5 flex gap-8 overflow-hidden">
+
+    <!-- Left Column: SVG Attack Diagram -->
+    <div style="flex:1.35;" class="flex flex-col min-h-0">
+        <div class="flex-1 rounded-xl flex flex-col min-h-0"
+             style="background:rgba(69,10,10,0.08); border:1px solid rgba(239,68,68,0.22); padding:1rem 1.25rem;">
+
+            <div class="mono-font text-xs font-bold mb-2 flex-shrink-0"
+                 style="color:#f87171; text-transform:uppercase; letter-spacing:0.08em;">
+                Attack topology — dual upstream sessions
+            </div>
+
+            <div class="flex-1 flex items-center justify-center" style="min-height:0;">
+            <svg viewBox="0 0 590 430" width="100%" height="100%"
+                 preserveAspectRatio="xMidYMid meet"
+                 xmlns="http://www.w3.org/2000/svg"
+                 style="font-family:'Space Grotesk',sans-serif; overflow:visible;">
+                <defs>
+                    <marker id="aC" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+                        <path d="M0,0 L10,5 L0,10 Z" fill="#06b6d4"/>
+                    </marker>
+                    <marker id="aCg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+                        <path d="M0,0 L10,5 L0,10 Z" fill="rgba(34,211,238,0.6)"/>
+                    </marker>
+                    <marker id="aR" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+                        <path d="M0,0 L10,5 L0,10 Z" fill="#EF4444"/>
+                    </marker>
+                    <filter id="rGlow">
+                        <feGaussianBlur stdDeviation="4" result="b"/>
+                        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                </defs>
+
+                <!-- ── Miner (left) ── -->
+                <rect x="12" y="55" width="118" height="108" rx="10"
+                      fill="rgba(6,182,212,0.07)" stroke="rgba(6,182,212,0.6)" stroke-width="2"/>
+                <text x="71" y="103" text-anchor="middle" font-size="30" fill="#06b6d4">⬡</text>
+                <text x="71" y="125" text-anchor="middle" font-size="13" fill="#22d3ee" font-weight="700" letter-spacing="1.5">MINER</text>
+                <text x="71" y="141" text-anchor="middle" font-size="10.5" fill="rgba(148,163,184,0.55)" font-family="'JetBrains Mono',monospace">victim</text>
+
+                <!-- Miner → MITM arrow at y=109 -->
+                <line x1="130" y1="109" x2="222" y2="109"
+                      stroke="#06b6d4" stroke-width="2.5" marker-end="url(#aC)"/>
+                <rect x="134" y="91" width="84" height="17" rx="4" fill="rgba(0,0,0,0.92)"/>
+                <text x="176" y="103" text-anchor="middle" font-size="10.5"
+                      fill="#f87171" font-family="'JetBrains Mono',monospace">Intercepted TCP</text>
+
+                <!-- ── MITM (centre, larger) ── -->
+                <rect x="224" y="36" width="142" height="126" rx="10"
+                      fill="rgba(69,10,10,0.85)" stroke="#EF4444" stroke-width="2.5" filter="url(#rGlow)"/>
+                <text x="295" y="90"  text-anchor="middle" font-size="32" fill="#F87171">☠</text>
+                <text x="295" y="115" text-anchor="middle" font-size="14" fill="#FCA5A5" font-weight="700" letter-spacing="1.5">MITM</text>
+                <text x="295" y="132" text-anchor="middle" font-size="10.5" fill="#F87171" font-family="'JetBrains Mono',monospace">on-path attacker</text>
+
+                <!-- MITM → Legit Pool arrow -->
+                <line x1="366" y1="109" x2="460" y2="109"
+                      stroke="rgba(34,211,238,0.6)" stroke-width="2.5" marker-end="url(#aCg)"/>
+                <rect x="372" y="91" width="82" height="17" rx="4" fill="rgba(0,0,0,0.92)"/>
+                <text x="413" y="103" text-anchor="middle" font-size="10.5"
+                      fill="rgba(34,211,238,0.75)" font-family="'JetBrains Mono',monospace">Fwd Traffic</text>
+
+                <!-- ── Legit Pool (right) — properly visible ── -->
+                <rect x="462" y="55" width="118" height="108" rx="10"
+                      fill="rgba(34,211,238,0.07)" stroke="rgba(34,211,238,0.65)" stroke-width="2"/>
+                <text x="521" y="103" text-anchor="middle" font-size="30" fill="rgba(34,211,238,0.75)">▣</text>
+                <text x="521" y="125" text-anchor="middle" font-size="12" fill="rgba(34,211,238,0.85)" font-weight="700" letter-spacing="1">LEGIT POOL</text>
+                <text x="521" y="141" text-anchor="middle" font-size="10.5" fill="rgba(148,163,184,0.6)" font-family="'JetBrains Mono',monospace">original target</text>
+
+                <!-- MITM bottom → Evil Pool: straight down -->
+                <line x1="295" y1="162" x2="295" y2="318"
+                      stroke="#EF4444" stroke-width="2.5"
+                      stroke-dasharray="8,4" marker-end="url(#aR)"/>
+                <!-- Hidden session label alongside the line -->
+                <rect x="302" y="228" width="100" height="17" rx="4" fill="rgba(0,0,0,0.92)"/>
+                <text x="352" y="240" text-anchor="middle" font-size="10.5"
+                      fill="#f87171" font-family="'JetBrains Mono',monospace">Hidden Session</text>
+
+                <!-- ── Evil Pool (bottom centre) ── -->
+                <rect x="180" y="320" width="230" height="70" rx="10"
+                      fill="rgba(69,10,10,0.85)" stroke="rgba(239,68,68,0.7)" stroke-width="2" stroke-dasharray="7,3"/>
+                <text x="295" y="350" text-anchor="middle" font-size="15" fill="#FCA5A5" font-weight="700" font-family="'JetBrains Mono',monospace">☠  EVIL POOL</text>
+                <text x="295" y="370" text-anchor="middle" font-size="10.5" fill="rgba(252,165,165,0.6)" font-family="'JetBrains Mono',monospace">controlled by attacker</text>
+            </svg>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Right Column: Precondition cards -->
+    <div class="flex-1 flex flex-col justify-between gap-3">
+
+        <div class="attack-card">
+            <h3 style="color:#f87171;"><i class="fas fa-network-wired"></i> On-Path Positioning</h3>
+            <p>The attacker must sit between the miner and the pool — ISP, LAN, rogue Wi-Fi, or BGP hijacking — to intercept the TCP connection on port 3333.</p>
+        </div>
+
+        <div class="attack-card">
+            <h3 style="color:#f87171;"><i class="fas fa-unlock"></i> Plaintext Visibility</h3>
+            <p>Because Stratum V1 sends JSON in cleartext, the attacker can parse every message type in real time — <code class="mono-font" style="color:var(--cyan-400); font-size:0.83rem;">subscribe</code>, <code class="mono-font" style="color:var(--cyan-400); font-size:0.83rem;">authorize</code>, <code class="mono-font" style="color:var(--cyan-400); font-size:0.83rem;">notify</code>, <code class="mono-font" style="color:var(--cyan-400); font-size:0.83rem;">submit</code>.</p>
+        </div>
+
+        <div class="attack-card cyan-border">
+            <h3 style="color:var(--cyan-400);"><i class="fas fa-plug"></i> Dual Upstream Sessions</h3>
+            <p style="margin-bottom:0.5rem;">The attacker maintains two active connections simultaneously:</p>
+            <div class="condition-item">
+                <i class="fas fa-circle mt-1 flex-shrink-0" style="font-size:0.4rem; color:rgba(34,211,238,0.6);"></i>
+                <span><strong style="color:#F8FAFC;">Legit Pool</strong> — proxies normal traffic to keep the miner unsuspecting.</span>
+            </div>
+            <div class="condition-item">
+                <i class="fas fa-circle mt-1 flex-shrink-0" style="font-size:0.4rem; color:#f87171;"></i>
+                <span><strong style="color:#F8FAFC;">Evil Pool</strong> — receives injected jobs; stolen work credited to the attacker.</span>
+            </div>
+        </div>
+
+        <div class="rounded-lg px-4 py-3 flex-shrink-0"
+             style="background:rgba(239,68,68,0.07); border:1px solid rgba(239,68,68,0.25);">
+            <p class="mono-font" style="font-size:0.8rem; color:#FCA5A5; margin:0; line-height:1.5;">
+                <strong>No detection possible in SV1</strong> — the miner sees normal job flow and share acknowledgements throughout the entire attack.
+            </p>
+        </div>
+
+    </div>
+
 </div>
 </div>
 <script src="slides.js"></script>

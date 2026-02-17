@@ -1,154 +1,195 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>mining.subscribe Details</title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&amp;family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
 <style>
-        body {
-            width: 1280px;
-            height: 720px;
-            overflow: hidden;
-            font-family: 'Inter', sans-serif;
-            background-color: #0B1120;
-            color: #F8FAFC;
-        }
-        .mono-font {
-            font-family: 'Roboto Mono', monospace;
-        }
-        .bg-grid {
-            background-image: linear-gradient(rgba(30, 41, 59, 0.5) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
-            background-size: 30px 30px;
-        }
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-        }
-        /* Code syntax highlighting */
-        .code-key { color: #60A5FA; } /* Blue-400 */
-        .code-string { color: #A78BFA; } /* Purple-400 */
-        .code-number { color: #F59E0B; } /* Amber-500 */
-        .code-bool { color: #EC4899; } /* Pink-500 */
-        .code-comment { color: #64748B; font-style: italic; }
-        
-        .code-window {
-            background-color: #0F172A; /* Slate 900 */
-            border: 1px solid #334155;
-            border-radius: 0.5rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-            font-family: 'Roboto Mono', monospace;
-            font-size: 0.85rem;
-            line-height: 1.5;
-        }
-        .code-header {
-            background-color: #1E293B;
-            padding: 0.5rem 1rem;
-            border-bottom: 1px solid #334155;
-            border-top-left-radius: 0.5rem;
-            border-top-right-radius: 0.5rem;
-            display: flex;
-            align-items: center;
-        }
-        .dot {
-            width: 0.75rem;
-            height: 0.75rem;
-            border-radius: 50%;
-            margin-right: 0.5rem;
-        }
-        /* Custom scrollbar for code blocks */
-        .custom-scroll::-webkit-scrollbar {
-            height: 8px;
-            width: 8px;
-        }
-        .custom-scroll::-webkit-scrollbar-track {
-            background: #0F172A;
-        }
-        .custom-scroll::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 4px;
-        }
-    </style>
+    :root {
+        --cyan-400: #22d3ee;
+        --cyan-500: #06b6d4;
+        --cyan-600: #0891b2;
+        --blue-600: #2563eb;
+    }
+    body {
+        width: 1280px; height: 720px; overflow: hidden;
+        font-family: 'Inter', sans-serif;
+        background-color: #000000;
+        color: #F8FAFC; position: relative;
+    }
+
+    /* ── Gradient orbs ── */
+    .hero-gradient-1 {
+        position: absolute; top: -20%; left: 25%;
+        width: 600px; height: 600px; border-radius: 9999px;
+        background: var(--cyan-500);
+        filter: blur(120px); mix-blend-mode: screen; opacity: 0.45; z-index: 0;
+        animation: pulse-orb 4s ease-in-out infinite;
+    }
+    .hero-gradient-2 {
+        position: absolute; top: -10%; right: 25%;
+        width: 500px; height: 500px; border-radius: 9999px;
+        background: var(--blue-600);
+        filter: blur(120px); mix-blend-mode: screen; opacity: 0.4; z-index: 0;
+    }
+    .hero-gradient-3 {
+        position: absolute; top: 10%; left: 50%; transform: translateX(-50%);
+        width: 800px; height: 400px; border-radius: 9999px;
+        background: var(--cyan-400);
+        filter: blur(100px); mix-blend-mode: screen; opacity: 0.25; z-index: 0;
+    }
+    @keyframes pulse-orb {
+        0%, 100% { opacity: 0.45; transform: scale(1); }
+        50%       { opacity: 0.55; transform: scale(1.04); }
+    }
+
+    .bg-grid {
+        position: absolute; inset: 0; z-index: 1;
+        background-image:
+            linear-gradient(rgba(6, 182, 212, 0.07) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(6, 182, 212, 0.07) 1px, transparent 1px);
+        background-size: 30px 30px; opacity: 0.5;
+    }
+
+    .mono-font { font-family: 'JetBrains Mono', monospace; }
+
+    .glass-panel {
+        background: rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(6, 182, 212, 0.18);
+    }
+
+    /* Code window */
+    .code-window {
+        background: rgba(0, 0, 0, 0.6);
+        border: 1px solid rgba(6, 182, 212, 0.2);
+        border-radius: 0.5rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.82rem;
+        line-height: 1.6;
+    }
+    .code-header {
+        background: rgba(6, 182, 212, 0.06);
+        padding: 0.45rem 1rem;
+        border-bottom: 1px solid rgba(6, 182, 212, 0.15);
+        border-radius: 0.5rem 0.5rem 0 0;
+        display: flex; align-items: center;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+
+    /* Syntax highlighting */
+    .code-key     { color: var(--cyan-400); }
+    .code-string  { color: #67e8f9; }
+    .code-number  { color: #FCA5A5; }
+    .code-bool    { color: #FCD34D; }
+    .code-comment { color: rgba(148,163,184,0.5); font-style: italic; }
+
+    /* Response fields */
+    .field-tag {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.7rem;
+        padding: 2px 8px; border-radius: 3px;
+        flex-shrink: 0; width: 90px; text-align: center;
+        background: rgba(6,182,212,0.1);
+        border: 1px solid rgba(6,182,212,0.25);
+        color: var(--cyan-400);
+    }
+</style>
 </head>
 <body class="relative flex flex-col justify-between">
-<!-- Background -->
-<div class="absolute inset-0 z-0 bg-grid opacity-20"></div>
+
+<!-- Gradient orbs -->
+<div class="hero-gradient-1"></div>
+<div class="hero-gradient-2"></div>
+<div class="hero-gradient-3"></div>
+<div class="bg-grid"></div>
+
 <!-- Header -->
-<header class="relative z-10 px-16 pt-10 pb-4 flex items-end justify-between border-b border-gray-800">
-<div>
-<div class="flex items-center space-x-3 mb-2">
-<span class="px-2 py-1 text-xs font-bold text-blue-900 bg-blue-500 rounded mono-font">PROTOCOL MESSAGE</span>
-<span class="text-xs text-gray-500 mono-font">// STEP 01</span>
-</div>
-<h1 class="text-3xl font-black tracking-tight text-white uppercase">
-                mining.subscribe
-            </h1>
-</div>
-<div class="text-right">
-<p class="text-gray-400 text-sm max-w-md text-right mono-font">
-                Initiates connection and retrieves session parameters
-            </p>
-</div>
+<header class="relative z-10 px-16 pt-9 pb-4 flex items-end justify-between"
+        style="border-bottom: 1px solid rgba(6,182,212,0.2); background: rgba(0,0,0,0.5);">
+    <div>
+        <div class="flex items-center space-x-3 mb-2">
+            <span class="px-2 py-1 text-xs font-bold rounded mono-font"
+                  style="background: rgba(6,182,212,0.15); color: #22d3ee; border: 1px solid rgba(6,182,212,0.3);">
+                PROTOCOL MESSAGE
+            </span>
+            <span class="text-xs mono-font" style="color: rgba(6,182,212,0.5);">// STEP 01</span>
+        </div>
+        <h1 class="text-3xl font-black tracking-tight text-white uppercase"
+            style="font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em;">
+            <span style="color: var(--cyan-400);">mining</span>.subscribe
+        </h1>
+    </div>
+    <div class="text-right">
+        <p class="text-sm max-w-md text-right mono-font" style="color: rgba(148,163,184,0.7);">
+            Initiates connection and retrieves session parameters
+        </p>
+    </div>
 </header>
+
 <!-- Main Content -->
-<main class="relative z-10 flex-1 px-16 py-8 flex gap-8 overflow-hidden">
-<!-- Left Column: Explanatory Text -->
-<div class="w-1/2 flex flex-col justify-center space-y-6">
-<div class="glass-panel p-6 rounded-xl border-l-4 border-blue-500">
-<h3 class="text-xl font-bold text-blue-400 mb-2 flex items-center">
-<i class="fas fa-bullseye mr-3"></i> Purpose
-                </h3>
-<p class="text-gray-300 leading-relaxed mb-4">
-                    The first message sent by the miner to the pool. It registers the client for server-push notifications (jobs).
-                </p>
-<ul class="space-y-2 text-sm text-gray-400">
-<li class="flex items-start">
-<i class="fas fa-check text-blue-500 mt-1 mr-2"></i>
-<span>Sends User Agent string (software version).</span>
-</li>
-<li class="flex items-start">
-<i class="fas fa-check text-blue-500 mt-1 mr-2"></i>
-<span>Optional: Resume session with previous session ID.</span>
-</li>
-</ul>
-</div>
-<div class="glass-panel p-6 rounded-xl border-l-4 border-purple-500">
-<h3 class="text-xl font-bold text-purple-400 mb-2 flex items-center">
-<i class="fas fa-reply mr-3"></i> Response Structure
-                </h3>
-<p class="text-gray-300 text-sm mb-3">The result array contains three critical components:</p>
-<div class="space-y-3">
-<div class="flex items-start">
-<span class="mono-font text-xs bg-gray-800 px-2 py-1 rounded text-purple-300 mr-3 w-24 flex-shrink-0 text-center">Subscriptions</span>
-<p class="text-xs text-gray-400">Array of notification types (<code class="text-purple-300">mining.notify</code>) and their session IDs.</p>
-</div>
-<div class="flex items-start">
-<span class="mono-font text-xs bg-gray-800 px-2 py-1 rounded text-blue-300 mr-3 w-24 flex-shrink-0 text-center">Extranonce1</span>
-<p class="text-xs text-gray-400">Hex-encoded unique string for this connection. Part of coinbase serialization.</p>
-</div>
-<div class="flex items-start">
-<span class="mono-font text-xs bg-gray-800 px-2 py-1 rounded text-yellow-300 mr-3 w-24 flex-shrink-0 text-center">Xnonce2_Size</span>
-<p class="text-xs text-gray-400">Integer size (bytes) of the extranonce2 the miner must generate.</p>
-</div>
-</div>
-</div>
-</div>
-<!-- Right Column: Code Examples -->
-<div class="w-1/2 flex flex-col justify-center space-y-6">
-<!-- Request Block -->
-<div class="code-window">
-<div class="code-header">
-<div class="dot bg-red-500"></div>
-<div class="dot bg-yellow-500"></div>
-<div class="dot bg-green-500"></div>
-<span class="ml-2 text-gray-400 text-xs">Client Request</span>
-</div>
-<div class="p-4 overflow-x-auto custom-scroll">
+<main class="relative z-10 flex-1 px-16 py-6 flex gap-8 overflow-hidden">
+
+    <!-- Left Column -->
+    <div class="w-1/2 flex flex-col justify-center space-y-5">
+
+        <div class="glass-panel p-5 rounded-xl" style="border-left: 3px solid var(--cyan-500);">
+            <h3 class="text-lg font-bold mb-2 flex items-center" style="color: var(--cyan-400); font-family: 'Space Grotesk', sans-serif;">
+                <i class="fas fa-bullseye mr-3"></i> Purpose
+            </h3>
+            <p class="text-sm leading-relaxed mb-3" style="color: rgba(211,225,239,0.85);">
+                The first message sent by the miner to the pool. Registers the client for server-push job notifications.
+            </p>
+            <ul class="space-y-1.5 text-sm">
+                <li class="flex items-start">
+                    <i class="fas fa-check mt-0.5 mr-2 flex-shrink-0" style="color: var(--cyan-500);"></i>
+                    <span style="color: rgba(148,163,184,0.8);">Sends User Agent string (software version).</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-check mt-0.5 mr-2 flex-shrink-0" style="color: var(--cyan-500);"></i>
+                    <span style="color: rgba(148,163,184,0.8);">Optional: Resume session with previous session ID.</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="glass-panel p-5 rounded-xl" style="border-left: 3px solid var(--cyan-400);">
+            <h3 class="text-lg font-bold mb-2 flex items-center" style="color: var(--cyan-400); font-family: 'Space Grotesk', sans-serif;">
+                <i class="fas fa-reply mr-3"></i> Response Structure
+            </h3>
+            <p class="text-sm mb-3" style="color: rgba(148,163,184,0.7);">The result array contains three critical components:</p>
+            <div class="space-y-2.5">
+                <div class="flex items-start gap-3">
+                    <span class="field-tag">Subscriptions</span>
+                    <p class="text-xs" style="color: rgba(148,163,184,0.75);">Array of notification types (<code class="mono-font" style="color: var(--cyan-400);">mining.notify</code>) and their session IDs.</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="field-tag">Extranonce1</span>
+                    <p class="text-xs" style="color: rgba(148,163,184,0.75);">Hex-encoded unique string for this connection. Part of coinbase serialization.</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="field-tag">Xnonce2_Size</span>
+                    <p class="text-xs" style="color: rgba(148,163,184,0.75);">Integer size (bytes) of the extranonce2 the miner must generate.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Right Column: Code -->
+    <div class="w-1/2 flex flex-col justify-center space-y-5">
+
+        <!-- Request -->
+        <div class="code-window">
+            <div class="code-header">
+                <div class="dot" style="background:#ef4444;"></div>
+                <div class="dot" style="background:#f59e0b;"></div>
+                <div class="dot" style="background:#22c55e;"></div>
+                <span class="ml-2 text-xs mono-font" style="color: rgba(6,182,212,0.6);">Client Request</span>
+            </div>
+            <div class="p-4 overflow-x-auto">
 <pre><code><span class="code-comment">// Miner sends subscription request</span>
 {
   <span class="code-key">"id"</span>: <span class="code-number">1</span>,
@@ -157,17 +198,18 @@
     <span class="code-string">"bfgminer/3.1.0"</span> <span class="code-comment">// User Agent</span>
   ]
 }</code></pre>
-</div>
-</div>
-<!-- Response Block -->
-<div class="code-window border-blue-500 border-opacity-30">
-<div class="code-header">
-<div class="dot bg-red-500"></div>
-<div class="dot bg-yellow-500"></div>
-<div class="dot bg-green-500"></div>
-<span class="ml-2 text-gray-400 text-xs">Server Response</span>
-</div>
-<div class="p-4 overflow-x-auto custom-scroll">
+            </div>
+        </div>
+
+        <!-- Response -->
+        <div class="code-window">
+            <div class="code-header">
+                <div class="dot" style="background:#ef4444;"></div>
+                <div class="dot" style="background:#f59e0b;"></div>
+                <div class="dot" style="background:#22c55e;"></div>
+                <span class="ml-2 text-xs mono-font" style="color: rgba(6,182,212,0.6);">Server Response</span>
+            </div>
+            <div class="p-4 overflow-x-auto">
 <pre><code><span class="code-comment">// Server accepts and assigns IDs</span>
 {
   <span class="code-key">"id"</span>: <span class="code-number">1</span>,
@@ -181,9 +223,10 @@
   ],
   <span class="code-key">"error"</span>: <span class="code-bool">null</span>
 }</code></pre>
-</div>
-</div>
-</div>
+            </div>
+        </div>
+
+    </div>
 </main>
 <script src="slides.js"></script>
 <script src="navigate.js"></script>

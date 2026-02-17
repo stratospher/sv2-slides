@@ -6,181 +6,219 @@
 <title>MITM Attack: The Silent Revenue Drain</title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&amp;family=Space+Grotesk:wght@500;700&amp;family=Roboto+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <style>
-    body { margin:0; padding:0; overflow:hidden; background-color:#0B0F19; font-family:'Inter',sans-serif; }
+    :root {
+        --cyan-400: #22d3ee;
+        --cyan-500: #06b6d4;
+        --cyan-600: #0891b2;
+        --blue-600: #2563eb;
+    }
+    body { margin:0; padding:0; overflow:hidden; background-color:#000000; font-family:'Inter',sans-serif; }
+
+    /* ── Gradient orbs ── */
+    .hero-gradient-1 {
+        position:absolute; top:-20%; left:25%;
+        width:600px; height:600px; border-radius:9999px;
+        background:var(--cyan-500);
+        filter:blur(120px); mix-blend-mode:screen; opacity:0.45; z-index:0;
+        animation:pulse-orb 4s ease-in-out infinite;
+    }
+    .hero-gradient-2 {
+        position:absolute; top:-10%; right:25%;
+        width:500px; height:500px; border-radius:9999px;
+        background:var(--blue-600);
+        filter:blur(120px); mix-blend-mode:screen; opacity:0.4; z-index:0;
+    }
+    .hero-gradient-3 {
+        position:absolute; top:10%; left:50%; transform:translateX(-50%);
+        width:800px; height:400px; border-radius:9999px;
+        background:var(--cyan-400);
+        filter:blur(100px); mix-blend-mode:screen; opacity:0.25; z-index:0;
+    }
+    @keyframes pulse-orb {
+        0%,100%{ opacity:0.45; transform:scale(1); }
+        50%    { opacity:0.55; transform:scale(1.04); }
+    }
+
+    .bg-grid {
+        position:absolute; inset:0; z-index:1;
+        background-image:
+            linear-gradient(rgba(6,182,212,0.07) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(6,182,212,0.07) 1px, transparent 1px);
+        background-size:30px 30px; opacity:0.5;
+    }
+
     .slide-container {
         width:1280px; height:720px;
         position:relative; display:flex; flex-direction:column;
-        background-color:#0B0F19; color:#F3F4F6; overflow:hidden;
-    }
-    .bg-grid {
-        position:absolute; inset:0;
-        background-image:
-            linear-gradient(rgba(30,41,59,0.5) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(30,41,59,0.5) 1px, transparent 1px);
-        background-size:40px 40px; opacity:0.15; z-index:0;
-    }
-    .header {
-        position:relative; z-index:10;
-        padding:1.4rem 3rem 1rem 3rem;
-        border-bottom:1px solid rgba(55,65,81,0.5);
-        background-color:rgba(11,15,25,0.9);
-    }
-    h1 {
-        font-family:'Space Grotesk',sans-serif;
-        font-size:2.75rem; color:white; margin:0; letter-spacing:-0.02em;
-    }
-    .subtitle {
-        font-family:'Roboto Mono',monospace; font-size:0.9rem;
-        color:#EF4444; margin-top:0.3rem;
-        text-transform:uppercase; letter-spacing:0.05em;
-    }
-    .main-content {
-        display:flex; flex:1; position:relative; z-index:10;
-        padding:1.4rem 3rem; gap:2.5rem;
+        color:#F8FAFC; overflow:hidden;
     }
 
-    /* ── Left column ── */
-    .diagram-col { flex:1.45; display:flex; flex-direction:column; gap:1rem; }
+    .mono-font { font-family:'JetBrains Mono',monospace; }
 
-    .panel {
-        background-color:rgba(17,24,39,0.6);
-        border:1px solid rgba(55,65,81,0.5);
-        border-radius:0.75rem; padding:1rem 1.25rem;
-    }
-    .panel.danger { border-color:rgba(239,68,68,0.3); background-color:rgba(69,10,10,0.12); }
-
-    .panel-label {
-        font-family:'Roboto Mono',monospace; font-size:0.68rem;
-        text-transform:uppercase; letter-spacing:0.08em; font-weight:bold;
-        margin-bottom:0.75rem;
-    }
-
-    /* ── Stats row ── */
-    .stats-row { display:flex; gap:0.75rem; }
+    /* Stats */
     .stat-card {
-        flex:1; border-radius:0.6rem; padding:0.9rem 0.75rem;
+        flex:1; border-radius:0.6rem; padding:0.85rem 0.75rem;
         display:flex; flex-direction:column; align-items:center; text-align:center;
     }
     .stat-num {
         font-family:'Space Grotesk',sans-serif;
-        font-size:2.2rem; font-weight:700; line-height:1;
-        margin-bottom:0.35rem;
+        font-size:2.1rem; font-weight:700; line-height:1; margin-bottom:0.3rem;
     }
     .stat-label {
-        font-family:'Roboto Mono',monospace;
+        font-family:'JetBrains Mono',monospace;
         font-size:0.62rem; text-transform:uppercase;
         letter-spacing:0.06em; line-height:1.35;
     }
 
-    /* ── Right column ── */
-    .info-col { flex:1; display:flex; flex-direction:column; justify-content:center; gap:0.85rem; }
+    /* Info cards */
     .info-card {
-        background-color:#111827;
-        border-left:4px solid #EF4444;
-        padding:0.9rem 1.1rem;
+        background:rgba(0,0,0,0.4);
+        backdrop-filter:blur(8px);
+        border:1px solid rgba(6,182,212,0.12);
+        border-left:3px solid #EF4444;
+        padding:0.85rem 1rem;
+        border-radius:0 0.5rem 0.5rem 0;
     }
     .info-card.amber { border-left-color:#F59E0B; }
     .info-card h3 {
-        font-family:'Space Grotesk',sans-serif; font-size:1.05rem;
-        margin:0 0 0.35rem 0; display:flex; align-items:center; gap:0.45rem;
+        font-family:'Space Grotesk',sans-serif; font-size:0.98rem;
+        margin:0 0 0.3rem 0; display:flex; align-items:center; gap:0.45rem;
     }
-    .info-card p { color:#D1D5DB; font-size:0.9rem; line-height:1.5; margin:0; }
+    .info-card p { color:rgba(148,163,184,0.85); font-size:0.88rem; line-height:1.5; margin:0; }
 
     @keyframes pulse-red { 0%,100%{opacity:0.55} 50%{opacity:1} }
     .pulse-red { animation:pulse-red 2s ease-in-out infinite; }
 </style>
 </head>
 <body>
-<div class="slide-container">
+<!-- Gradient orbs -->
+<div class="hero-gradient-1"></div>
+<div class="hero-gradient-2"></div>
+<div class="hero-gradient-3"></div>
 <div class="bg-grid"></div>
 
+<div class="slide-container">
+
 <!-- Header -->
-<div class="header">
-    <h1>MITM Attack: The Silent Revenue Drain</h1>
-    <div class="subtitle">Hashrate hijacking — undetected, untraced, unpunished</div>
-    <div class="absolute bottom-0 left-0 w-full h-px bg-gray-800"></div>
-    <div class="absolute bottom-0 left-12 w-80 h-1 bg-red-500"></div>
+<div class="relative z-10 px-12 pt-7 pb-3 flex items-end justify-between"
+     style="border-bottom:1px solid rgba(6,182,212,0.2); background:rgba(0,0,0,0.5);">
+    <div>
+        <div class="flex items-center space-x-3 mb-2">
+            <span class="px-2 py-1 text-xs font-bold rounded mono-font"
+                  style="background:rgba(239,68,68,0.12); color:#f87171; border:1px solid rgba(239,68,68,0.3);">
+                ATTACK VECTOR
+            </span>
+            <span class="text-xs mono-font" style="color:rgba(6,182,212,0.5);">// REVENUE IMPACT</span>
+        </div>
+        <h1 class="text-3xl font-black tracking-tight text-white uppercase"
+            style="font-family:'Space Grotesk',sans-serif; letter-spacing:-0.02em;">
+            MITM Attack: <span style="color:#f87171;">The Silent Revenue Drain</span>
+        </h1>
+    </div>
+    <div class="text-right">
+        <p class="text-sm mono-font" style="color:rgba(148,163,184,0.7);">
+            Hashrate hijacking — undetected, untraced, unpunished
+        </p>
+    </div>
 </div>
 
 <!-- Main Content -->
-<div class="main-content">
+<div class="relative z-10 flex-1 px-12 py-4 flex gap-8 overflow-hidden" style="min-height:0;">
 
-    <!-- Left Column -->
-    <div class="diagram-col">
+    <!-- Left Column: diagram fills height, stat cards pinned below -->
+    <div style="flex:1.35;" class="flex flex-col gap-3 min-h-0">
 
-        <!-- Attack flow diagram (SVG) -->
-        <div class="panel danger" style="padding:1rem 1.25rem 0.75rem;">
-            <div class="panel-label pulse-red" style="color:#F87171;">Under attack — hashrate silently siphoned</div>
+        <!-- Attack flow diagram — flex-1 to fill remaining height -->
+        <div class="rounded-xl flex flex-col flex-1 min-h-0"
+             style="background:rgba(69,10,10,0.1); border:1px solid rgba(239,68,68,0.25); padding:1rem 1.25rem;">
+            <div class="mono-font text-xs font-bold mb-2 pulse-red flex-shrink-0"
+                 style="color:#f87171; text-transform:uppercase; letter-spacing:0.08em;">
+                Under attack — work silently siphoned
+            </div>
 
-            <svg viewBox="0 0 580 178" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg"
+            <!-- SVG fills remaining space inside panel -->
+            <div class="flex-1 flex items-center" style="min-height:0;">
+            <svg viewBox="0 0 640 260" width="100%" height="100%"
+                 preserveAspectRatio="xMidYMid meet"
+                 xmlns="http://www.w3.org/2000/svg"
                  style="font-family:'Space Grotesk',sans-serif; overflow:visible;">
                 <defs>
-                    <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="7" refY="3.5" orient="auto">
-                        <path d="M0,0 L8,3.5 L0,7 Z" fill="#60A5FA"/>
+                    <marker id="arrowCyan" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto">
+                        <path d="M0,0 L9,4 L0,8 Z" fill="#06b6d4"/>
                     </marker>
-                    <marker id="arrowBlueGhost" markerWidth="8" markerHeight="8" refX="7" refY="3.5" orient="auto">
-                        <path d="M0,0 L8,3.5 L0,7 Z" fill="rgba(96,165,250,0.4)"/>
+                    <marker id="arrowCyanGhost" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto">
+                        <path d="M0,0 L9,4 L0,8 Z" fill="rgba(6,182,212,0.3)"/>
                     </marker>
-                    <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="7" refY="3.5" orient="auto">
-                        <path d="M0,0 L8,3.5 L0,7 Z" fill="#EF4444"/>
+                    <marker id="arrowRed" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto">
+                        <path d="M0,0 L9,4 L0,8 Z" fill="#EF4444"/>
                     </marker>
+                    <!-- Glow filter for MITM node -->
+                    <filter id="redGlow">
+                        <feGaussianBlur stdDeviation="4" result="blur"/>
+                        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
                 </defs>
 
-                <!-- ── Miner node ── -->
-                <rect x="10" y="38" width="90" height="78" rx="8"
-                      fill="#1E293B" stroke="#60A5FA" stroke-width="2"/>
-                <text x="55" y="72" text-anchor="middle" font-size="22" fill="#60A5FA">⬡</text>
-                <text x="55" y="90" text-anchor="middle" font-size="9" fill="#93C5FD" font-weight="bold" letter-spacing="1">MINER</text>
-                <text x="55" y="103" text-anchor="middle" font-size="7.5" fill="#6B7280" font-family="'Roboto Mono',monospace">victim</text>
+                <!-- ── Miner node (left) ── -->
+                <rect x="18" y="55" width="112" height="100" rx="10"
+                      fill="rgba(6,182,212,0.06)" stroke="rgba(6,182,212,0.55)" stroke-width="2"/>
+                <text x="74" y="98"  text-anchor="middle" font-size="28" fill="#06b6d4">⬡</text>
+                <text x="74" y="119" text-anchor="middle" font-size="11" fill="#22d3ee" font-weight="700" letter-spacing="1.5">MINER</text>
+                <text x="74" y="134" text-anchor="middle" font-size="9" fill="rgba(148,163,184,0.45)" font-family="'JetBrains Mono',monospace">victim</text>
 
-                <!-- Miner → MITM arrow (100%) -->
-                <line x1="100" y1="77" x2="208" y2="77"
-                      stroke="#60A5FA" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
-                <rect x="130" y="58" width="52" height="15" rx="3" fill="rgba(11,15,25,0.9)"/>
-                <text x="156" y="69" text-anchor="middle" font-size="8.5"
-                      fill="#60A5FA" font-family="'Roboto Mono',monospace">100% hashrate</text>
+                <!-- Miner → MITM arrow -->
+                <line x1="130" y1="105" x2="238" y2="105"
+                      stroke="#06b6d4" stroke-width="2.5" marker-end="url(#arrowCyan)"/>
+                <!-- label badge -->
+                <rect x="148" y="88" width="68" height="16" rx="4" fill="rgba(0,0,0,0.9)"/>
+                <text x="182" y="100" text-anchor="middle" font-size="9.5"
+                      fill="#06b6d4" font-family="'JetBrains Mono',monospace">100% work</text>
 
-                <!-- ── MITM node ── -->
-                <rect x="210" y="28" width="100" height="98" rx="8"
-                      fill="#450a0a" stroke="#EF4444" stroke-width="2"/>
-                <!-- skull icon approximation -->
-                <text x="260" y="70" text-anchor="middle" font-size="26" fill="#F87171">☠</text>
-                <text x="260" y="92" text-anchor="middle" font-size="9.5" fill="#FCA5A5" font-weight="bold" letter-spacing="1">MITM</text>
-                <text x="260" y="107" text-anchor="middle" font-size="7.5" fill="#F87171" font-family="'Roboto Mono',monospace">on-path attacker</text>
+                <!-- ── MITM node (centre, taller) ── -->
+                <rect x="240" y="36" width="130" height="118" rx="10"
+                      fill="rgba(69,10,10,0.85)" stroke="#EF4444" stroke-width="2.5" filter="url(#redGlow)"/>
+                <text x="305" y="90"  text-anchor="middle" font-size="34" fill="#F87171">☠</text>
+                <text x="305" y="115" text-anchor="middle" font-size="12" fill="#FCA5A5" font-weight="700" letter-spacing="1.5">MITM</text>
+                <text x="305" y="131" text-anchor="middle" font-size="9" fill="#F87171" font-family="'JetBrains Mono',monospace">on-path attacker</text>
 
-                <!-- MITM → Pool arrow (98-99%, faded) -->
-                <line x1="310" y1="77" x2="468" y2="77"
-                      stroke="rgba(96,165,250,0.35)" stroke-width="2.5" marker-end="url(#arrowBlueGhost)"/>
-                <rect x="345" y="58" width="60" height="15" rx="3" fill="rgba(11,15,25,0.9)"/>
-                <text x="375" y="69" text-anchor="middle" font-size="8.5"
-                      fill="rgba(147,197,253,0.7)" font-family="'Roboto Mono',monospace">98–99% hashrate</text>
+                <!-- MITM → Pool arrow (faded) -->
+                <line x1="370" y1="105" x2="490" y2="105"
+                      stroke="rgba(6,182,212,0.28)" stroke-width="2.5" marker-end="url(#arrowCyanGhost)"/>
+                <rect x="387" y="88" width="74" height="16" rx="4" fill="rgba(0,0,0,0.9)"/>
+                <text x="424" y="100" text-anchor="middle" font-size="9.5"
+                      fill="rgba(34,211,238,0.45)" font-family="'JetBrains Mono',monospace">98–99% work</text>
 
-                <!-- ── Legit Pool node (faded) ── -->
-                <rect x="470" y="38" width="90" height="78" rx="8"
-                      fill="#1E293B" stroke="rgba(167,139,250,0.45)" stroke-width="2"/>
-                <text x="515" y="72" text-anchor="middle" font-size="22" fill="rgba(167,139,250,0.5)">▣</text>
-                <text x="515" y="90" text-anchor="middle" font-size="9" fill="rgba(196,181,253,0.6)" font-weight="bold" letter-spacing="1">LEGIT POOL</text>
-                <text x="515" y="103" text-anchor="middle" font-size="7.5" fill="#4B5563" font-family="'Roboto Mono',monospace">reduced credit</text>
+                <!-- ── Legit Pool node (right, faded) ── -->
+                <rect x="492" y="55" width="130" height="100" rx="10"
+                      fill="rgba(34,211,238,0.04)" stroke="rgba(34,211,238,0.28)" stroke-width="2"/>
+                <text x="557" y="98"  text-anchor="middle" font-size="28" fill="rgba(34,211,238,0.3)">▣</text>
+                <text x="557" y="119" text-anchor="middle" font-size="10" fill="rgba(34,211,238,0.4)" font-weight="700" letter-spacing="1">LEGIT POOL</text>
+                <text x="557" y="134" text-anchor="middle" font-size="9" fill="rgba(148,163,184,0.3)" font-family="'JetBrains Mono',monospace">reduced credit</text>
 
                 <!-- MITM ↓ dashed theft arrow -->
-                <line x1="260" y1="126" x2="260" y2="153"
-                      stroke="#EF4444" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowRed)"/>
+                <line x1="305" y1="154" x2="305" y2="194"
+                      stroke="#EF4444" stroke-width="2.5" stroke-dasharray="6,3" marker-end="url(#arrowRed)"/>
+                <!-- theft label on side of arrow -->
+                <text x="316" y="180" font-size="9" fill="#F87171" font-family="'JetBrains Mono',monospace">1–2% stolen</text>
 
-                <!-- ── Evil Pool node ── -->
-                <rect x="200" y="155" width="120" height="22" rx="5"
-                      fill="rgba(69,10,10,0.85)" stroke="rgba(239,68,68,0.6)" stroke-width="1.5"/>
-                <text x="260" y="170" text-anchor="middle" font-size="9"
-                      fill="#FCA5A5" font-family="'Roboto Mono',monospace" font-weight="bold">☠ 1–2% → ATTACKER POOL</text>
+                <!-- ── Attacker Pool (bottom centre) ── -->
+                <rect x="195" y="196" width="220" height="40" rx="8"
+                      fill="rgba(69,10,10,0.9)" stroke="rgba(239,68,68,0.65)" stroke-width="1.5"/>
+                <text x="305" y="213" text-anchor="middle" font-size="10.5"
+                      fill="#FCA5A5" font-family="'JetBrains Mono',monospace" font-weight="700">☠  1–2%  →  ATTACKER POOL</text>
+                <text x="305" y="229" text-anchor="middle" font-size="8.5"
+                      fill="rgba(252,165,165,0.55)" font-family="'JetBrains Mono',monospace">block reward claimed by attacker</text>
             </svg>
+            </div>
         </div>
 
-        <!-- Stat cards -->
-        <div class="stats-row">
-            <div class="stat-card" style="background:rgba(17,24,39,0.7); border:1px solid rgba(55,65,81,0.5);">
-                <div class="stat-num" style="color:#60A5FA;">5–15%</div>
-                <div class="stat-label" style="color:#6B7280;">Typical mining<br/>net margin</div>
+        <!-- Stat cards row — fixed height at bottom -->
+        <div class="flex gap-3 flex-shrink-0">
+            <div class="stat-card" style="background:rgba(0,0,0,0.45); border:1px solid rgba(6,182,212,0.2);">
+                <div class="stat-num" style="color:var(--cyan-500);">5–15%</div>
+                <div class="stat-label" style="color:rgba(148,163,184,0.6);">Typical mining<br/>net margin</div>
             </div>
             <div class="stat-card" style="background:rgba(69,10,10,0.25); border:1px solid rgba(239,68,68,0.3);">
                 <div class="stat-num" style="color:#F87171;">1–2%</div>
@@ -190,34 +228,35 @@
                 <div class="stat-num" style="color:#FCD34D;">≈20%</div>
                 <div class="stat-label" style="color:#FDE68A;">Of net profit<br/>wiped per attack</div>
             </div>
-            <div class="stat-card" style="background:rgba(17,24,39,0.7); border:1px solid rgba(55,65,81,0.4);">
+            <div class="stat-card" style="background:rgba(0,0,0,0.45); border:1px solid rgba(239,68,68,0.25);">
                 <div class="stat-num" style="color:#EF4444;">0</div>
-                <div class="stat-label" style="color:#6B7280;">Alerts triggered<br/>in SV1</div>
+                <div class="stat-label" style="color:rgba(148,163,184,0.6);">Alerts triggered<br/>in SV1</div>
             </div>
         </div>
 
     </div>
 
-    <!-- Right Column -->
-    <div class="info-col">
+    <!-- Right Column: cards fill full height with space-between -->
+    <div class="flex-1 flex flex-col justify-between gap-3">
 
-        <div class="info-card">
-            <h3 style="color:#F87171;"><i class="fas fa-hand-holding-dollar"></i> Proof of Work Theft</h3>
+        <div class="info-card flex-1">
+            <h3 style="color:#f87171;"><i class="fas fa-hand-holding-dollar"></i> Proof of Work Theft</h3>
             <p>The attacker intercepts the miner's solved work before it reaches the pool — claiming the block reward themselves. The miner's hardware runs at full power, but someone else earns the payout.</p>
         </div>
 
-        <div class="info-card">
-            <h3 style="color:#F87171;"><i class="fas fa-ghost"></i> Below the Noise Floor</h3>
-            <p>Stealing only 1–2% keeps losses within normal hashrate variance. The miner can't distinguish an active attack from routine underperformance — making detection practically impossible.</p>
+        <div class="info-card flex-1">
+            <h3 style="color:#f87171;"><i class="fas fa-ghost"></i> Below the Noise Floor</h3>
+            <p>Stealing only 1–2% keeps losses within normal variance. The miner can't distinguish an active attack from routine underperformance — making detection practically impossible.</p>
         </div>
 
-        <div class="info-card amber">
+        <div class="info-card amber flex-1">
             <h3 style="color:#FCD34D;"><i class="fas fa-chart-line"></i> Existential for Thin-Margin Operations</h3>
-            <p>With net margins of 5–15%, losing 2% of hashrate means <strong style="color:#FCD34D;">losing ~20% of profit</strong>. For large farms running hundreds of petahash, this silently erodes the entire business case.</p>
+            <p>With net margins of 5–15%, losing 2% of work means <strong style="color:#FCD34D;">losing ~20% of profit</strong>. For large farms running hundreds of petahash, this silently erodes the entire business case.</p>
         </div>
 
-        <div style="background:rgba(239,68,68,0.07); border:1px solid rgba(239,68,68,0.2); border-radius:0.5rem; padding:0.75rem 1rem;">
-            <p style="font-family:'Roboto Mono',monospace; font-size:0.78rem; color:#FCA5A5; margin:0; line-height:1.5;">
+        <div class="rounded-lg px-4 py-3 flex-shrink-0"
+             style="background:rgba(239,68,68,0.07); border:1px solid rgba(239,68,68,0.25);">
+            <p class="mono-font" style="font-size:0.8rem; color:#FCA5A5; margin:0; line-height:1.5;">
                 SV1 has <strong>no authentication and no encryption</strong> — any on-path attacker can read, intercept, and redirect mining sessions in real time.
             </p>
         </div>
