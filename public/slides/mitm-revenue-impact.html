@@ -14,31 +14,8 @@
         --cyan-600: #0891b2;
         --blue-600: #2563eb;
     }
-    body { margin:0; padding:0; overflow:hidden; background-color:#000000; font-family:'Inter',sans-serif; }
-
-    /* ── Gradient orbs ── */
-    .hero-gradient-1 {
-        position:absolute; top:-20%; left:25%;
-        width:600px; height:600px; border-radius:9999px;
-        background:var(--cyan-500);
-        filter:blur(120px); mix-blend-mode:screen; opacity:0.45; z-index:0;
-        animation:pulse-orb 4s ease-in-out infinite;
-    }
-    .hero-gradient-2 {
-        position:absolute; top:-10%; right:25%;
-        width:500px; height:500px; border-radius:9999px;
-        background:var(--blue-600);
-        filter:blur(120px); mix-blend-mode:screen; opacity:0.4; z-index:0;
-    }
-    .hero-gradient-3 {
-        position:absolute; top:10%; left:50%; transform:translateX(-50%);
-        width:800px; height:400px; border-radius:9999px;
-        background:var(--cyan-400);
-        filter:blur(100px); mix-blend-mode:screen; opacity:0.25; z-index:0;
-    }
-    @keyframes pulse-orb {
-        0%,100%{ opacity:0.45; transform:scale(1); }
-        50%    { opacity:0.55; transform:scale(1.04); }
+    body { margin:0; padding:0; overflow:hidden; background-color:#09090b; font-family:'Inter',sans-serif; }
+        50%    { opacity:0.06; transform:scale(1.04); }
     }
 
     .bg-grid {
@@ -94,9 +71,6 @@
 </head>
 <body>
 <!-- Gradient orbs -->
-<div class="hero-gradient-1"></div>
-<div class="hero-gradient-2"></div>
-<div class="hero-gradient-3"></div>
 <div class="bg-grid"></div>
 
 <div class="slide-container">

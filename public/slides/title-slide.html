@@ -35,50 +35,6 @@
             color: #f4f4f5;
             overflow: hidden;
         }
-        /* Blurred gradient orbs — matching stratumprotocol.org hero */
-        .hero-gradient-1 {
-            position: absolute;
-            top: -20%;
-            left: 25%;
-            width: 600px;
-            height: 600px;
-            border-radius: 9999px;
-            background: var(--cyan-500);
-            filter: blur(120px);
-            mix-blend-mode: screen;
-            opacity: 0.5;
-            animation: pulse 4s ease-in-out infinite;
-            z-index: 0;
-        }
-        .hero-gradient-2 {
-            position: absolute;
-            top: -10%;
-            right: 25%;
-            width: 500px;
-            height: 500px;
-            border-radius: 9999px;
-            background: #2563eb;
-            filter: blur(120px);
-            mix-blend-mode: screen;
-            opacity: 0.5;
-            z-index: 0;
-        }
-        .hero-gradient-3 {
-            position: absolute;
-            top: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 800px;
-            height: 400px;
-            border-radius: 9999px;
-            background: var(--cyan-400);
-            filter: blur(100px);
-            mix-blend-mode: screen;
-            opacity: 0.3;
-            z-index: 0;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
             50% { opacity: 0.6; transform: scale(1.05); }
         }
         .bg-grid {
@@ -157,9 +113,6 @@
 <body>
 <div class="slide-container">
 <!-- Background Elements -->
-<div class="hero-gradient-1"></div>
-<div class="hero-gradient-2"></div>
-<div class="hero-gradient-3"></div>
 <div class="bg-grid"></div>
 <canvas class="circuit-canvas" height="720" id="circuitCanvas" width="1280"></canvas>
 <!-- Main Content -->
