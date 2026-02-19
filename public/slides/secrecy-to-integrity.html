@@ -73,10 +73,10 @@
 
     .main-formula {
         font-family:'JetBrains Mono',monospace;
-        font-size:1.4rem;
+        font-size:2.2rem;
         color:#F8FAFC;
         text-align:center;
-        line-height:1.7;
+        line-height:2;
         margin:0;
     }
 
@@ -176,18 +176,9 @@
 </div>
 
 <!-- Main Content -->
-<div class="relative z-10 flex-1 px-12 py-4 flex flex-col overflow-hidden" style="min-height:0;">
+<div class="relative z-10 flex-1 px-12 py-4 flex flex-col items-center justify-center overflow-hidden" style="min-height:0;">
 
     <div class="math-container">
-
-        <!-- Problem Statement -->
-        <div class="problem-statement">
-            <i class="fas fa-exclamation-circle text-xl" style="color:#EF4444; flex-shrink:0;"></i>
-            <div>
-                <p class="font-bold" style="color:#F87171; margin:0 0 0.2rem;">The Malleability Problem</p>
-                <p style="font-size:0.85rem; opacity:0.9; margin:0; color:rgba(252,165,165,0.85);">Encryption hides data but doesn't protect it. Without integrity checks, an attacker can modify ciphertext in transit (e.g., flipping bits) to alter the decrypted message without being detected.</p>
-            </div>
-        </div>
 
         <!-- Main Equation Block -->
         <div class="equation-card">
@@ -216,56 +207,6 @@
             </div>
         </div>
 
-        <!-- Explanations -->
-        <div class="explanation-grid">
-
-            <!-- Verification Mechanism -->
-            <div class="explanation-item">
-                <div class="explanation-header">
-                    <i class="fas fa-check-circle" style="color:#22d3ee;"></i>
-                    Verification Process
-                </div>
-                <p class="explanation-text">
-                    Upon receipt, the receiver computes their own tag using the same key:<br/>
-                    <span class="mono-font c-hash" style="font-size:0.78rem;">Tag' = H(ReceivedEnc ++ Key)</span>.<br/>
-                    If <span class="mono-font" style="color:#F8FAFC;">Tag' == Tag</span>, the message is authentic.
-                </p>
-            </div>
-
-            <!-- Attack Resistance -->
-            <div class="explanation-item">
-                <div class="explanation-header">
-                    <i class="fas fa-shield-alt" style="color:#22d3ee;"></i>
-                    Why Forgery Fails
-                </div>
-                <p class="explanation-text">
-                    A MITM attacker can see <span class="mono-font c-enc">Enc</span> and modify it to <span class="mono-font" style="color:#FCA5A5;">MaliciousEnc</span>. However, they cannot calculate the correct <span class="mono-font c-tag">Tag</span> because they don't know the <span class="mono-font c-key">SecretKey</span> included in the hash.
-                </p>
-            </div>
-
-            <!-- AEAD Definition -->
-            <div class="explanation-item">
-                <div class="explanation-header">
-                    <i class="fas fa-file-contract" style="color:#22d3ee;"></i>
-                    AEAD in Noise
-                </div>
-                <p class="explanation-text">
-                    Noise Protocol uses <strong style="color:#F8FAFC;">ChaCha20-Poly1305</strong> (or AES-GCM). This combines encryption and authentication into a single efficient operation, ensuring both confidentiality and integrity.
-                </p>
-            </div>
-
-            <!-- Security Consequence -->
-            <div class="explanation-item" style="border-left-color:rgba(245,158,11,0.5);">
-                <div class="explanation-header">
-                    <i class="fas fa-lock" style="color:#F59E0B;"></i>
-                    The Result
-                </div>
-                <p class="explanation-text">
-                    Any tampering with the message results in a verification failure. The receiver simply discards the packet, preventing "bit-flipping" attacks or malicious command injection.
-                </p>
-            </div>
-
-        </div>
 
     </div>
 

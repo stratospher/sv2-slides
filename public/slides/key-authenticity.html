@@ -75,13 +75,13 @@
 
     /* Visualization panel */
     .visual-container {
-        flex:0.9;
+        flex:1;
         background:rgba(0,0,0,0.45);
         backdrop-filter:blur(10px);
         border-radius:1rem;
         border:1px solid rgba(6,182,212,0.18);
-        padding:1.25rem;
-        display:flex; flex-direction:column; justify-content:center;
+        padding:2rem 2.5rem;
+        display:flex; flex-direction:column; justify-content:center; gap:2rem;
     }
 
     /* Diagram cards */
@@ -90,56 +90,54 @@
         backdrop-filter:blur(8px);
         border:1px solid rgba(6,182,212,0.12);
         border-radius:0.75rem;
-        padding:1rem 1.1rem;
-        margin-bottom:1.1rem;
+        padding:1.5rem 2rem;
         position:relative;
     }
-    .diagram-card:last-child { margin-bottom:0; }
 
     .diagram-title {
         font-family:'Space Grotesk',sans-serif;
-        font-size:0.85rem; font-weight:700;
+        font-size:1.05rem; font-weight:700;
         text-transform:uppercase;
         letter-spacing:0.05em;
-        margin-bottom:0.75rem;
+        margin-bottom:1.1rem;
         display:flex; align-items:center;
     }
 
     .flow-row {
         display:flex; align-items:center;
         justify-content:space-between;
-        position:relative; height:75px;
+        position:relative; height:110px;
     }
 
     .node {
         display:flex; flex-direction:column; align-items:center;
-        z-index:2; width:80px;
+        z-index:2; width:120px;
     }
 
     .node-icon {
-        width:2.75rem; height:2.75rem;
+        width:4rem; height:4rem;
         border-radius:50%;
         display:flex; align-items:center; justify-content:center;
-        font-size:1.1rem; margin-bottom:0.4rem;
+        font-size:1.5rem; margin-bottom:0.5rem;
         position:relative;
     }
 
     .node-label {
-        font-size:0.72rem; font-weight:700;
-        color:rgba(203,213,225,0.8);
+        font-size:0.9rem; font-weight:700;
+        color:rgba(203,213,225,0.9);
         font-family:'Space Grotesk',sans-serif;
     }
 
     .conn-line {
-        position:absolute; top:22px; left:40px; right:40px;
+        position:absolute; top:32px; left:60px; right:60px;
         height:2px; z-index:1;
     }
 
     .key-badge {
         font-family:'JetBrains Mono',monospace;
-        font-size:0.58rem;
-        padding:2px 6px; border-radius:4px;
-        margin-top:3px; display:inline-block;
+        font-size:0.75rem;
+        padding:4px 10px; border-radius:4px;
+        margin-top:5px; display:inline-block;
     }
 
     .intercept-icon {
@@ -183,48 +181,7 @@
 <!-- Main Content -->
 <div class="relative z-10 flex-1 px-12 py-5 flex gap-7 overflow-hidden" style="min-height:0;">
 
-    <!-- Left Column: Steps -->
-    <div class="steps-container">
-
-        <!-- Step 1: The Threat -->
-        <div class="step-card" style="border-left:4px solid #EF4444;">
-            <div class="step-number" style="border-color:#EF4444; color:#EF4444;">1</div>
-            <div class="step-content">
-                <h3>The Threat: Key Swapping (MITM)</h3>
-                <p>Encryption alone guarantees confidentiality, not identity. An attacker can intercept the handshake, presenting their own key to the miner and the pool.</p>
-                <p class="mono-font mt-1" style="font-size:0.78rem; color:#F87171; font-weight:600;">
-                    <i class="fas fa-exclamation-triangle mr-1"></i> Result: You have a secure channel with the <em>Attacker</em>.
-                </p>
-            </div>
-        </div>
-
-        <!-- Step 2: PSK -->
-        <div class="step-card" style="border-left:4px solid #F59E0B;">
-            <div class="step-number" style="border-color:#F59E0B; color:#F59E0B;">2</div>
-            <div class="step-content">
-                <h3>Approach A: Pre-Shared Keys (PSK)</h3>
-                <p>Both sides agree on a secret password beforehand. Handshake fails if secret doesn't match.</p>
-                <p class="mono-font mt-1" style="font-size:0.78rem; color:rgba(148,163,184,0.6); font-style:italic;">
-                    <i class="fas fa-times-circle mr-1"></i> Issue: Doesn't scale. Distributing secrets to 1M+ anonymous miners is impossible.
-                </p>
-            </div>
-        </div>
-
-        <!-- Step 3: Identity Keys -->
-        <div class="step-card" style="border-left:4px solid #22d3ee;">
-            <div class="step-number" style="border-color:#22d3ee; color:#22d3ee;">3</div>
-            <div class="step-content">
-                <h3>Approach B: Identity Keys (Stratum V2)</h3>
-                <p>Pools publish a long-term <strong style="color:#F8FAFC;">Static Public Key</strong> (Identity). Miners "pin" or verify this key during the Noise handshake.</p>
-                <p class="mono-font mt-1" style="font-size:0.78rem; color:#22d3ee; font-weight:600;">
-                    <i class="fas fa-check-circle mr-1"></i> Result: Scalable authenticity without distributing secrets.
-                </p>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Right Column: Visualization -->
+    <!-- Visualization -->
     <div class="visual-container">
 
         <!-- Diagram 1: The Problem -->
@@ -257,8 +214,8 @@
                     <span class="node-label">Pool</span>
                 </div>
             </div>
-            <div class="text-center mt-1">
-                <p class="mono-font" style="font-size:0.72rem; color:rgba(148,163,184,0.55);">Miner trusts Attacker's Key thinking it's the Pool's</p>
+            <div class="text-center mt-2">
+                <p class="mono-font" style="font-size:0.88rem; color:rgba(148,163,184,0.7);">Miner trusts Attacker's Key thinking it's the Pool's</p>
             </div>
         </div>
 
@@ -278,11 +235,11 @@
                     <span class="key-badge" style="background:rgba(14,79,95,0.4); color:#A5F3FC; border:1px solid rgba(6,182,212,0.4);">Expects: ID<sub>Pool</sub></span>
                 </div>
                 <!-- Verification Logic -->
-                <div class="node" style="width:140px;">
-                    <div class="relative z-10 text-center rounded p-2"
-                         style="background:rgba(0,0,0,0.5); border:1px solid rgba(6,182,212,0.25);">
-                        <div class="mono-font mb-1" style="font-size:0.7rem; color:rgba(148,163,184,0.6);">Handshake Verify</div>
-                        <div class="mono-font font-bold" style="font-size:0.75rem; color:#22d3ee;">Signed by ID<sub>Pool</sub>?</div>
+                <div class="node" style="width:180px;">
+                    <div class="relative z-10 text-center rounded p-3"
+                         style="background:rgba(0,0,0,0.5); border:1px solid rgba(6,182,212,0.35);">
+                        <div class="mono-font mb-1" style="font-size:0.8rem; color:rgba(148,163,184,0.7);">Handshake Verify</div>
+                        <div class="mono-font font-bold" style="font-size:0.95rem; color:#22d3ee;">Signed by ID<sub>Pool</sub>?</div>
                     </div>
                 </div>
                 <!-- Pool -->
@@ -294,10 +251,10 @@
                     <span class="key-badge" style="background:rgba(14,79,95,0.4); color:#A5F3FC; border:1px solid rgba(6,182,212,0.4);">Signs w/ PrivKey</span>
                 </div>
             </div>
-            <div class="text-center mt-2 flex justify-center items-center gap-2">
-                <span class="mono-font" style="font-size:0.72rem; color:rgba(148,163,184,0.55);">Attacker fails to sign</span>
-                <i class="fas fa-arrow-right" style="color:rgba(148,163,184,0.4); font-size:0.7rem;"></i>
-                <span class="mono-font px-2 rounded" style="font-size:0.72rem; color:#F87171; border:1px solid rgba(239,68,68,0.35); background:rgba(69,10,10,0.25);">Connection Rejected</span>
+            <div class="text-center mt-3 flex justify-center items-center gap-3">
+                <span class="mono-font" style="font-size:0.88rem; color:rgba(148,163,184,0.7);">Attacker fails to sign</span>
+                <i class="fas fa-arrow-right" style="color:rgba(148,163,184,0.5); font-size:0.85rem;"></i>
+                <span class="mono-font px-3 py-1 rounded" style="font-size:0.88rem; color:#F87171; border:1px solid rgba(239,68,68,0.45); background:rgba(69,10,10,0.3);">Connection Rejected</span>
             </div>
         </div>
 

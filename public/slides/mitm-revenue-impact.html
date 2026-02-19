@@ -101,8 +101,8 @@
 <!-- Main Content -->
 <div class="relative z-10 flex-1 px-12 py-4 flex gap-8 overflow-hidden" style="min-height:0;">
 
-    <!-- Left Column: diagram fills height, stat cards pinned below -->
-    <div style="flex:1.35;" class="flex flex-col gap-3 min-h-0">
+    <!-- Diagram column — fills full width -->
+    <div style="flex:1;" class="flex flex-col min-h-0">
 
         <!-- Attack flow diagram — flex-1 to fill remaining height -->
         <div class="rounded-xl flex flex-col flex-1 min-h-0"
@@ -188,52 +188,6 @@
             </div>
         </div>
 
-        <!-- Stat cards row — fixed height at bottom -->
-        <div class="flex gap-3 flex-shrink-0">
-            <div class="stat-card" style="background:rgba(0,0,0,0.45); border:1px solid rgba(6,182,212,0.2);">
-                <div class="stat-num" style="color:var(--cyan-500);">5–15%</div>
-                <div class="stat-label" style="color:rgba(148,163,184,0.6);">Typical mining<br/>net margin</div>
-            </div>
-            <div class="stat-card" style="background:rgba(69,10,10,0.25); border:1px solid rgba(239,68,68,0.3);">
-                <div class="stat-num" style="color:#F87171;">1–2%</div>
-                <div class="stat-label" style="color:#FCA5A5;">Silently stolen<br/>undetectable</div>
-            </div>
-            <div class="stat-card" style="background:rgba(120,53,15,0.2); border:1px solid rgba(245,158,11,0.3);">
-                <div class="stat-num" style="color:#FCD34D;">≈20%</div>
-                <div class="stat-label" style="color:#FDE68A;">Of net profit<br/>wiped per attack</div>
-            </div>
-            <div class="stat-card" style="background:rgba(0,0,0,0.45); border:1px solid rgba(239,68,68,0.25);">
-                <div class="stat-num" style="color:#EF4444;">0</div>
-                <div class="stat-label" style="color:rgba(148,163,184,0.6);">Alerts triggered<br/>in SV1</div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Right Column: cards fill full height with space-between -->
-    <div class="flex-1 flex flex-col justify-between gap-3">
-
-        <div class="info-card flex-1">
-            <h3 style="color:#f87171;"><i class="fas fa-hand-holding-dollar"></i> Proof of Work Theft</h3>
-            <p>The attacker intercepts the miner's solved work before it reaches the pool — claiming the block reward themselves. The miner's hardware runs at full power, but someone else earns the payout.</p>
-        </div>
-
-        <div class="info-card flex-1">
-            <h3 style="color:#f87171;"><i class="fas fa-ghost"></i> Below the Noise Floor</h3>
-            <p>Stealing only 1–2% keeps losses within normal variance. The miner can't distinguish an active attack from routine underperformance — making detection practically impossible.</p>
-        </div>
-
-        <div class="info-card amber flex-1">
-            <h3 style="color:#FCD34D;"><i class="fas fa-chart-line"></i> Existential for Thin-Margin Operations</h3>
-            <p>With net margins of 5–15%, losing 2% of work means <strong style="color:#FCD34D;">losing ~20% of profit</strong>. For large farms running hundreds of petahash, this silently erodes the entire business case.</p>
-        </div>
-
-        <div class="rounded-lg px-4 py-3 flex-shrink-0"
-             style="background:rgba(239,68,68,0.07); border:1px solid rgba(239,68,68,0.25);">
-            <p class="mono-font" style="font-size:0.8rem; color:#FCA5A5; margin:0; line-height:1.5;">
-                SV1 has <strong>no authentication and no encryption</strong> — any on-path attacker can read, intercept, and redirect mining sessions in real time.
-            </p>
-        </div>
 
     </div>
 </div>

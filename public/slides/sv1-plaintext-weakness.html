@@ -46,8 +46,8 @@
 
     /* Network diagram */
     .node {
-        width: 96px; height: 96px;
-        border-radius: 12px;
+        width: 130px; height: 130px;
+        border-radius: 14px;
         display: flex; flex-direction: column;
         justify-content: center; align-items: center;
         position: absolute; z-index: 2;
@@ -56,18 +56,18 @@
     .miner-node {
         background: rgba(6,182,212,0.06);
         border: 2px solid rgba(6,182,212,0.6);
-        left: 60px;
+        left: 80px;
     }
     .pool-node {
         background: rgba(34,211,238,0.06);
         border: 2px solid rgba(34,211,238,0.5);
-        right: 60px;
+        right: 80px;
     }
     .eavesdropper-node {
-        width: 76px; height: 76px;
+        width: 100px; height: 100px;
         background: rgba(69,10,10,0.7);
         border: 2px dashed #EF4444;
-        left: 50%; top: 22%;
+        left: 50%; top: 14%;
         transform: translateX(-50%);
         z-index: 5;
     }
@@ -75,14 +75,14 @@
         position: absolute;
         height: 3px;
         background: linear-gradient(90deg, rgba(6,182,212,0.6), rgba(34,211,238,0.4), rgba(6,182,212,0.6));
-        top: 50%; left: 156px; right: 156px;
+        top: 50%; left: 210px; right: 210px;
         transform: translateY(-50%); z-index: 1;
     }
     .dashed-line {
         position: absolute;
-        width: 2px; height: 80px;
+        width: 2px; height: 110px;
         border-left: 2px dashed rgba(239,68,68,0.7);
-        left: 50%; top: 36%; z-index: 3;
+        left: 50%; top: 30%; z-index: 3;
     }
     .data-stream {
         position: absolute;
@@ -155,20 +155,20 @@
 
         <!-- Miner Node -->
         <div class="node miner-node" style="top: 50%; transform: translateY(-50%);">
-            <i class="fas fa-microchip text-3xl mb-2" style="color: var(--cyan-500);"></i>
-            <span class="mono-font text-xs font-bold" style="color: rgba(148,163,184,0.9);">MINER</span>
+            <i class="fas fa-microchip mb-2" style="font-size: 2.8rem; color: var(--cyan-500);"></i>
+            <span class="mono-font text-sm font-bold" style="color: rgba(148,163,184,0.9);">MINER</span>
         </div>
 
         <!-- Pool Node -->
         <div class="node pool-node" style="top: 50%; transform: translateY(-50%);">
-            <i class="fas fa-server text-3xl mb-2" style="color: var(--cyan-400);"></i>
-            <span class="mono-font text-xs font-bold" style="color: rgba(148,163,184,0.9);">POOL</span>
+            <i class="fas fa-server mb-2" style="font-size: 2.8rem; color: var(--cyan-400);"></i>
+            <span class="mono-font text-sm font-bold" style="color: rgba(148,163,184,0.9);">POOL</span>
         </div>
 
         <!-- Eavesdropper -->
         <div class="node eavesdropper-node">
-            <i class="fas fa-eye eye-icon"></i>
-            <span class="mono-font font-bold mt-1" style="font-size: 0.6rem; color: #f87171;">SNIFFER</span>
+            <i class="fas fa-eye eye-icon" style="font-size: 2.2rem;"></i>
+            <span class="mono-font font-bold mt-1" style="font-size: 0.7rem; color: #f87171;">SNIFFER</span>
         </div>
 
         <!-- Connection line -->
@@ -190,61 +190,6 @@
         </div>
     </div>
 
-    <!-- Right Column: Bullet Points -->
-    <div class="flex-1 flex flex-col justify-center space-y-4">
-
-        <div>
-            <h2 class="font-black uppercase mb-4"
-                style="font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; color: #f87171; letter-spacing: -0.01em;">
-                2012 Design Limitations
-            </h2>
-        </div>
-
-        <!-- Historical Context -->
-        <div class="bullet-card" style="border-left: 3px solid rgba(6,182,212,0.5);">
-            <div class="flex items-start gap-3">
-                <i class="fas fa-history mt-0.5 flex-shrink-0" style="color: var(--cyan-500); font-size: 1.1rem;"></i>
-                <div>
-                    <p class="font-bold mb-1" style="color: #F8FAFC; font-size: 0.97rem;">Historical Context</p>
-                    <p style="color: rgba(148,163,184,0.85); font-size: 0.9rem; line-height: 1.55;">
-                        Designed to replace <code class="mono-font" style="color: var(--cyan-400); font-size: 0.85rem;">getwork</code> for efficiency, not security. Encryption was an afterthought in the early ASIC era.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Total Eavesdropping -->
-        <div class="bullet-card" style="border-left: 3px solid #EF4444;">
-            <div class="flex items-start gap-3">
-                <i class="fas fa-user-secret mt-0.5 flex-shrink-0" style="color: #EF4444; font-size: 1.1rem;"></i>
-                <div>
-                    <p class="font-bold mb-1" style="color: #F8FAFC; font-size: 0.97rem;">Total Eavesdropping</p>
-                    <p style="color: rgba(148,163,184,0.85); font-size: 0.9rem; line-height: 1.55; margin-bottom: 0.4rem;">
-                        Passive observers on the network can read everything:
-                    </p>
-                    <div class="space-y-0.5 mono-font" style="font-size: 0.82rem;">
-                        <div style="color: #FCA5A5;">· Worker credentials (user / pass)</div>
-                        <div style="color: #FCA5A5;">· Incoming jobs &amp; difficulty targets</div>
-                        <div style="color: #FCA5A5;">· Submitted shares (proof of work)</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tampering & Identity Risks -->
-        <div class="bullet-card" style="border-left: 3px solid #F59E0B;">
-            <div class="flex items-start gap-3">
-                <i class="fas fa-pen-to-square mt-0.5 flex-shrink-0" style="color: #F59E0B; font-size: 1.1rem;"></i>
-                <div>
-                    <p class="font-bold mb-1" style="color: #F8FAFC; font-size: 0.97rem;">Tampering &amp; Identity Risks</p>
-                    <p style="color: rgba(148,163,184,0.85); font-size: 0.9rem; line-height: 1.55;">
-                        Attackers can modify jobs on the fly. Miners cannot verify they are talking to the real pool — <strong style="color: #FDE68A;">no cryptographic authentication</strong>.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-    </div>
 
 </div>
 </div>

@@ -67,10 +67,10 @@
 
     .main-formula {
         font-family:'JetBrains Mono',monospace;
-        font-size:1.4rem;
+        font-size:2rem;
         color:#F8FAFC;
         text-align:center;
-        line-height:1.7;
+        line-height:2;
         margin:0;
     }
 
@@ -190,7 +190,7 @@
 </div>
 
 <!-- Main Content -->
-<div class="relative z-10 flex-1 px-12 py-5 flex flex-col overflow-hidden" style="min-height:0;">
+<div class="relative z-10 flex-1 px-12 py-5 flex flex-col items-center justify-center overflow-hidden" style="min-height:0;">
 
     <div class="math-container">
 
@@ -229,49 +229,6 @@
             </div>
         </div>
 
-        <!-- Issues Grid -->
-        <div class="explanation-grid">
-
-            <!-- Issue 1: Key Reuse -->
-            <div class="explanation-item" style="border-color:#F59E0B;">
-                <div class="explanation-header">
-                    <i class="fas fa-recycle" style="color:#F59E0B;"></i>
-                    Key Reuse Risks
-                </div>
-                <p class="explanation-text">
-                    If the same code or <span class="mono-font seed-color" style="font-size:0.82rem;">seed</span> is reused across connections, patterns emerge. Attackers can perform cryptanalysis to recover the plaintext or the key itself over time.
-                </p>
-            </div>
-
-            <!-- Issue 2: Distribution -->
-            <div class="explanation-item" style="border-color:#EF4444;">
-                <div class="explanation-header">
-                    <i class="fas fa-broadcast-tower" style="color:#EF4444;"></i>
-                    The Distribution Paradox
-                </div>
-                <p class="explanation-text">
-                    How do you share the <span class="mono-font seed-color" style="font-size:0.82rem;">seed</span>? If sent over the same channel, eavesdroppers capture it immediately, rendering encryption useless.
-                </p>
-            </div>
-
-            <!-- Issue 3: Requirements -->
-            <div class="explanation-item" style="border-color:#22d3ee;">
-                <div class="explanation-header">
-                    <i class="fas fa-shield-alt" style="color:#22d3ee;"></i>
-                    The Requirement
-                </div>
-                <p class="explanation-text">
-                    We need a method to generate a <strong style="color:#F8FAFC;">fresh, unique key</strong> for every connection that both parties can derive independently, without ever transmitting the key itself.
-                </p>
-            </div>
-
-        </div>
-
-        <!-- Bottom Alert -->
-        <div class="key-problem-alert">
-            <i class="fas fa-exclamation-circle text-2xl"></i>
-            <p class="m-0 font-medium">Without a secure key exchange mechanism, encryption is just obfuscation.</p>
-        </div>
 
     </div>
 

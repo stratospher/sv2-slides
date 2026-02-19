@@ -75,9 +75,9 @@
 <!-- Main Content -->
 <div class="relative z-10 flex-1 px-12 py-5 flex gap-8 overflow-hidden" style="min-height:0;">
 
-    <!-- Left: Diagram -->
+    <!-- Diagram — fills full width -->
     <div class="flex items-center justify-center rounded-xl"
-         style="flex:1.15; background:rgba(0,0,0,0.45); backdrop-filter:blur(10px); border:1px solid rgba(6,182,212,0.18); padding:1.25rem;">
+         style="flex:1; background:rgba(0,0,0,0.45); backdrop-filter:blur(10px); border:1px solid rgba(6,182,212,0.18); padding:1.25rem;">
         <svg viewBox="0 0 440 322" width="100%" height="auto"
              xmlns="http://www.w3.org/2000/svg" style="display:block; font-family:'JetBrains Mono',monospace;">
             <defs>
@@ -187,34 +187,7 @@
         </svg>
     </div>
 
-    <!-- Right: 4 Cards -->
-    <div class="grid gap-3" style="flex:1; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr;">
-
-        <div class="card" style="background:rgba(69,10,10,0.2); border:1px solid rgba(239,68,68,0.3);">
-            <div class="card-icon">🔍</div>
-            <div class="card-title" style="color:#F87171;">Trivial to Fingerprint</div>
-            <div class="card-body">Port 3333 + plaintext JSON — any DPI firewall identifies it instantly, no decryption needed.</div>
-        </div>
-
-        <div class="card" style="background:rgba(120,53,15,0.2); border:1px solid rgba(245,158,11,0.3);">
-            <div class="card-icon">🏛️</div>
-            <div class="card-title" style="color:#FCD34D;">Censorable by Design</div>
-            <div class="card-body">Governments can block or coerce miners directly. Traffic is unambiguously mining — no cover, no anonymity.</div>
-        </div>
-
-        <div class="card" style="background:rgba(120,53,15,0.2); border:1px solid rgba(245,158,11,0.3);">
-            <div class="card-icon">🌍</div>
-            <div class="card-title" style="color:#FCD34D;">Hashrate Centralization</div>
-            <div class="card-body">Blocked regions push miners to permissive countries — concentrating hashrate and weakening Bitcoin's security model.</div>
-        </div>
-
-        <div class="card" style="background:rgba(69,10,10,0.2); border:1px solid rgba(239,68,68,0.3);">
-            <div class="card-icon">📉</div>
-            <div class="card-title" style="color:#F87171;">Silent Profit Bleed</div>
-            <div class="card-body">1–2% stolen hashrate wipes ~20% of net profit — undetected, every day, in a 5–15% margin business.</div>
-        </div>
-
-    </div>
+</div>
 </div>
 
 </div>
