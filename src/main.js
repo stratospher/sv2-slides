@@ -89,7 +89,7 @@ function rescale() {
   const padY = isFS ? 0 : 48;
   const availW = stageRect.width - padX;
   const availH = stageRect.height - padY;
-  const scale = Math.min(availW / SLIDE_W, availH / SLIDE_H, 1.0);
+  const scale = Math.min(availW / SLIDE_W, availH / SLIDE_H, Infinity);
 
   slideFrame.style.transform = `scale(${scale})`;
   frameWrapper.style.width  = (SLIDE_W * scale) + 'px';
@@ -113,7 +113,10 @@ document.addEventListener('fullscreenchange', () => {
   document.body.classList.toggle('is-fullscreen', isFS);
   stage.classList.toggle('fullscreen-stage', isFS);
   btnFullscreen.classList.toggle('active', isFS);
-  rescale();
+  // Defer rescale until after the browser has finished the fullscreen layout.
+  // A single rAF isn't enough — double rAF ensures we're past both style recalc
+  // and layout, so getBoundingClientRect() returns the correct final dimensions.
+  requestAnimationFrame(() => requestAnimationFrame(rescale));
 });
 
 btnFullscreen.addEventListener('click', toggleFullscreen);
