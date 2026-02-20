@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Table of Contents</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+    body {
+        width: 1280px; height: 720px; overflow: hidden;
+        font-family: 'Inter', sans-serif;
+        background-color: #09090b; color: #F8FAFC; position: relative;
+    }
+    .bg-grid {
+        position: absolute; inset: 0; z-index: 1;
+        background-image:
+            linear-gradient(rgba(6,182,212,0.07) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(6,182,212,0.07) 1px, transparent 1px);
+        background-size: 30px 30px; opacity: 0.5;
+    }
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+
+<div class="relative z-10 flex flex-col items-center justify-center" style="height:720px; padding-bottom:36px;">
+
+    <!-- Title -->
+    <div style="margin-bottom:28px;">
+        <h1 style="font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:700;
+                   color:#F8FAFC;letter-spacing:-0.02em;margin:0;">Index</h1>
+    </div>
+
+    <!-- Section list -->
+    <div style="display:flex;flex-direction:column;gap:18px;">
+
+        <!-- Row template: number + title -->
+        <div style="display:flex;align-items:center;gap:24px;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;
+                         color:rgba(6,182,212,0.35);min-width:40px;text-align:right;">01</span>
+            <span style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;
+                         color:#F8FAFC;letter-spacing:-0.01em;">How pooled mining works</span>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:24px;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;
+                         color:rgba(6,182,212,0.35);min-width:40px;text-align:right;">02</span>
+            <span style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;
+                         color:#F8FAFC;letter-spacing:-0.01em;">How Stratum V1 works</span>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:24px;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;
+                         color:rgba(6,182,212,0.35);min-width:40px;text-align:right;">03</span>
+            <span style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;
+                         color:#f87171;letter-spacing:-0.01em;">Exploits!</span>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:24px;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;
+                         color:rgba(6,182,212,0.35);min-width:40px;text-align:right;">04</span>
+            <span style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;
+                         color:#F8FAFC;letter-spacing:-0.01em;">Introduction Stratum V2</span>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:24px;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;
+                         color:rgba(6,182,212,0.35);min-width:40px;text-align:right;">05</span>
+            <span style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;
+                         color:#F8FAFC;letter-spacing:-0.01em;">How SV2 prevents exploits</span>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:24px;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;
+                         color:rgba(6,182,212,0.35);min-width:40px;text-align:right;">06</span>
+            <span style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;
+                         color:#22d3ee;letter-spacing:-0.01em;">More revenue with SV2!</span>
+        </div>
+
+    </div>
+</div>
+
+<script src="slides.js"></script>
+<script src="navigate.js"></script>
+</body>
+</html>

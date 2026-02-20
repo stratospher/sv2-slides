@@ -153,41 +153,75 @@
     <div class="flex-1 glass-panel rounded-xl relative overflow-hidden"
          style="border: 1px solid rgba(6,182,212,0.15);">
 
-        <!-- Miner Node -->
-        <div class="node miner-node" style="top: 50%; transform: translateY(-50%);">
-            <i class="fas fa-microchip mb-2" style="font-size: 2.8rem; color: var(--cyan-500);"></i>
-            <span class="mono-font text-sm font-bold" style="color: rgba(148,163,184,0.9);">MINER</span>
-        </div>
+        <svg width="100%" height="100%" viewBox="0 0 1100 520" preserveAspectRatio="xMidYMid meet">
+            <defs>
+                <marker id="arrC" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                    <polygon points="0 0,8 3,0 6" fill="rgba(6,182,212,0.7)"/>
+                </marker>
+            </defs>
 
-        <!-- Pool Node -->
-        <div class="node pool-node" style="top: 50%; transform: translateY(-50%);">
-            <i class="fas fa-server mb-2" style="font-size: 2.8rem; color: var(--cyan-400);"></i>
-            <span class="mono-font text-sm font-bold" style="color: rgba(148,163,184,0.9);">POOL</span>
-        </div>
+            <!-- ── MINER chip at (155,260) ── -->
+            <g transform="translate(155,260)">
+                <rect x="-70" y="-29" width="140" height="58" rx="8"
+                      fill="rgba(6,182,212,0.07)" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+                <line x1="-35" y1="-29" x2="-35" y2="-40" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+                <line x1="0"   y1="-29" x2="0"   y2="-40" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+                <line x1="35"  y1="-29" x2="35"  y2="-40" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+                <line x1="-35" y1="29"  x2="-35" y2="40"  stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+                <line x1="0"   y1="29"  x2="0"   y2="40"  stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+                <line x1="35"  y1="29"  x2="35"  y2="40"  stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+                <line x1="-70" y1="-10" x2="-82" y2="-10" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+                <line x1="-70" y1="10"  x2="-82" y2="10"  stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+                <line x1="70"  y1="-10" x2="82"  y2="-10" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+                <line x1="70"  y1="10"  x2="82"  y2="10"  stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+                <rect x="-56" y="-19" width="112" height="38" rx="4"
+                      fill="none" stroke="rgba(6,182,212,0.2)" stroke-width="1"/>
+                <text x="0" y="5" text-anchor="middle" font-family="'JetBrains Mono',monospace"
+                      font-size="14" font-weight="bold" fill="rgba(6,182,212,0.9)">MINER</text>
+            </g>
 
-        <!-- Eavesdropper -->
-        <div class="node eavesdropper-node">
-            <i class="fas fa-eye eye-icon" style="font-size: 2.2rem;"></i>
-            <span class="mono-font font-bold mt-1" style="font-size: 0.7rem; color: #f87171;">SNIFFER</span>
-        </div>
+            <!-- ── POOL cloud at (945,260) ── -->
+            <g transform="translate(945,260)">
+                <path d="M-81,20 Q-90,-13 -55,-20 Q-46,-48 -18,-41 Q-4,-62 27,-49 Q43,-62 69,-41 Q90,-27 84,4 Q97,14 88,34 Q76,50 50,46 L-50,46 Q-78,46 -81,20 Z"
+                      fill="rgba(6,182,212,0.08)" stroke="rgba(6,182,212,0.55)" stroke-width="2"/>
+                <text x="0" y="12" text-anchor="middle" font-family="'JetBrains Mono',monospace"
+                      font-size="14" font-weight="bold" fill="#22d3ee">POOL</text>
+            </g>
 
-        <!-- Connection line -->
-        <div class="connection-line"></div>
-        <!-- Dashed drop line to data stream -->
-        <div class="dashed-line"></div>
+            <!-- ── TCP connection line (bidirectional) ── -->
+            <line x1="239" y1="260" x2="862" y2="260"
+                  stroke="rgba(6,182,212,0.5)" stroke-width="3"/>
 
-        <!-- Intercepted Data -->
-        <div class="data-stream">
-            <span class="stream-text">"params": ["user", "pass"]</span>
-        </div>
+            <!-- ── SNIFFER box at (550,90) ── -->
+            <g transform="translate(550,90)">
+                <rect x="-65" y="-52" width="130" height="104" rx="12"
+                      fill="rgba(69,10,10,0.75)" stroke="#EF4444" stroke-width="2" stroke-dasharray="5,3"/>
+                <!-- eye shape -->
+                <path d="M-32,-12 Q0,-34 32,-12 Q0,10 -32,-12 Z"
+                      fill="none" stroke="#EF4444" stroke-width="1.5"/>
+                <circle cx="0" cy="-12" r="12" fill="#EF4444" opacity="0.8"/>
+                <circle cx="0" cy="-12" r="5"  fill="rgba(30,5,5,0.95)"/>
+                <circle cx="4"  cy="-16" r="3"  fill="rgba(255,200,200,0.35)"/>
+                <text x="0" y="34" text-anchor="middle" font-family="'JetBrains Mono',monospace"
+                      font-size="13" font-weight="bold" fill="#f87171">SNIFFER</text>
+            </g>
 
-        <!-- Bottom labels -->
-        <div class="absolute bottom-3 left-4 mono-font text-xs" style="color: rgba(148,163,184,0.45);">
-            PROTOCOL: JSON-RPC over TCP
-        </div>
-        <div class="absolute bottom-3 right-4 mono-font text-xs font-bold" style="color: #f87171;">
-            STATUS: UNENCRYPTED
-        </div>
+            <!-- ── Dashed vertical drop line ── -->
+            <line x1="550" y1="144" x2="550" y2="236"
+                  stroke="rgba(239,68,68,0.7)" stroke-width="2" stroke-dasharray="5,4"/>
+
+            <!-- ── Intercepted data label ON the connection line ── -->
+            <rect x="340" y="238" width="420" height="44" rx="4"
+                  fill="rgba(0,0,0,0.85)" stroke="rgba(239,68,68,0.6)" stroke-width="1.5"/>
+            <text x="550" y="265" text-anchor="middle" font-family="'JetBrains Mono',monospace"
+                  font-size="14" fill="#FCA5A5">"params": ["user", "pass"]</text>
+
+            <!-- ── Bottom labels ── -->
+            <text x="12" y="510" font-family="'JetBrains Mono',monospace"
+                  font-size="11" fill="rgba(148,163,184,0.45)">PROTOCOL: JSON-RPC over TCP</text>
+            <text x="1088" y="510" text-anchor="end" font-family="'JetBrains Mono',monospace"
+                  font-size="11" font-weight="bold" fill="#f87171">STATUS: UNENCRYPTED</text>
+        </svg>
     </div>
 
 

@@ -7,161 +7,209 @@
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
-    body { width:1280px; height:720px; overflow:hidden; font-family:'Inter',sans-serif; background-color:#000; color:#F8FAFC; position:relative; }
-    .bg-grid { position:absolute; inset:0; z-index:1; background-image: linear-gradient(rgba(6,182,212,0.07) 1px,transparent 1px), linear-gradient(90deg,rgba(6,182,212,0.07) 1px,transparent 1px); background-size:30px 30px; opacity:0.5; }
-    .glass-panel { background:rgba(0,0,0,0.45); backdrop-filter:blur(10px); border:1px solid rgba(6,182,212,0.18); box-shadow:0 0 40px rgba(6,182,212,0.04); }
-    .mono-font { font-family:'JetBrains Mono',monospace; }
+    body {
+        width: 1280px; height: 720px; overflow: hidden;
+        font-family: 'Inter', sans-serif;
+        background-color: #09090b; color: #F8FAFC; position: relative;
+    }
+    .bg-grid {
+        position: absolute; inset: 0; z-index: 1;
+        background-image:
+            linear-gradient(rgba(6,182,212,0.07) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(6,182,212,0.07) 1px, transparent 1px);
+        background-size: 30px 30px; opacity: 0.5;
+    }
 </style>
 </head>
-<body class="relative flex flex-col justify-between">
+<body class="relative flex flex-col" style="padding: 18px 80px 0;">
 <div class="bg-grid"></div>
 
-<!-- Header -->
-<header class="relative z-10 px-16 pt-9 pb-4 flex items-end justify-between"
-        style="border-bottom:1px solid rgba(6,182,212,0.2); background:rgba(0,0,0,0.5);">
-    <div>
-        <div class="flex items-center space-x-3 mb-2">
-            <span class="px-2 py-1 text-xs font-bold rounded mono-font"
-                  style="background:rgba(6,182,212,0.15);color:#22d3ee;border:1px solid rgba(6,182,212,0.3);">
-                SV1 PROTOCOL
-            </span>
-            <span class="text-xs mono-font" style="color:rgba(6,182,212,0.5);">// STEP 2</span>
-        </div>
-        <h1 class="text-3xl font-black tracking-tight text-white"
-            style="font-family:'Space Grotesk',sans-serif;letter-spacing:-0.02em;">
-            mining.<span style="color:#22d3ee;">subscribe</span>
-        </h1>
-    </div>
-    <div class="text-right">
-        <p class="text-sm mono-font" style="color:rgba(148,163,184,0.7);">Subscribe · Extranonce · Coinbase structure</p>
-    </div>
-</header>
+<!-- Header row -->
+<div class="relative z-10 flex items-center" style="gap:12px; margin-bottom:6px;">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;
+                 letter-spacing:.18em;color:#22d3ee;border:1px solid rgba(6,182,212,0.45);
+                 background:rgba(6,182,212,0.08);padding:4px 16px;border-radius:999px;">
+        SV1 PROTOCOL
+    </span>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;
+                 color:rgba(6,182,212,0.45);letter-spacing:.1em;">// STEP 2</span>
+</div>
 
-<!-- Main -->
-<main class="relative z-10 flex-1 w-full flex items-center justify-center" style="padding:12px 32px 56px;">
-    <div class="w-full h-full glass-panel rounded-xl" style="overflow:hidden;">
-        <svg width="100%" height="100%" viewBox="0 0 1152 430" preserveAspectRatio="xMidYMid meet">
-            <defs>
-                <marker id="arrR" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                    <polygon points="0 0,10 3.5,0 7" fill="#06b6d4"/>
-                </marker>
-                <marker id="arrL" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                    <polygon points="0 0,10 3.5,0 7" fill="#22d3ee"/>
-                </marker>
-            </defs>
+<!-- Title -->
+<h1 class="relative z-10" style="font-family:'Space Grotesk',sans-serif;font-size:66px;
+           font-weight:700;letter-spacing:-0.02em;color:#F8FAFC;line-height:1.05;
+           margin-bottom:10px;">
+    mining.<span style="color:#22d3ee;">subscribe</span>
+</h1>
 
-            <!-- ── MINER box ── -->
-            <g transform="translate(24,16)">
-                <rect x="0" y="0" width="165" height="155" rx="10"
-                      fill="rgba(6,182,212,0.06)" stroke="#06b6d4" stroke-width="2"
-                      filter="drop-shadow(0 4px 12px rgba(6,182,212,0.2))"/>
-                <rect x="57" y="16" width="50" height="50" rx="6"
-                      fill="rgba(6,182,212,0.12)" stroke="rgba(6,182,212,0.3)" stroke-width="1"/>
-                <text x="82" y="50" text-anchor="middle" font-size="24" fill="#22d3ee">⬡</text>
-                <text x="82" y="84" text-anchor="middle"
-                      font-family="Space Grotesk" font-size="15" font-weight="700" fill="#F8FAFC">MINER</text>
-                <text x="82" y="102" text-anchor="middle"
-                      font-family="JetBrains Mono" font-size="9" fill="rgba(148,163,184,0.7)">Worker / ASIC</text>
-            </g>
+<!-- Message flow SVG: taller so cloud top is visible, bigger fonts -->
+<div class="relative z-10" style="margin-bottom:14px;">
+<svg width="1120" height="132" viewBox="0 0 1120 132">
+    <defs>
+        <marker id="arrR" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0,8 3,0 6" fill="rgba(6,182,212,0.9)"/>
+        </marker>
+        <marker id="arrL" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0,8 3,0 6" fill="#22d3ee"/>
+        </marker>
+    </defs>
 
-            <!-- ── POOL box ── -->
-            <g transform="translate(963,16)">
-                <rect x="0" y="0" width="165" height="155" rx="10"
-                      fill="rgba(6,182,212,0.06)" stroke="#06b6d4" stroke-width="2"
-                      filter="drop-shadow(0 4px 12px rgba(6,182,212,0.2))"/>
-                <rect x="57" y="16" width="50" height="50" rx="6"
-                      fill="rgba(6,182,212,0.12)" stroke="rgba(6,182,212,0.3)" stroke-width="1"/>
-                <text x="82" y="50" text-anchor="middle" font-size="24" fill="#22d3ee">▣</text>
-                <text x="82" y="84" text-anchor="middle"
-                      font-family="Space Grotesk" font-size="15" font-weight="700" fill="#F8FAFC">POOL</text>
-                <text x="82" y="102" text-anchor="middle"
-                      font-family="JetBrains Mono" font-size="9" fill="rgba(148,163,184,0.7)">Job Coordinator</text>
-            </g>
+    <!-- Miner chip centred at (170,70) -->
+    <g transform="translate(170,70)">
+        <rect x="-70" y="-29" width="140" height="58" rx="8"
+              fill="rgba(6,182,212,0.07)" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+        <line x1="-35" y1="-29" x2="-35" y2="-40" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+        <line x1="0"   y1="-29" x2="0"   y2="-40" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+        <line x1="35"  y1="-29" x2="35"  y2="-40" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+        <line x1="-35" y1="29"  x2="-35" y2="40"  stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+        <line x1="0"   y1="29"  x2="0"   y2="40"  stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+        <line x1="35"  y1="29"  x2="35"  y2="40"  stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+        <line x1="-70" y1="-10" x2="-82" y2="-10" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+        <line x1="-70" y1="10"  x2="-82" y2="10"  stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+        <line x1="70"  y1="-10" x2="82"  y2="-10" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+        <line x1="70"  y1="10"  x2="82"  y2="10"  stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+        <rect x="-56" y="-19" width="112" height="38" rx="4"
+              fill="none" stroke="rgba(6,182,212,0.2)" stroke-width="1"/>
+        <text x="0" y="6" text-anchor="middle" font-family="'JetBrains Mono',monospace"
+              font-size="16" font-weight="bold" fill="rgba(6,182,212,0.9)">MINER</text>
+    </g>
 
-            <!-- ── Request: Miner→Pool at y=70 ── -->
-            <line x1="189" y1="70" x2="963" y2="70"
-                  stroke="#06b6d4" stroke-width="2" fill="none" marker-end="url(#arrR)"/>
-            <rect x="477" y="52" width="198" height="22" rx="5"
-                  fill="rgba(0,0,0,0.7)" stroke="rgba(6,182,212,0.45)" stroke-width="1"/>
-            <text x="576" y="67" text-anchor="middle"
-                  font-family="JetBrains Mono" font-size="12" font-weight="500" fill="#06b6d4">mining.subscribe</text>
+    <!-- Pool cloud centred at (950,70) -->
+    <g transform="translate(950,70)">
+        <path d="M-81,20 Q-90,-13 -55,-20 Q-46,-48 -18,-41 Q-4,-62 27,-49 Q43,-62 69,-41 Q90,-27 84,4 Q97,14 88,34 Q76,50 50,46 L-50,46 Q-78,46 -81,20 Z"
+              fill="rgba(6,182,212,0.08)" stroke="rgba(6,182,212,0.55)" stroke-width="2"/>
+        <text x="0" y="14" text-anchor="middle" font-family="'JetBrains Mono',monospace"
+              font-size="17" font-weight="bold" fill="#22d3ee">POOL</text>
+    </g>
 
-            <!-- ── Response: Pool→Miner at y=112 ── -->
-            <line x1="963" y1="112" x2="189" y2="112"
-                  stroke="#22d3ee" stroke-width="2" fill="none" marker-end="url(#arrL)"/>
-            <rect x="330" y="88" width="492" height="22" rx="5"
-                  fill="rgba(0,0,0,0.7)" stroke="rgba(253,230,138,0.4)" stroke-width="1"/>
-            <text x="576" y="103" text-anchor="middle"
-                  font-family="JetBrains Mono" font-size="12">
-                <tspan fill="rgba(200,210,220,0.7)">response: [ </tspan><tspan fill="#fde68a" font-weight="700">extranonce1</tspan><tspan fill="rgba(200,210,220,0.5)">  ·  </tspan><tspan fill="#fde68a" font-weight="700">extranonce2_len</tspan><tspan fill="rgba(200,210,220,0.7)"> ]</tspan>
-            </text>
+    <!-- Miner→Pool arrow at y=48 -->
+    <line x1="253" y1="48" x2="858" y2="48"
+          stroke="rgba(6,182,212,0.8)" stroke-width="2.5" marker-end="url(#arrR)"/>
+    <rect x="430" y="28" width="220" height="22" rx="4"
+          fill="rgba(0,0,0,0.85)" stroke="rgba(6,182,212,0.4)" stroke-width="1"/>
+    <text x="540" y="44" text-anchor="middle" font-family="'JetBrains Mono',monospace"
+          font-size="15" font-weight="bold" fill="#06b6d4">mining.subscribe</text>
 
-            <!-- ── Block Header (compact) ── -->
-            <rect x="0" y="178" width="1152" height="42" rx="4"
-                  fill="rgba(6,182,212,0.06)" stroke="rgba(6,182,212,0.35)" stroke-width="1.5"/>
-            <line x1="0" y1="194" x2="1152" y2="194" stroke="rgba(6,182,212,0.2)" stroke-width="1"/>
-            <text x="576" y="189" text-anchor="middle" dominant-baseline="middle"
-                  font-family="JetBrains Mono" font-size="9" font-weight="700"
-                  fill="rgba(6,182,212,0.65)" letter-spacing="0.12em">BLOCK HEADER</text>
-            <line x1="115" y1="194" x2="115" y2="220" stroke="rgba(6,182,212,0.2)" stroke-width="1"/>
-            <line x1="340" y1="194" x2="340" y2="220" stroke="rgba(6,182,212,0.2)" stroke-width="1"/>
-            <line x1="565" y1="194" x2="565" y2="220" stroke="rgba(6,182,212,0.2)" stroke-width="1"/>
-            <line x1="720" y1="194" x2="720" y2="220" stroke="rgba(6,182,212,0.2)" stroke-width="1"/>
-            <line x1="875" y1="194" x2="875" y2="220" stroke="rgba(6,182,212,0.2)" stroke-width="1"/>
-            <text x="57"  y="210" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#22d3ee">version</text>
-            <text x="227" y="210" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#22d3ee">prev block hash</text>
-            <text x="452" y="210" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#22d3ee">merkle root</text>
-            <text x="642" y="210" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#22d3ee">ntime</text>
-            <text x="797" y="210" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#22d3ee">nbits</text>
-            <text x="1013" y="210" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#22d3ee">nonce</text>
+    <!-- Pool→Miner arrow at y=94 -->
+    <line x1="858" y1="94" x2="253" y2="94"
+          stroke="#22d3ee" stroke-width="2.5" marker-end="url(#arrL)"/>
+    <rect x="272" y="101" width="576" height="22" rx="4"
+          fill="rgba(0,0,0,0.85)" stroke="rgba(253,230,138,0.45)" stroke-width="1"/>
+    <text x="560" y="117" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="14">
+        <tspan fill="rgba(200,210,220,0.75)">response: [ </tspan><tspan fill="#fde68a" font-weight="700">extranonce1</tspan><tspan fill="rgba(200,210,220,0.5)">  ·  </tspan><tspan fill="#fde68a" font-weight="700">extranonce2_len</tspan><tspan fill="rgba(200,210,220,0.75)"> ]</tspan>
+    </text>
+</svg>
+</div>
 
-            <!-- ── Coinbase label row ── -->
-            <rect x="0" y="226" width="1152" height="16" rx="0"
-                  fill="rgba(6,182,212,0.04)" stroke="rgba(6,182,212,0.15)" stroke-width="1"/>
-            <text x="576" y="237" text-anchor="middle" dominant-baseline="middle"
-                  font-family="JetBrains Mono" font-size="8" font-weight="700"
-                  fill="rgba(6,182,212,0.6)" letter-spacing="0.1em">COINBASE TRANSACTION  ·  fields from subscribe response highlighted</text>
+<!-- Block diagram: expanded to fill remaining slide area -->
+<div class="relative z-10" style="margin-top:16px;">
+<svg width="1120" height="370" viewBox="0 0 1120 370">
 
-            <!-- coinbase1 -->
-            <rect x="0" y="242" width="190" height="140" rx="0"
-                  fill="rgba(6,182,212,0.04)" stroke="rgba(6,182,212,0.25)" stroke-width="1"/>
-            <text x="95" y="316" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="rgba(148,163,184,0.8)">coinbase1</text>
+    <!-- ── BLOCK HEADER (CYAN) ── -->
+    <rect x="0" y="0" width="1120" height="80" rx="5"
+          fill="rgba(6,182,212,0.1)" stroke="rgba(6,182,212,0.55)" stroke-width="1.5"/>
+    <line x1="0" y1="26" x2="1120" y2="26" stroke="rgba(6,182,212,0.3)" stroke-width="1"/>
+    <text x="560" y="16" text-anchor="middle" dominant-baseline="middle"
+          font-family="'JetBrains Mono',monospace" font-size="14" font-weight="bold" fill="#22d3ee">
+        BLOCK HEADER
+    </text>
+    <line x1="112" y1="26" x2="112" y2="80" stroke="rgba(6,182,212,0.25)" stroke-width="1"/>
+    <line x1="336" y1="26" x2="336" y2="80" stroke="rgba(6,182,212,0.25)" stroke-width="1"/>
+    <line x1="560" y1="26" x2="560" y2="80" stroke="rgba(6,182,212,0.25)" stroke-width="1"/>
+    <line x1="714" y1="26" x2="714" y2="80" stroke="rgba(6,182,212,0.25)" stroke-width="1"/>
+    <line x1="868" y1="26" x2="868" y2="80" stroke="rgba(6,182,212,0.25)" stroke-width="1"/>
+    <text x="56"  y="56" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="15" fill="#22d3ee">version</text>
+    <text x="224" y="56" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="15" fill="#22d3ee">prev block hash</text>
+    <text x="448" y="56" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="15" fill="#22d3ee">merkle root</text>
+    <text x="637" y="56" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="15" fill="#22d3ee">ntime</text>
+    <text x="791" y="56" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="15" fill="#22d3ee">nbits</text>
+    <text x="994" y="56" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="15" fill="#22d3ee">nonce</text>
 
-            <!-- extranonce1 — YELLOW solid -->
-            <rect x="190" y="242" width="300" height="140" rx="0"
-                  fill="rgba(253,230,138,0.1)" stroke="#fde68a" stroke-width="2"/>
-            <text x="340" y="305" text-anchor="middle" font-family="JetBrains Mono" font-size="16" font-weight="700" fill="#fde68a">extranonce1</text>
-            <text x="340" y="328" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="rgba(253,230,138,0.7)">pool-assigned · fixed per session</text>
+    <!-- ── MERKLE TREE (cyan) ── -->
+    <line x1="448" y1="80" x2="448" y2="103" stroke="rgba(6,182,212,0.35)" stroke-width="1.5"/>
+    <rect x="382" y="103" width="132" height="26" rx="4"
+          fill="rgba(6,182,212,0.08)" stroke="rgba(6,182,212,0.4)" stroke-width="1.5"/>
+    <text x="448" y="120" text-anchor="middle" font-family="'JetBrains Mono',monospace"
+          font-size="11" fill="#22d3ee">merkle root</text>
+    <line x1="448" y1="129" x2="256" y2="158" stroke="rgba(6,182,212,0.3)" stroke-width="1.5"/>
+    <line x1="448" y1="129" x2="640" y2="158" stroke="rgba(6,182,212,0.3)" stroke-width="1.5"/>
+    <circle cx="256" cy="171" r="13" fill="rgba(6,182,212,0.07)" stroke="rgba(6,182,212,0.4)" stroke-width="1.5"/>
+    <text x="256" y="175" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#22d3ee">H01</text>
+    <circle cx="640" cy="171" r="13" fill="rgba(6,182,212,0.07)" stroke="rgba(6,182,212,0.4)" stroke-width="1.5"/>
+    <text x="640" y="175" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#22d3ee">H23</text>
+    <line x1="256" y1="184" x2="168" y2="212" stroke="rgba(6,182,212,0.3)" stroke-width="1.5"/>
+    <line x1="256" y1="184" x2="344" y2="212" stroke="rgba(6,182,212,0.3)" stroke-width="1.5"/>
+    <line x1="640" y1="184" x2="552" y2="212" stroke="rgba(6,182,212,0.3)" stroke-width="1.5"/>
+    <line x1="640" y1="184" x2="728" y2="212" stroke="rgba(6,182,212,0.3)" stroke-width="1.5"/>
+    <rect x="118" y="212" width="100" height="28" rx="4"
+          fill="rgba(6,182,212,0.08)" stroke="rgba(6,182,212,0.45)" stroke-width="1.5"/>
+    <text x="168" y="230" text-anchor="middle" font-family="'JetBrains Mono',monospace"
+          font-size="10" fill="#22d3ee">Coinbase Tx</text>
+    <rect x="294" y="212" width="100" height="28" rx="4"
+          fill="rgba(6,182,212,0.04)" stroke="rgba(6,182,212,0.22)" stroke-width="1"/>
+    <text x="344" y="230" text-anchor="middle" font-family="'JetBrains Mono',monospace"
+          font-size="10" fill="rgba(6,182,212,0.5)">Tx₁</text>
+    <rect x="502" y="212" width="100" height="28" rx="4"
+          fill="rgba(6,182,212,0.04)" stroke="rgba(6,182,212,0.22)" stroke-width="1"/>
+    <text x="552" y="230" text-anchor="middle" font-family="'JetBrains Mono',monospace"
+          font-size="10" fill="rgba(6,182,212,0.5)">Tx₂</text>
+    <rect x="678" y="212" width="100" height="28" rx="4"
+          fill="rgba(6,182,212,0.04)" stroke="rgba(6,182,212,0.22)" stroke-width="1"/>
+    <text x="728" y="230" text-anchor="middle" font-family="'JetBrains Mono',monospace"
+          font-size="10" fill="rgba(6,182,212,0.5)">Tx₃</text>
 
-            <!-- extranonce2 — YELLOW dashed -->
-            <rect x="490" y="242" width="390" height="140" rx="0"
-                  fill="rgba(253,230,138,0.05)" stroke="#fde68a" stroke-width="2" stroke-dasharray="7,4"/>
-            <text x="685" y="305" text-anchor="middle" font-family="JetBrains Mono" font-size="16" font-weight="700" fill="#fde68a">extranonce2</text>
-            <text x="685" y="328" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="rgba(253,230,138,0.7)">miner-varies · length = extranonce2_len</text>
+    <!-- Connector to coinbase box -->
+    <line x1="168" y1="240" x2="168" y2="262" stroke="rgba(6,182,212,0.3)"
+          stroke-width="1.5" stroke-dasharray="3,2"/>
 
-            <!-- coinbase2 -->
-            <rect x="880" y="242" width="272" height="140" rx="0"
-                  fill="rgba(6,182,212,0.04)" stroke="rgba(6,182,212,0.25)" stroke-width="1"/>
-            <text x="1016" y="316" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="rgba(148,163,184,0.8)">coinbase2</text>
+    <!-- ── COINBASE TRANSACTION BOX (y=262 to y=370, h=108, w=480) ── -->
+    <rect x="0" y="262" width="480" height="108" rx="4"
+          fill="rgba(6,182,212,0.04)" stroke="rgba(6,182,212,0.3)" stroke-width="1.5"/>
+    <line x1="0" y1="284" x2="480" y2="284" stroke="rgba(6,182,212,0.2)" stroke-width="1"/>
+    <text x="240" y="276" text-anchor="middle" font-family="'JetBrains Mono',monospace"
+          font-size="13" font-weight="bold" fill="#22d3ee">Coinbase Transaction</text>
 
-        </svg>
-    </div>
-</main>
+    <!-- coinbase1: CYAN -->
+    <rect x="0" y="284" width="120" height="86"
+          fill="rgba(6,182,212,0.08)" stroke="rgba(6,182,212,0.45)" stroke-width="1.5"/>
+    <text x="60" y="331" text-anchor="middle" font-family="'JetBrains Mono',monospace"
+          font-size="14" fill="#22d3ee">coinbase1</text>
+
+    <!-- extranonce1: ORANGE OUTLINE only -->
+    <rect x="120" y="284" width="120" height="86"
+          fill="rgba(6,182,212,0.04)" stroke="rgba(245,158,11,0.75)" stroke-width="2"/>
+    <text x="180" y="331" text-anchor="middle" font-family="'JetBrains Mono',monospace"
+          font-size="14" fill="#22d3ee">extranonce1</text>
+
+    <!-- extranonce2: ORANGE (fill + stroke + text) -->
+    <rect x="240" y="284" width="120" height="86"
+          fill="rgba(245,158,11,0.12)" stroke="rgba(245,158,11,0.6)" stroke-width="2"/>
+    <text x="300" y="331" text-anchor="middle" font-family="'JetBrains Mono',monospace"
+          font-size="14" fill="#fcd34d">extranonce2</text>
+
+    <!-- coinbase2: CYAN -->
+    <rect x="360" y="284" width="120" height="86"
+          fill="rgba(6,182,212,0.08)" stroke="rgba(6,182,212,0.45)" stroke-width="1.5"/>
+    <text x="420" y="331" text-anchor="middle" font-family="'JetBrains Mono',monospace"
+          font-size="14" fill="#22d3ee">coinbase2</text>
+
+</svg>
+</div>
 
 <!-- Step progress bar -->
-<div style="position:absolute;bottom:0;left:0;right:0;z-index:10;height:44px;display:flex;align-items:center;padding:0 80px;gap:7px;background:rgba(0,0,0,0.8);border-top:1px solid rgba(6,182,212,0.15);">
-    <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(6,182,212,0.35);letter-spacing:.15em;margin-right:6px;flex-shrink:0;">FLOW</span>
-    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 14px;border-radius:999px;flex-shrink:0;background:rgba(6,182,212,0.06);border:1px solid rgba(6,182,212,0.25);color:rgba(6,182,212,0.5);">1 · TCP</span>
-    <span style="color:rgba(6,182,212,0.25);font-size:12px;flex-shrink:0;">›</span>
+<div style="position:absolute;bottom:0;left:0;right:0;z-index:10;height:44px;display:flex;align-items:center;padding:0 80px;gap:7px;background:rgba(0,0,0,0.7);border-top:1px solid rgba(6,182,212,0.12);">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(6,182,212,0.3);letter-spacing:.15em;margin-right:6px;flex-shrink:0;">FLOW</span>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 14px;border-radius:999px;flex-shrink:0;background:rgba(6,182,212,0.06);border:1px solid rgba(6,182,212,0.25);color:rgba(6,182,212,0.45);">1 · TCP</span>
+    <span style="color:rgba(6,182,212,0.2);font-size:12px;flex-shrink:0;">›</span>
     <span style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;padding:4px 14px;border-radius:999px;flex-shrink:0;background:rgba(6,182,212,0.2);border:1px solid #22d3ee;color:#22d3ee;">2 · subscribe</span>
-    <span style="color:rgba(6,182,212,0.25);font-size:12px;flex-shrink:0;">›</span>
-    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 14px;border-radius:999px;flex-shrink:0;background:transparent;border:1px solid rgba(6,182,212,0.12);color:rgba(6,182,212,0.25);">3 · authorize</span>
-    <span style="color:rgba(6,182,212,0.25);font-size:12px;flex-shrink:0;">›</span>
-    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 14px;border-radius:999px;flex-shrink:0;background:transparent;border:1px solid rgba(6,182,212,0.12);color:rgba(6,182,212,0.25);">4 · set_difficulty</span>
-    <span style="color:rgba(6,182,212,0.25);font-size:12px;flex-shrink:0;">›</span>
-    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 14px;border-radius:999px;flex-shrink:0;background:transparent;border:1px solid rgba(6,182,212,0.12);color:rgba(6,182,212,0.25);">5 · notify</span>
-    <span style="color:rgba(6,182,212,0.25);font-size:12px;flex-shrink:0;">›</span>
-    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 14px;border-radius:999px;flex-shrink:0;background:transparent;border:1px solid rgba(6,182,212,0.12);color:rgba(6,182,212,0.25);">6 · submit</span>
+    <span style="color:rgba(6,182,212,0.2);font-size:12px;flex-shrink:0;">›</span>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 14px;border-radius:999px;flex-shrink:0;background:transparent;border:1px solid rgba(6,182,212,0.1);color:rgba(6,182,212,0.2);">3 · authorize</span>
+    <span style="color:rgba(6,182,212,0.2);font-size:12px;flex-shrink:0;">›</span>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 14px;border-radius:999px;flex-shrink:0;background:transparent;border:1px solid rgba(6,182,212,0.1);color:rgba(6,182,212,0.2);">4 · set_difficulty</span>
+    <span style="color:rgba(6,182,212,0.2);font-size:12px;flex-shrink:0;">›</span>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 14px;border-radius:999px;flex-shrink:0;background:transparent;border:1px solid rgba(6,182,212,0.1);color:rgba(6,182,212,0.2);">5 · notify</span>
+    <span style="color:rgba(6,182,212,0.2);font-size:12px;flex-shrink:0;">›</span>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 14px;border-radius:999px;flex-shrink:0;background:transparent;border:1px solid rgba(6,182,212,0.1);color:rgba(6,182,212,0.2);">6 · submit</span>
 </div>
 
 <script src="slides.js"></script>

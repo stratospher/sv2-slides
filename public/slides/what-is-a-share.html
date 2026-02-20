@@ -124,7 +124,7 @@
                 <p class="mono-font font-bold" style="font-size:13px; color:rgba(100,116,139,0.7);">INVALID</p>
             </div>
             <p style="font-size:13px; color:rgba(100,116,139,0.55); line-height:1.55;">
-                Hash is above the pool target.<br/>Discard it and try the next nonce.
+                Above pool target — discard.
             </p>
         </div>
 
@@ -140,9 +140,7 @@
                 <p class="mono-font font-bold" style="font-size:13px; color:#22d3ee;">SHARE</p>
             </div>
             <p style="font-size:13px; color:rgba(148,163,184,0.8); line-height:1.55;">
-                Hash is below the <strong style="color:#22d3ee;">pool target</strong>.<br/>
-                Submit to the pool — proves you are actively working.
-                Happens frequently.
+                Below pool target — proves active work.
             </p>
         </div>
 
@@ -159,25 +157,12 @@
                 <p class="mono-font font-bold" style="font-size:13px; color:#fcd34d;">BLOCK!</p>
             </div>
             <p style="font-size:13px; color:rgba(148,163,184,0.8); line-height:1.55;">
-                Hash is below the <strong style="color:#fcd34d;">network target</strong>.<br/>
-                Broadcast to the network — earns the block reward.
-                Also counts as a share.
+                Below network target — earns the block reward.
             </p>
         </div>
 
     </div>
 
-    <!-- Key insight -->
-    <div class="rounded-xl px-6 py-4"
-         style="background:rgba(0,0,0,0.4); border:1px solid rgba(6,182,212,0.18);
-                border-left:3px solid rgba(6,182,212,0.6);">
-        <p style="font-size:13px; color:rgba(211,225,239,0.85); line-height:1.6;">
-            The pool sets an <span style="color:#22d3ee;">easier target</span> than the network, so miners produce shares
-            <em>frequently</em> — giving the pool continuous proof of work.
-            When a block is found it is automatically a valid share too.
-            <span style="color:rgba(148,163,184,0.55);">Share count determines each miner's proportional payout.</span>
-        </p>
-    </div>
 
 </main>
 

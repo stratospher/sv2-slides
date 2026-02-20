@@ -21,10 +21,10 @@
     }
 </style>
 </head>
-<body class="relative flex flex-col items-center justify-center">
+<body class="relative flex flex-col items-center justify-start" style="padding-top:36px;">
 <div class="bg-grid"></div>
 
-<div class="relative z-10 flex flex-col items-center" style="gap:34px;">
+<div class="relative z-10 flex flex-col items-center" style="gap:20px;">
 
     <!-- Badge + step -->
     <div class="flex items-center" style="gap:12px;">
@@ -44,21 +44,21 @@
     </h1>
 
     <!-- Message flow SVG: pool→miner -->
-    <svg width="1120" height="100" viewBox="0 0 1120 100">
+    <svg width="1120" height="148" viewBox="0 0 1120 148">
         <defs>
             <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
                 <polygon points="0 0,8 3,0 6" fill="rgba(6,182,212,0.9)"/>
             </marker>
         </defs>
-        <!-- Pool cloud at (950,50) -->
-        <g transform="translate(950,50)">
+        <!-- Pool cloud at (950,84) -->
+        <g transform="translate(950,84)">
             <path d="M-81,20 Q-90,-13 -55,-20 Q-46,-48 -18,-41 Q-4,-62 27,-49 Q43,-62 69,-41 Q90,-27 84,4 Q97,14 88,34 Q76,50 50,46 L-50,46 Q-78,46 -81,20 Z"
                   fill="rgba(6,182,212,0.08)" stroke="rgba(6,182,212,0.55)" stroke-width="2"/>
             <text x="0" y="12" text-anchor="middle" font-family="'JetBrains Mono',monospace"
                   font-size="14" font-weight="bold" fill="#22d3ee">POOL</text>
         </g>
-        <!-- Miner chip at (170,50) -->
-        <g transform="translate(170,50)">
+        <!-- Miner chip at (170,84) -->
+        <g transform="translate(170,84)">
             <rect x="-70" y="-29" width="140" height="58" rx="8"
                   fill="rgba(6,182,212,0.07)" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
             <line x1="-35" y1="-29" x2="-35" y2="-38" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
@@ -77,10 +77,10 @@
                   font-size="13" font-weight="bold" fill="rgba(6,182,212,0.9)">MINER</text>
         </g>
         <!-- Pool→Miner arrow (line goes right to left) -->
-        <line x1="858" y1="50" x2="251" y2="50"
+        <line x1="858" y1="84" x2="251" y2="84"
               stroke="rgba(6,182,212,0.8)" stroke-width="2" marker-end="url(#arr)"/>
-        <rect x="414" y="22" width="280" height="20" rx="4" fill="rgba(0,0,0,0.75)" stroke="rgba(6,182,212,0.3)" stroke-width="1"/>
-        <text x="554" y="36" text-anchor="middle" font-family="'JetBrains Mono',monospace"
+        <rect x="414" y="56" width="280" height="20" rx="4" fill="rgba(0,0,0,0.75)" stroke="rgba(6,182,212,0.3)" stroke-width="1"/>
+        <text x="554" y="70" text-anchor="middle" font-family="'JetBrains Mono',monospace"
               font-size="14" font-weight="bold" fill="#22d3ee">mining.set_difficulty</text>
     </svg>
 

@@ -1,223 +1,98 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Stopping Hashrate Theft: How Stratum V2 Fixes exploitable Mining Protocol</title>
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@500;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<title>Mining Protocol Exploits</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet"/>
 <style>
-        :root {
-            --cyan-400: #22d3ee;
-            --cyan-500: #06b6d4;
-            --cyan-600: #0891b2;
-            --red-500: #ef4444;
-            --red-600: #dc2626;
-        }
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #000000;
-            font-family: 'Inter', sans-serif;
-        }
-        .slide-container {
-            width: 1280px;
-            height: 720px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: #000000;
-            color: #f4f4f5;
-            overflow: hidden;
-        }
-            50% { opacity: 0.6; transform: scale(1.05); }
-        }
-        .bg-grid {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                linear-gradient(rgba(6, 182, 212, 0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(6, 182, 212, 0.08) 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.4;
-            z-index: 1;
-        }
-        .circuit-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 1280px;
-            height: 720px;
-            z-index: 2;
-            opacity: 0.3;
-        }
-        .content-wrapper {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            max-width: 1100px;
-            padding: 2rem;
-            background-color: rgba(0, 0, 0, 0.55);
-            border: 1px solid rgba(6, 182, 212, 0.2);
-            border-radius: 1rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 40px rgba(6, 182, 212, 0.05);
-            backdrop-filter: blur(8px);
-        }
-        h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-        }
-        .mono-text {
-            font-family: 'JetBrains Mono', monospace;
-        }
-        .glow-red {
-            text-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
-        }
-        .glow-cyan {
-            text-shadow: 0 0 20px rgba(34, 211, 238, 0.55);
-        }
-        .text-cyan-400 { color: var(--cyan-400); }
-        .text-cyan-500 { color: var(--cyan-500); }
-        .border-cyan { border-color: rgba(6, 182, 212, 0.35); }
-        .bg-cyan-dark { background-color: rgba(6, 182, 212, 0.08); }
-        .tech-border-top {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60%;
-            height: 2px;
-            background-color: rgba(6, 182, 212, 0.15);
-        }
-        .tech-border-top::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20%;
-            height: 4px;
-            background-color: var(--cyan-500);
-        }
-    </style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #000000;
+        font-family: 'Inter', sans-serif;
+    }
+    .slide-container {
+        width: 1280px;
+        height: 720px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #000000;
+        color: #f4f4f5;
+        overflow: hidden;
+    }
+    .bg-grid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+            linear-gradient(rgba(6, 182, 212, 0.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(6, 182, 212, 0.08) 1px, transparent 1px);
+        background-size: 40px 40px;
+        opacity: 0.4;
+    }
+    .content-wrapper {
+        position: relative;
+        z-index: 10;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        margin-top: -120px;
+    }
+    .logo {
+        width: 180px;
+        height: auto;
+        margin-bottom: 2rem;
+        opacity: 0.95;
+    }
+    h1 {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 5rem;
+        font-weight: 700;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        margin: 0 0 1.2rem 0;
+        color: #ffffff;
+    }
+    .subtitle {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 2rem;
+        font-weight: 500;
+        color: #22d3ee;
+        margin: 0;
+        letter-spacing: 0.01em;
+    }
+    .attribution {
+        position: absolute;
+        bottom: 3rem;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 1rem;
+        color: rgba(244, 244, 245, 0.35);
+        letter-spacing: 0.05em;
+        font-family: 'Inter', sans-serif;
+    }
+</style>
 </head>
 <body>
 <div class="slide-container">
-<!-- Background Elements -->
-<div class="bg-grid"></div>
-<canvas class="circuit-canvas" height="720" id="circuitCanvas" width="1280"></canvas>
-<!-- Main Content -->
-<div class="content-wrapper">
-<div class="tech-border-top"></div>
-<!-- Iconography Row -->
-<div class="flex justify-center items-center gap-8 mb-8 mt-4">
-<div class="flex flex-col items-center">
-<div class="w-20 h-20 rounded-lg flex items-center justify-center mb-2" style="border: 2px solid rgba(239,68,68,0.3); background: rgba(239,68,68,0.08);">
-<i class="fas fa-lock-open text-4xl text-red-500"></i>
+    <div class="bg-grid"></div>
+    <div class="content-wrapper">
+        <img class="logo" src="sv2Group_27.png.webp" alt="Stratum V2 Logo"/>
+        <h1>Mining Protocol Exploits</h1>
+        <p class="subtitle">Stratum V2 matters!</p>
+    </div>
+    <div class="attribution">presentation by @bit-aloo</div>
 </div>
-<p class="text-xs uppercase tracking-widest text-red-400 font-bold mono-text">V1 Insecure</p>
-</div>
-<div class="flex items-center" style="color: rgba(6,182,212,0.5);">
-<i class="fas fa-arrow-right text-2xl animate-pulse"></i>
-<i class="fas fa-arrow-right text-2xl animate-pulse ml-[-10px]"></i>
-</div>
-<div class="flex flex-col items-center">
-<div class="w-20 h-20 rounded-lg flex items-center justify-center mb-2" style="border: 2px solid rgba(6,182,212,0.35); background: rgba(6,182,212,0.08);">
-<i class="fas fa-shield-halved text-4xl text-cyan-400"></i>
-</div>
-<p class="text-xs uppercase tracking-widest font-bold mono-text text-cyan-400">V2 Secured</p>
-</div>
-</div>
-<!-- Title -->
-<h1 class="text-6xl font-bold text-white mb-6 leading-tight">
-<span class="text-red-500 glow-red">Stopping Hashrate Theft</span><span class="mx-3" style="color: rgba(6,182,212,0.4);">:</span><br/>
-<span class="text-5xl">How Stratum V2 Fixes</span><br/>
-<span class="text-5xl"><span class="text-gray-300" style="border-bottom: 4px solid rgba(239,68,68,0.5);">exploitable</span> Mining Protocol</span>
-            </h1>
-<!-- Subtitle -->
-<div class="flex items-center justify-center mb-10">
-<p class="text-2xl text-gray-300 font-light mono-text">
-                    From <span class="text-red-400 font-medium">plaintext jobs</span> to
-                    <span class="font-bold glow-cyan text-cyan-400">authenticated, encrypted mining</span>
-</p>
-</div>
-</div>
-</div>
-<script>
-        const canvas = document.getElementById('circuitCanvas');
-        const ctx = canvas.getContext('2d');
-        const width = 1280;
-        const height = 720;
-
-        ctx.strokeStyle = 'rgba(6, 182, 212, 0.25)';
-        ctx.lineWidth = 1.5;
-
-        function drawNode(x, y, filled = true) {
-            ctx.beginPath();
-            ctx.arc(x, y, 3, 0, Math.PI * 2);
-            ctx.fillStyle = filled ? 'rgba(34, 211, 238, 0.4)' : '#000000';
-            ctx.fill();
-            ctx.stroke();
-        }
-
-        // Left Side "Unsecured" Network (Chaotic) — subtle red tint
-        ctx.strokeStyle = 'rgba(239, 68, 68, 0.2)';
-        for(let i=0; i<15; i++) {
-            let x = Math.random() * 400;
-            let y = Math.random() * height;
-            ctx.beginPath();
-            ctx.arc(x, y, 3, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(239,68,68,0.3)';
-            ctx.fill();
-            ctx.stroke();
-
-            let x2 = x + (Math.random() - 0.5) * 200;
-            let y2 = y + (Math.random() - 0.5) * 200;
-            ctx.beginPath();
-            ctx.moveTo(x, y);
-            ctx.lineTo(x2, y2);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.arc(x2, y2, 3, 0, Math.PI * 2);
-            ctx.fillStyle = '#000000';
-            ctx.fill();
-            ctx.stroke();
-        }
-
-        // Right Side "Secured" Network (Structured Grid) — cyan
-        ctx.strokeStyle = 'rgba(6, 182, 212, 0.2)';
-        const startX = 900;
-        const spacing = 60;
-        for(let x = startX; x < width; x += spacing) {
-            for(let y = 50; y < height; y += spacing) {
-                if(Math.random() > 0.6) {
-                    drawNode(x, y);
-                    if(x + spacing < width) {
-                        ctx.beginPath();
-                        ctx.moveTo(x, y);
-                        ctx.lineTo(x + spacing, y);
-                        ctx.stroke();
-                    }
-                    if(y + spacing < height) {
-                        ctx.beginPath();
-                        ctx.moveTo(x, y);
-                        ctx.lineTo(x, y + spacing);
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
-    </script>
-<script src="slides.js"></script>
 <script src="navigate.js"></script>
 </body>
 </html>
