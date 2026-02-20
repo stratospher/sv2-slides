@@ -23,6 +23,7 @@ window.SLIDES = [
     "4-intro-sv2.html",
     "sv2-security-by-design.html",
     "5-how-sv2-prevents-exploits.html",
+    "how-to-encrypt-untrusted.html",
     "noise-protocol.html",
     "encrypting-not-enough.html",
     "diffie-hellman-insight.html",

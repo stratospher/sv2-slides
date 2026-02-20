@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>2. Diffie-Hellman Key Exchange for Sharing Secrets</title>
+<title>3. We Can Encrypt Now!</title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&amp;family=Space+Grotesk:wght@500;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
@@ -37,23 +37,23 @@
                   style="background:rgba(6,182,212,0.12); color:#22d3ee; border:1px solid rgba(6,182,212,0.35);">
                 CRYPTO
             </span>
-            <span class="text-xs mono-font" style="color:rgba(6,182,212,0.5);">// DIFFIE–HELLMAN KEY EXCHANGE</span>
+            <span class="text-xs mono-font" style="color:rgba(6,182,212,0.5);">// SECURE CHANNEL ESTABLISHED</span>
         </div>
         <h1 class="text-3xl font-black tracking-tight text-white uppercase"
             style="font-family:'Space Grotesk',sans-serif; letter-spacing:-0.02em;">
-            2. Diffie-Hellman Key Exchange <span style="color:#22d3ee;">for Sharing Secrets</span>
+            3. We Can <span style="color:#22d3ee;">Encrypt Now!</span>
         </h1>
     </div>
     <div class="text-right">
         <p class="text-sm mono-font" style="color:rgba(148,163,184,0.7);">
-            Elliptic Curve · One-way function · Shared secret
+            Key Exchange · Shared Secret · Encrypted Channel
         </p>
     </div>
 </div>
 
 <!-- Main Content -->
 <div class="relative z-10 flex-1 px-10 py-3 flex items-center justify-center overflow-hidden" style="min-height:0;">
-    <svg viewBox="0 0 760 358" width="100%" height="100%"
+    <svg viewBox="0 0 760 248" width="100%" height="100%"
          preserveAspectRatio="xMidYMid meet"
          xmlns="http://www.w3.org/2000/svg"
          style="font-family:'JetBrains Mono',monospace; overflow:visible;">
@@ -61,18 +61,17 @@
             <marker id="aC" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
                 <path d="M0,0 L8,4 L0,8 Z" fill="rgba(6,182,212,0.65)"/>
             </marker>
+            <marker id="aG" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="#4ade80"/>
+            </marker>
             <filter id="cGlow">
                 <feGaussianBlur stdDeviation="3" result="b"/>
                 <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
             </filter>
         </defs>
 
-        <!-- "Public Channel" label -->
-        <text x="380" y="14" text-anchor="middle" font-size="9.5"
-              fill="rgba(148,163,184,0.45)" letter-spacing="2" font-weight="700">PUBLIC CHANNEL</text>
-
         <!-- ── MINER chip (left) ── -->
-        <g transform="translate(120,88) scale(0.85)">
+        <g transform="translate(100,70) scale(0.85)">
             <rect x="-70" y="-29" width="140" height="58" rx="8"
                   fill="rgba(6,182,212,0.07)" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
             <line x1="-35" y1="-29" x2="-35" y2="-40" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
@@ -92,77 +91,56 @@
         </g>
 
         <!-- ── POOL cloud (right) ── -->
-        <g transform="translate(640,88) scale(0.85)">
+        <g transform="translate(660,70) scale(0.85)">
             <path d="M-81,20 Q-90,-13 -55,-20 Q-46,-48 -18,-41 Q-4,-62 27,-49 Q43,-62 69,-41 Q90,-27 84,4 Q97,14 88,34 Q76,50 50,46 L-50,46 Q-78,46 -81,20 Z"
                   fill="rgba(6,182,212,0.08)" stroke="rgba(6,182,212,0.55)" stroke-width="2"/>
             <text x="0" y="12" text-anchor="middle" font-family="'JetBrains Mono',monospace"
                   font-size="14" font-weight="bold" fill="#22d3ee">POOL</text>
         </g>
 
-        <!-- ── MINER info boxes ── -->
-        <!-- Private key -->
-        <rect x="33" y="160" width="175" height="24" rx="4"
-              fill="rgba(239,68,68,0.15)" stroke="rgba(127,29,29,0.5)" stroke-width="1"/>
-        <text x="120" y="177" text-anchor="middle" font-size="12" fill="#FCA5A5" font-weight="bold">Priv: k1</text>
-
-        <!-- Public key -->
-        <rect x="33" y="189" width="175" height="24" rx="4"
-              fill="rgba(6,182,212,0.07)" stroke="rgba(6,182,212,0.18)" stroke-width="1"/>
-        <text x="120" y="206" text-anchor="middle" font-size="12" fill="rgba(203,213,225,0.85)">Pub: P1 = k1·G</text>
-
-        <!-- ── POOL info boxes ── -->
-        <!-- Private key -->
-        <rect x="552" y="160" width="175" height="24" rx="4"
-              fill="rgba(239,68,68,0.15)" stroke="rgba(127,29,29,0.5)" stroke-width="1"/>
-        <text x="639" y="177" text-anchor="middle" font-size="12" fill="#FCA5A5" font-weight="bold">Priv: k2</text>
-
-        <!-- Public key -->
-        <rect x="552" y="189" width="175" height="24" rx="4"
-              fill="rgba(6,182,212,0.07)" stroke="rgba(6,182,212,0.18)" stroke-width="1"/>
-        <text x="639" y="206" text-anchor="middle" font-size="12" fill="rgba(203,213,225,0.85)">Pub: P2 = k2·G</text>
-        
-        <!-- ── EXCHANGE ARROWS (middle gap x=212–548) ── -->
-        <!-- P1 → (miner sends public key to pool) -->
-        <line x1="212" y1="164" x2="548" y2="164"
+        <!-- ── KEY EXCHANGE ARROWS (aligned with chip/cloud midpoint) ── -->
+        <!-- pubkey1: miner → pool -->
+        <line x1="173" y1="63" x2="587" y2="63"
               stroke="rgba(6,182,212,0.5)" stroke-width="1.8" marker-end="url(#aC)"/>
-        <rect x="308" y="151" width="145" height="16" rx="4" fill="rgba(0,0,0,0.7)"/>
-        <text x="380" y="163" text-anchor="middle" font-size="10.5" fill="#A5F3FC">P1 → (public key)</text>
+        <rect x="280" y="50" width="200" height="14" rx="4" fill="rgba(0,0,0,0.7)"/>
+        <text x="380" y="61" text-anchor="middle" font-size="10.5" fill="#A5F3FC">pubkey1 &#x2192; (public key)</text>
 
-        <!-- ← P2 (pool sends public key to miner) -->
-        <line x1="548" y1="182" x2="212" y2="182"
+        <!-- pubkey2: pool → miner -->
+        <line x1="587" y1="79" x2="173" y2="79"
               stroke="rgba(6,182,212,0.5)" stroke-width="1.8" marker-end="url(#aC)"/>
-        <rect x="308" y="184" width="145" height="16" rx="4" fill="rgba(0,0,0,0.7)"/>
-        <text x="380" y="196" text-anchor="middle" font-size="10.5" fill="#A5F3FC">← P2 (public key)</text>
+        <rect x="280" y="81" width="200" height="14" rx="4" fill="rgba(0,0,0,0.7)"/>
+        <text x="380" y="92" text-anchor="middle" font-size="10.5" fill="#A5F3FC">&#x2190; pubkey2 (public key)</text>
 
-        <!-- ── COMPUTATION BOXES ── -->
-        <!-- Miner computes k1·P2 = k1·k2·G -->
-        <rect x="18" y="222" width="205" height="65" rx="6"
-              fill="rgba(6,182,212,0.07)" stroke="rgba(6,182,212,0.22)" stroke-width="1"/>
-        <text x="120" y="239" text-anchor="middle" font-size="10" fill="rgba(148,163,184,0.6)">Computes:</text>
-        <text x="120" y="258" text-anchor="middle" font-size="15" fill="#22d3ee" font-weight="bold">k1 · P2</text>
-        <text x="120" y="279" text-anchor="middle" font-size="12.5" fill="rgba(165,243,252,0.8)">= k1 · k2 · G</text>
-
-        <!-- Pool computes k2·P1 = k2·k1·G -->
-        <rect x="538" y="222" width="205" height="65" rx="6"
-              fill="rgba(6,182,212,0.07)" stroke="rgba(6,182,212,0.22)" stroke-width="1"/>
-        <text x="640" y="239" text-anchor="middle" font-size="10" fill="rgba(148,163,184,0.6)">Computes:</text>
-        <text x="640" y="258" text-anchor="middle" font-size="15" fill="#22d3ee" font-weight="bold">k2 · P1</text>
-        <text x="640" y="279" text-anchor="middle" font-size="12.5" fill="rgba(165,243,252,0.8)">= k2 · k1 · G</text>
-
-        <!-- Faint converging lines to shared secret -->
-        <line x1="120" y1="287" x2="330" y2="300"
-              stroke="rgba(6,182,212,0.12)" stroke-width="1" stroke-dasharray="4,3"/>
-        <line x1="640" y1="287" x2="430" y2="300"
-              stroke="rgba(6,182,212,0.12)" stroke-width="1" stroke-dasharray="4,3"/>
-
-        <!-- ── SHARED SECRET BOX ── -->
-        <rect x="218" y="296" width="324" height="56" rx="8"
+        <!-- ── SHARED SECRET BOX — MINER SIDE ── -->
+        <rect x="8" y="115" width="185" height="90" rx="8"
               fill="rgba(14,79,95,0.35)" stroke="rgba(6,182,212,0.55)" stroke-width="1.8"
               filter="url(#cGlow)"/>
-        <text x="380" y="320" text-anchor="middle"
-              font-family="'Space Grotesk',sans-serif" font-size="17" fill="#A5F3FC" font-weight="700">Shared Secret (S)</text>
-        <text x="380" y="342" text-anchor="middle"
-              font-family="'JetBrains Mono',monospace" font-size="13.5" fill="#22d3ee">k1·P2 == k2·P1</text>
+        <text x="18" y="138" text-anchor="start" font-size="18">&#x1F511;</text>
+        <text x="100" y="138" text-anchor="middle"
+              font-family="'Space Grotesk',sans-serif" font-size="13" fill="#A5F3FC" font-weight="700">Shared Secret (S)</text>
+        <text x="100" y="157" text-anchor="middle"
+              font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#22d3ee">k1&#xB7;P2</text>
+
+        <!-- ── SHARED SECRET BOX — POOL SIDE ── -->
+        <rect x="567" y="115" width="185" height="90" rx="8"
+              fill="rgba(14,79,95,0.35)" stroke="rgba(6,182,212,0.55)" stroke-width="1.8"
+              filter="url(#cGlow)"/>
+        <text x="577" y="138" text-anchor="start" font-size="18">&#x1F511;</text>
+        <text x="660" y="138" text-anchor="middle"
+              font-family="'Space Grotesk',sans-serif" font-size="13" fill="#A5F3FC" font-weight="700">Shared Secret (S)</text>
+        <text x="660" y="157" text-anchor="middle"
+              font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#22d3ee">k2&#xB7;P1</text>
+
+        <!-- ── ENCRYPTED MESSAGE ARROW ── -->
+        <line x1="173" y1="222" x2="587" y2="222"
+              stroke="rgba(74,222,128,0.65)" stroke-width="2.2" marker-end="url(#aG)"/>
+        <!-- Encrypted message badge -->
+        <rect x="305" y="208" width="150" height="27" rx="6"
+              fill="rgba(5,46,22,0.85)" stroke="rgba(74,222,128,0.6)" stroke-width="1.5"/>
+        <text x="380" y="226" text-anchor="middle" font-size="12" fill="#4ade80">&#x1F512; message</text>
+        <!-- Label below arrow -->
+        <text x="380" y="244" text-anchor="middle" font-size="8.5" fill="rgba(74,222,128,0.5)"
+              font-weight="700" letter-spacing="1">ENCRYPTED WITH SHARED SECRET</text>
 
     </svg>
 </div>
