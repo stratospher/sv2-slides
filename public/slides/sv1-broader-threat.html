@@ -77,113 +77,144 @@
 
     <!-- Diagram — fills full width -->
     <div class="flex items-center justify-center rounded-xl"
-         style="flex:1; background:rgba(0,0,0,0.45); backdrop-filter:blur(10px); border:1px solid rgba(6,182,212,0.18); padding:1.25rem;">
-        <svg viewBox="0 0 440 322" width="100%" height="auto"
-             xmlns="http://www.w3.org/2000/svg" style="display:block; font-family:'JetBrains Mono',monospace;">
+         style="flex:1; background:rgba(0,0,0,0.45); backdrop-filter:blur(10px); border:1px solid rgba(6,182,212,0.18); padding:1.25rem; min-height:0;">
+        <svg viewBox="0 0 1100 358" width="100%" height="100%"
+             preserveAspectRatio="xMidYMid meet"
+             xmlns="http://www.w3.org/2000/svg" style="display:block; font-family:'JetBrains Mono',monospace; overflow:visible;">
             <defs>
-                <marker id="mC" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-                    <path d="M0,0 L6,3 L0,6 Z" fill="#22d3ee"/>
+                <marker id="mC" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+                    <path d="M0,0 L7,3.5 L0,7 Z" fill="#22d3ee"/>
                 </marker>
-                <marker id="mO" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-                    <path d="M0,0 L6,3 L0,6 Z" fill="#F59E0B"/>
+                <marker id="mCr" markerWidth="7" markerHeight="7" refX="1" refY="3.5" orient="auto">
+                    <path d="M7,0 L0,3.5 L7,7 Z" fill="rgba(34,211,238,0.5)"/>
                 </marker>
-                <marker id="mR" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-                    <path d="M0,0 L6,3 L0,6 Z" fill="#EF4444"/>
+                <marker id="mO" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+                    <path d="M0,0 L7,3.5 L0,7 Z" fill="#F59E0B"/>
                 </marker>
             </defs>
 
-            <!-- ═══ MINER ═══ -->
-            <rect x="10" y="20" width="80" height="68" rx="8"
-                  fill="rgba(14,79,95,0.35)" stroke="#22d3ee" stroke-width="1.8"/>
-            <text x="50" y="50" text-anchor="middle" font-size="20" fill="#06b6d4">⬡</text>
-            <text x="50" y="64" text-anchor="middle" font-size="9" fill="#A5F3FC"
-                  font-weight="bold" font-family="'JetBrains Mono'" letter-spacing="1">MINER</text>
-            <text x="50" y="76" text-anchor="middle" font-size="7" fill="rgba(148,163,184,0.5)"
-                  font-family="'JetBrains Mono'">SV1 · plaintext</text>
+            <!-- ═══ MINER CHIP ═══ -->
+            <g transform="translate(90,110)">
+                <rect x="-70" y="-29" width="140" height="58" rx="8"
+                      fill="rgba(6,182,212,0.07)" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+                <line x1="-35" y1="-29" x2="-35" y2="-40" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+                <line x1="0"   y1="-29" x2="0"   y2="-40" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+                <line x1="35"  y1="-29" x2="35"  y2="-40" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+                <line x1="-35" y1="29"  x2="-35" y2="40"  stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+                <line x1="0"   y1="29"  x2="0"   y2="40"  stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+                <line x1="35"  y1="29"  x2="35"  y2="40"  stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+                <line x1="-70" y1="-10" x2="-82" y2="-10" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+                <line x1="-70" y1="10"  x2="-82" y2="10"  stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+                <line x1="70"  y1="-10" x2="82"  y2="-10" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+                <line x1="70"  y1="10"  x2="82"  y2="10"  stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+                <rect x="-56" y="-19" width="112" height="38" rx="4"
+                      fill="none" stroke="rgba(6,182,212,0.2)" stroke-width="1"/>
+                <text x="0" y="5" text-anchor="middle" font-family="'JetBrains Mono',monospace"
+                      font-size="13" font-weight="bold" fill="rgba(6,182,212,0.9)">MINER</text>
+            </g>
+            <text x="90" y="164" text-anchor="middle" font-size="8.5" fill="rgba(148,163,184,0.5)"
+                  font-family="'JetBrains Mono',monospace">SV1 · plaintext</text>
 
-            <!-- ARROW Miner → Network -->
-            <line x1="90" y1="54" x2="194" y2="54"
+            <!-- Miner → Internet -->
+            <line x1="172" y1="106" x2="432" y2="106"
                   stroke="#22d3ee" stroke-width="2" marker-end="url(#mC)"/>
+            <!-- Internet → Miner (return) -->
+            <line x1="432" y1="117" x2="172" y2="117"
+                  stroke="rgba(34,211,238,0.45)" stroke-width="1.4" marker-end="url(#mCr)"/>
+            <!-- JSON label -->
+            <rect x="228" y="89" width="148" height="13" rx="3"
+                  fill="rgba(239,68,68,0.12)" stroke="rgba(239,68,68,0.5)" stroke-width="0.8"/>
+            <text x="302" y="99" text-anchor="middle" font-size="8" fill="#FCA5A5"
+                  font-family="'JetBrains Mono',monospace" font-weight="bold">JSON · NO ENCRYPTION</text>
 
-            <!-- pill label -->
-            <rect x="100" y="36" width="88" height="14" rx="3"
-                  fill="rgba(239,68,68,0.12)" stroke="rgba(239,68,68,0.55)" stroke-width="0.8"/>
-            <text x="144" y="46.5" text-anchor="middle" font-size="7" fill="#FCA5A5"
-                  font-family="'JetBrains Mono'" font-weight="bold">JSON · NO ENCRYPTION</text>
+            <!-- ═══ INTERNET CLUSTER ═══ -->
+            <!-- Background ellipse -->
+            <ellipse cx="550" cy="110" rx="116" ry="82"
+                     fill="rgba(120,53,15,0.2)" stroke="rgba(245,158,11,0.55)" stroke-width="1.8"/>
 
-            <!-- ═══ NETWORK ═══ -->
-            <rect x="197" y="20" width="100" height="68" rx="8"
-                  fill="rgba(120,53,15,0.3)" stroke="#F59E0B" stroke-width="1.8"/>
-            <text x="247" y="47" text-anchor="middle" font-size="9.5" fill="#FDE68A"
-                  font-weight="bold" font-family="'Space Grotesk'" letter-spacing="0.5">NETWORK</text>
-            <text x="247" y="60" text-anchor="middle" font-size="8" fill="rgba(148,163,184,0.7)"
-                  font-family="'JetBrains Mono'">ISP / Gov</text>
-            <text x="247" y="73" text-anchor="middle" font-size="7.5" fill="#F59E0B"
-                  font-family="'JetBrains Mono'">sees everything</text>
+            <!-- Connection lines (drawn before nodes) -->
+            <!-- Hub to outer ring -->
+            <line x1="550" y1="110" x2="518" y2="78"  stroke="rgba(245,158,11,0.38)" stroke-width="1"/>
+            <line x1="550" y1="110" x2="551" y2="65"  stroke="rgba(245,158,11,0.38)" stroke-width="1"/>
+            <line x1="550" y1="110" x2="584" y2="77"  stroke="rgba(245,158,11,0.38)" stroke-width="1"/>
+            <line x1="550" y1="110" x2="610" y2="110" stroke="rgba(245,158,11,0.38)" stroke-width="1"/>
+            <line x1="550" y1="110" x2="585" y2="145" stroke="rgba(245,158,11,0.38)" stroke-width="1"/>
+            <line x1="550" y1="110" x2="551" y2="158" stroke="rgba(245,158,11,0.38)" stroke-width="1"/>
+            <line x1="550" y1="110" x2="516" y2="145" stroke="rgba(245,158,11,0.38)" stroke-width="1"/>
+            <line x1="550" y1="110" x2="490" y2="110" stroke="rgba(245,158,11,0.38)" stroke-width="1"/>
+            <!-- Outer ring connections -->
+            <line x1="518" y1="78"  x2="551" y2="65"  stroke="rgba(245,158,11,0.26)" stroke-width="0.7"/>
+            <line x1="551" y1="65"  x2="584" y2="77"  stroke="rgba(245,158,11,0.26)" stroke-width="0.7"/>
+            <line x1="584" y1="77"  x2="610" y2="110" stroke="rgba(245,158,11,0.26)" stroke-width="0.7"/>
+            <line x1="610" y1="110" x2="585" y2="145" stroke="rgba(245,158,11,0.26)" stroke-width="0.7"/>
+            <line x1="585" y1="145" x2="551" y2="158" stroke="rgba(245,158,11,0.26)" stroke-width="0.7"/>
+            <line x1="551" y1="158" x2="516" y2="145" stroke="rgba(245,158,11,0.26)" stroke-width="0.7"/>
+            <line x1="516" y1="145" x2="490" y2="110" stroke="rgba(245,158,11,0.26)" stroke-width="0.7"/>
+            <line x1="490" y1="110" x2="518" y2="78"  stroke="rgba(245,158,11,0.26)" stroke-width="0.7"/>
+            <!-- Diagonal cross-links for mesh density -->
+            <line x1="518" y1="78"  x2="584" y2="77"  stroke="rgba(245,158,11,0.17)" stroke-width="0.6"/>
+            <line x1="516" y1="145" x2="585" y2="145" stroke="rgba(245,158,11,0.17)" stroke-width="0.6"/>
+            <line x1="490" y1="110" x2="585" y2="145" stroke="rgba(245,158,11,0.14)" stroke-width="0.5"/>
+            <line x1="518" y1="78"  x2="610" y2="110" stroke="rgba(245,158,11,0.14)" stroke-width="0.5"/>
+            <line x1="551" y1="65"  x2="610" y2="110" stroke="rgba(245,158,11,0.14)" stroke-width="0.5"/>
+            <line x1="490" y1="110" x2="551" y2="158" stroke="rgba(245,158,11,0.14)" stroke-width="0.5"/>
 
-            <!-- BRANCH LINES from Network bottom (247,88) -->
-            <line x1="247" y1="88" x2="102" y2="157"
-                  stroke="#F59E0B" stroke-width="1.6" stroke-dasharray="5,3"
-                  marker-end="url(#mO)"/>
-            <line x1="247" y1="88" x2="338" y2="157"
-                  stroke="#EF4444" stroke-width="1.6" stroke-dasharray="5,3"
-                  marker-end="url(#mR)"/>
+            <!-- Hub node -->
+            <circle cx="550" cy="110" r="7" fill="rgba(245,158,11,0.9)" stroke="#FDE68A" stroke-width="1.2"/>
+            <!-- Outer nodes -->
+            <circle cx="518" cy="78"  r="5" fill="rgba(245,158,11,0.75)" stroke="rgba(253,230,138,0.8)" stroke-width="1"/>
+            <circle cx="551" cy="65"  r="5" fill="rgba(245,158,11,0.75)" stroke="rgba(253,230,138,0.8)" stroke-width="1"/>
+            <circle cx="584" cy="77"  r="5" fill="rgba(245,158,11,0.75)" stroke="rgba(253,230,138,0.8)" stroke-width="1"/>
+            <circle cx="610" cy="110" r="5" fill="rgba(245,158,11,0.75)" stroke="rgba(253,230,138,0.8)" stroke-width="1"/>
+            <circle cx="585" cy="145" r="5" fill="rgba(245,158,11,0.75)" stroke="rgba(253,230,138,0.8)" stroke-width="1"/>
+            <circle cx="551" cy="158" r="5" fill="rgba(245,158,11,0.75)" stroke="rgba(253,230,138,0.8)" stroke-width="1"/>
+            <circle cx="516" cy="145" r="5" fill="rgba(245,158,11,0.75)" stroke="rgba(253,230,138,0.8)" stroke-width="1"/>
+            <circle cx="490" cy="110" r="5" fill="rgba(245,158,11,0.75)" stroke="rgba(253,230,138,0.8)" stroke-width="1"/>
 
-            <!-- ═══ LEFT BOX: GOVT/ISP ═══ -->
-            <rect x="10" y="160" width="180" height="80" rx="8"
-                  fill="rgba(120,53,15,0.2)" stroke="rgba(245,158,11,0.5)" stroke-width="1.5"/>
-            <text x="100" y="179" text-anchor="middle" font-size="10" fill="#FDE68A"
-                  font-weight="bold" font-family="'Space Grotesk'">GOVT / ISP</text>
-            <text x="100" y="193" text-anchor="middle" font-size="8" fill="rgba(148,163,184,0.7)"
-                  font-family="'JetBrains Mono'">DPI · port 3333</text>
-            <line x1="22" y1="202" x2="178" y2="202"
-                  stroke="rgba(245,158,11,0.2)" stroke-width="1"/>
-            <text x="100" y="216" text-anchor="middle" font-size="8.5" fill="#F59E0B"
-                  font-family="'JetBrains Mono'" font-weight="bold">⛔ BLOCKS MINING</text>
-            <text x="100" y="229" text-anchor="middle" font-size="7.5" fill="#FDE68A"
-                  font-family="'JetBrains Mono'">Censors transactions</text>
+            <!-- Internet label (inside cluster, top) -->
+            <text x="550" y="49" text-anchor="middle" font-size="10.5" fill="#FDE68A"
+                  font-weight="bold" font-family="'Space Grotesk',sans-serif">NETWORK / ISP / GOV</text>
+            <!-- sees everything / can censor (inside cluster, bottom) -->
+            <text x="550" y="179" text-anchor="middle" font-size="8.5" fill="#F59E0B"
+                  font-family="'JetBrains Mono',monospace">sees everything</text>
+            <text x="550" y="191" text-anchor="middle" font-size="8" fill="rgba(245,158,11,0.8)"
+                  font-family="'JetBrains Mono',monospace">can censor blocks/transactions</text>
 
-            <!-- ═══ RIGHT BOX: ATTACKER ═══ -->
-            <rect x="250" y="160" width="180" height="80" rx="8"
-                  fill="rgba(69,10,10,0.3)" stroke="rgba(239,68,68,0.5)" stroke-width="1.5"/>
-            <text x="340" y="179" text-anchor="middle" font-size="10" fill="#FCA5A5"
-                  font-weight="bold" font-family="'Space Grotesk'">ATTACKER</text>
-            <text x="340" y="193" text-anchor="middle" font-size="8" fill="rgba(148,163,184,0.7)"
-                  font-family="'JetBrains Mono'">Rewrites jobs in-flight</text>
-            <line x1="262" y1="202" x2="418" y2="202"
-                  stroke="rgba(239,68,68,0.2)" stroke-width="1"/>
-            <text x="340" y="216" text-anchor="middle" font-size="8.5" fill="#EF4444"
-                  font-family="'JetBrains Mono'" font-weight="bold">💸 STEALS HASHRATE</text>
-            <text x="340" y="229" text-anchor="middle" font-size="7.5" fill="#FCA5A5"
-                  font-family="'JetBrains Mono'">Undetected, every session</text>
+            <!-- Internet → Pool -->
+            <line x1="668" y1="106" x2="927" y2="106"
+                  stroke="rgba(34,211,238,0.7)" stroke-width="2" marker-end="url(#mC)"/>
+            <!-- Pool → Internet (return) -->
+            <line x1="927" y1="117" x2="668" y2="117"
+                  stroke="rgba(34,211,238,0.45)" stroke-width="1.4" marker-end="url(#mCr)"/>
 
-            <!-- DOWN ARROWS -->
-            <line x1="100" y1="240" x2="100" y2="257"
-                  stroke="rgba(245,158,11,0.4)" stroke-width="1.4" stroke-dasharray="4,3"
-                  marker-end="url(#mO)"/>
-            <line x1="340" y1="240" x2="340" y2="257"
-                  stroke="rgba(239,68,68,0.4)" stroke-width="1.4" stroke-dasharray="4,3"
-                  marker-end="url(#mR)"/>
+            <!-- ═══ POOL CLOUD ═══ -->
+            <g transform="translate(1010,110)">
+                <path d="M-81,20 Q-90,-13 -55,-20 Q-46,-48 -18,-41 Q-4,-62 27,-49 Q43,-62 69,-41 Q90,-27 84,4 Q97,14 88,34 Q76,50 50,46 L-50,46 Q-78,46 -81,20 Z"
+                      fill="rgba(6,182,212,0.08)" stroke="rgba(6,182,212,0.55)" stroke-width="2"/>
+                <text x="0" y="12" text-anchor="middle" font-family="'JetBrains Mono',monospace"
+                      font-size="13" font-weight="bold" fill="#22d3ee">POOL</text>
+            </g>
 
-            <!-- ═══ IMPACT: BITCOIN ═══ -->
-            <rect x="10" y="260" width="180" height="52" rx="7"
-                  fill="rgba(0,0,0,0.5)" stroke="rgba(245,158,11,0.4)" stroke-width="1.5"/>
-            <text x="100" y="277" text-anchor="middle" font-size="11" fill="#FDE68A"
-                  font-family="'Space Grotesk'" font-weight="bold">⚡ BITCOIN</text>
-            <text x="100" y="291" text-anchor="middle" font-size="9" fill="rgba(203,213,225,0.85)"
-                  font-family="'JetBrains Mono'">Decentralization at Risk</text>
-            <text x="100" y="305" text-anchor="middle" font-size="7.5" fill="rgba(148,163,184,0.6)"
-                  font-family="'JetBrains Mono'">Censorship · Geographic concentration</text>
+            <!-- Down arrow: internet → Bitcoin -->
+            <line x1="550" y1="196" x2="550" y2="253"
+                  stroke="rgba(245,158,11,0.75)" stroke-width="2.5" stroke-dasharray="5,3" marker-end="url(#mO)"/>
 
-            <!-- ═══ IMPACT: MINERS ═══ -->
-            <rect x="250" y="260" width="180" height="52" rx="7"
-                  fill="rgba(0,0,0,0.5)" stroke="rgba(239,68,68,0.4)" stroke-width="1.5"/>
-            <text x="340" y="277" text-anchor="middle" font-size="11" fill="#FCA5A5"
-                  font-family="'Space Grotesk'" font-weight="bold">📉 MINERS</text>
-            <text x="340" y="291" text-anchor="middle" font-size="9" fill="rgba(203,213,225,0.85)"
-                  font-family="'JetBrains Mono'">Silent Profit Drain</text>
-            <text x="340" y="305" text-anchor="middle" font-size="7.5" fill="rgba(148,163,184,0.6)"
-                  font-family="'JetBrains Mono'">1–2% loss ≈ 20% of net profit</text>
+            <!-- ═══ BITCOIN IMPACT BOX ═══ -->
+            <rect x="342" y="256" width="416" height="88" rx="10"
+                  fill="rgba(120,53,15,0.22)" stroke="rgba(245,158,11,0.65)" stroke-width="2"/>
+            <!-- Bitcoin circle -->
+            <circle cx="388" cy="300" r="30" fill="rgba(245,158,11,0.1)" stroke="rgba(245,158,11,0.8)" stroke-width="2"/>
+            <text x="388" y="310" text-anchor="middle" font-size="26" fill="#F59E0B"
+                  font-family="'Space Grotesk',sans-serif" font-weight="bold">₿</text>
+            <!-- Divider -->
+            <line x1="427" y1="264" x2="427" y2="336" stroke="rgba(245,158,11,0.22)" stroke-width="1"/>
+            <!-- Impact text -->
+            <text x="436" y="283" font-size="18" fill="#FDE68A"
+                  font-weight="bold" font-family="'Space Grotesk',sans-serif">DECENTRALISATION AT RISK</text>
+            <text x="436" y="308" font-size="14" fill="#F59E0B"
+                  font-family="'JetBrains Mono',monospace">Geographic Concentration</text>
+            <text x="436" y="331" font-size="10" fill="rgba(253,230,138,0.5)"
+                  font-family="'JetBrains Mono',monospace">Censorship · block/tx filtering by ISP or gov</text>
         </svg>
     </div>
 
