@@ -3,21 +3,24 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Attack 2: Time-Segment Reconnect</title>
+<title>Attack 1: Job Injection Attack</title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
 <style>
     :root {
         --cyan-400: #22d3ee;
         --cyan-500: #06b6d4;
-        --cyan-600: #0891b2;
         --blue-600: #2563eb;
     }
-    body { margin:0; padding:0; overflow:hidden; background-color:#09090b; font-family:'Inter',sans-serif; }
+    body {
+        width:1280px; height:720px; overflow:hidden;
+        font-family:'Inter',sans-serif;
+        background-color:#09090b;
+        color:#F8FAFC; position:relative;
+    }
         50%    { opacity:0.06; transform:scale(1.04); }
     }
-
     .bg-grid {
         position:absolute; inset:0; z-index:1;
         background-image:
@@ -25,51 +28,42 @@
             linear-gradient(90deg, rgba(6,182,212,0.07) 1px, transparent 1px);
         background-size:30px 30px; opacity:0.5;
     }
-
-    .slide-container {
-        width:1280px; height:720px;
-        position:relative; display:flex; flex-direction:column;
-        color:#F8FAFC; overflow:hidden;
-    }
-
     .mono-font { font-family:'JetBrains Mono',monospace; }
+    .glass-panel {
+        background:rgba(0,0,0,0.5);
+        backdrop-filter:blur(12px);
+        border:1px solid rgba(6,182,212,0.15);
+    }
 </style>
 </head>
-<body>
-<!-- Gradient orbs -->
+<body class="relative flex flex-col justify-between">
 <div class="bg-grid"></div>
 
-<div class="slide-container">
-
-<!-- Header -->
-<div class="relative z-10 px-12 pt-7 pb-3 flex items-end justify-between"
-     style="border-bottom:1px solid rgba(6,182,212,0.2); background:rgba(0,0,0,0.5);">
+<header class="relative z-10 px-12 pt-7 pb-3 flex items-end justify-between"
+        style="border-bottom:1px solid rgba(6,182,212,0.2); background:rgba(0,0,0,0.5);">
     <div>
         <div class="flex items-center space-x-3 mb-2">
             <span class="px-2 py-1 text-xs font-bold rounded mono-font"
                   style="background:rgba(239,68,68,0.12); color:#f87171; border:1px solid rgba(239,68,68,0.3);">
                 EXPLOIT DIAGRAM
             </span>
-            <span class="text-xs mono-font" style="color:rgba(6,182,212,0.5);">// TIME-SEGMENT TIMELINE</span>
+            <span class="text-xs mono-font" style="color:rgba(6,182,212,0.5);">// MITM INJECTION</span>
         </div>
         <h1 class="text-4xl font-black tracking-tight text-white uppercase"
             style="font-family:'Space Grotesk',sans-serif; letter-spacing:-0.02em;">
-            ATTACK 2: Time-Segment <span style="color:#f87171;">Reconnect Attack</span>
+            Attack 1: <span style="color:#f87171;">Job Injection</span> Architecture
         </h1>
     </div>
-</div>
+</header>
 
-<!-- Main Diagram Area -->
-<div class="relative z-10 px-12 py-4" style="flex:1; min-height:0; display:flex; align-items:stretch;">
-    <div style="flex:1; min-height:0; overflow:hidden; display:flex; align-items:center; justify-content:center;
-                background:rgba(0,0,0,0.45); backdrop-filter:blur(10px);
-                border:1px solid rgba(6,182,212,0.18); border-radius:0.75rem; padding:0.75rem 1rem;">
-        <img src="../../images/1-timing.png" alt="Time-Segment Reconnect Attack Diagram"
-             style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block;"/>
-    </div>
+<main class="relative z-10 px-3 py-2"
+     style="flex:1; min-height:0; overflow:hidden; display:flex; align-items:stretch;">
+<div class="glass-panel rounded-xl p-3"
+     style="flex:1; min-height:0; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+    <img src="../../images/2-job-injection.png" alt="Job Injection Attack Diagram"
+         style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block;"/>
 </div>
-
-</div>
+</main>
 <script src="slides.js"></script>
 <script src="navigate.js"></script>
 </body>

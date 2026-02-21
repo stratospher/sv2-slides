@@ -20,7 +20,9 @@ const SLIDES = [
   { file: "slides/mitm-revenue-impact.html",        label: "MITM: Revenue Impact" },
   { file: "slides/blackhat-mitm-preconditions.html", label: "BlackHat MITM Preconditions" },
   { file: "slides/job-injection-diagram.html",     label: "Job Injection: Diagram" },
+  { file: "slides/job-injection-diagram-2.html",     label: "Job Injection: Diagram 2" },
   { file: "slides/time-segment-timeline.html",     label: "Time-Segment Timeline" },
+  { file: "slides/time-segment-timeline-2.html",     label: "Time-Segment Timeline 2" },
   { file: "slides/sv1-broader-threat.html",        label: "SV1: Broader Threat" },
   { file: "slides/4-intro-sv2.html",     label: "intro-sv2" },
   { file: "slides/sv2-security-by-design.html",    label: "SV2 Security by Design" },
@@ -32,10 +34,12 @@ const SLIDES = [
   { file: "slides/key-authenticity-solution.html", label: "Key Authenticity: The Fix" },
   { file: "slides/data-integrity.html",            label: "Data Integrity" },
   { file: "slides/noise-protocol.html",            label: "Noise Protocol" },
+  { file: "slides/noise-protocol-2.html",            label: "Noise Protocol 2" },
   { file: "slides/6-more-revenue-sv2.html",     label: "more-revenue-sv2" },
   { file: "slides/case-study.html",   label: "Case study" },
   { file: "slides/sv2-miner-profitability.html",   label: "SV2: Miner Profitability" },
   { file: "slides/conclusion-and-roadmap.html",    label: "Conclusion & Roadmap" },
+  { file: "slides/thankyou.html",    label: "thank you" },
 ];
 
 let currentIndex = 0;

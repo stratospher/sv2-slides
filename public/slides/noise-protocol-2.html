@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Noise Protocol: Putting It Together</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&amp;family=Space+Grotesk:wght@500;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { margin:0; padding:0; overflow:hidden; background-color:#09090b; font-family:'Inter',sans-serif; }
+    .bg-grid {
+        position:absolute; inset:0; z-index:1;
+        background-image:
+            linear-gradient(rgba(6,182,212,0.07) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(6,182,212,0.07) 1px, transparent 1px);
+        background-size:30px 30px; opacity:0.5;
+    }
+    .slide-container {
+        width:1280px; height:720px;
+        position:relative; display:flex; flex-direction:column;
+        color:#F8FAFC; overflow:hidden;
+    }
+    .mono-font { font-family:'JetBrains Mono',monospace; }
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+
+<div class="slide-container">
+
+<!-- Header -->
+<div class="relative z-10 px-12 pt-7 pb-3 flex items-end justify-between"
+     style="border-bottom:1px solid rgba(6,182,212,0.2); background:rgba(0,0,0,0.5);">
+    <div>
+        <div class="flex items-center space-x-3 mb-2">
+            <span class="px-2 py-1 text-lg font-bold rounded mono-font"
+                  style="background:rgba(6,182,212,0.12); color:#22d3ee; border:1px solid rgba(6,182,212,0.35);">
+                CRYPTO
+            </span>
+            <span class="text-lg mono-font" style="color:rgba(6,182,212,0.5);">// NOISE PROTOCOL</span>
+        </div>
+        <h1 class="text-5xl font-black tracking-tight text-white uppercase"
+            style="font-family:'Space Grotesk',sans-serif; letter-spacing:-0.02em;">
+            Noise Protocol: <span style="color:#22d3ee;">Putting It Together</span>
+        </h1>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="relative z-10 flex-1 flex items-center justify-center" style="min-height:0;">
+    <a href="https://shourya742.github.io/cryptography/2025/12/20/intiuting-noise.html"
+       target="_blank"
+       style="font-family:'JetBrains Mono',monospace; font-size:1.5rem; color:#22d3ee;
+              text-decoration:underline; text-underline-offset:6px;
+              padding:1.25rem 2.5rem; border-radius:0.75rem;
+              background:rgba(6,182,212,0.08); border:1px solid rgba(6,182,212,0.35);
+              transition:background 0.2s;">
+        https://shourya742.github.io/cryptography/2025/12/20/intiuting-noise.html
+    </a>
+</div>
+
+</div>
+<script src="slides.js"></script>
+<script src="navigate.js"></script>
+</body>
+</html>

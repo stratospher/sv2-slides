@@ -19,15 +19,20 @@ window.SLIDES = [
     "sv1-plaintext-weakness.html",
     "blackhat-mitm-preconditions.html",
     "job-injection-diagram.html",
+    "job-injection-diagram-1.html",
     "time-segment-timeline.html",
+    "time-segment-timeline-2.html",
+    "sv1-broader-threat.html",
     "4-intro-sv2.html",
     "sv2-security-by-design.html",
     "5-how-sv2-prevents-exploits.html",
     "how-to-encrypt-untrusted.html",
     "noise-protocol.html",
+    "noise-protocol-2.html",
     "diffie-hellman-insight.html",
     "6-more-revenue-sv2.html",
     "case-study.html",
     "sv2-miner-profitability.html",
-    "conclusion-and-roadmap.html"
+    "conclusion-and-roadmap.html",
+    "thankyou.html"
   ];
