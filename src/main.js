@@ -30,6 +30,7 @@ const SLIDES = [
   { file: "slides/we-can-encrypt-now.html",        label: "We Can Encrypt Now!" },
   { file: "slides/key-authenticity.html",          label: "Key Authenticity" },
   { file: "slides/encryption-isnt-enough.html",   label: "Encryption Isn't Enough" },
+  { file: "slides/key-authenticity-solution.html", label: "Key Authenticity: The Fix" },
   { file: "slides/data-integrity.html",            label: "Data Integrity" },
   { file: "slides/noise-protocol.html",            label: "Noise Protocol" },
   { file: "slides/6-more-revenue-sv2.html",     label: "more-revenue-sv2" },
