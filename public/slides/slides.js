@@ -26,7 +26,6 @@ window.SLIDES = [
     "how-to-encrypt-untrusted.html",
     "noise-protocol.html",
     "diffie-hellman-insight.html",
-    "key-authenticity.html",
     "6-more-revenue-sv2.html",
     "sv2-miner-profitability.html",
     "conclusion-and-roadmap.html"

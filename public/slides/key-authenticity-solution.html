@@ -54,16 +54,20 @@
 <!-- Main Content -->
 <div class="relative z-10 flex-1 px-10 py-3 flex items-center justify-center overflow-hidden" style="min-height:0;">
     <!--
-        Same layout as encryption-isnt-enough.html. All entities at y=78.
-        LEFT  (Miner ↔ Attacker):
-          y=63  pubkey_M: Miner → Attacker (cyan)       ← attacker intercepts
-          y=93  pubkey_A: Attacker → Miner (red DASHED) ← BLOCKED: not signed by sk_pool
-        RIGHT (Attacker ↔ Pool — dimmed, irrelevant since attack already fails):
-          y=63  pubkey_A': Attacker → Pool (red, faded)
-          y=93  pubkey_P:  Pool → Attacker (cyan, faded)
-        Miner has pk_pool pinned (green badge); Pool has sk_pool (green badge).
+        New layout: Attacker is ABOVE the Miner↔Pool channel, shown as an outsider
+        with NO ACCESS — not in the middle of the connection.
+
+        ATTACKER (top centre, y=38)
+             |  dashed red arrow going DOWN → blocked
+             ↓
+        [══════════════ encrypted channel ══════════════]
+        [MINER] ─── pubkey_M ──────────────────────► [POOL]   y=126
+        [MINER] ◄── 🔒 enc(pk_M, sk_pool) ───────── [POOL]   y=152
+        [═══════════════════════════════════════════════]
+
+        Bottom boxes: ✓ Secure Channel  |  ⛔ Attacker: No Access
     -->
-    <svg viewBox="0 0 900 200" width="100%" height="100%"
+    <svg viewBox="0 -20 900 270" width="100%" height="100%"
          preserveAspectRatio="xMidYMid meet"
          xmlns="http://www.w3.org/2000/svg"
          style="font-family:'JetBrains Mono',monospace; overflow:visible;">
@@ -72,31 +76,60 @@
             <marker id="aC" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
                 <path d="M0,0 L8,4 L0,8 Z" fill="rgba(6,182,212,0.65)"/>
             </marker>
-            <!-- Red arrowhead (blocked) -->
+            <!-- Red arrowhead (attack, auto-orients for downward line too) -->
             <marker id="aR" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
                 <path d="M0,0 L8,4 L0,8 Z" fill="rgba(239,68,68,0.7)"/>
-            </marker>
-            <!-- Dimmed red arrowhead (right-side, secondary) -->
-            <marker id="aRd" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-                <path d="M0,0 L8,4 L0,8 Z" fill="rgba(239,68,68,0.25)"/>
-            </marker>
-            <!-- Dimmed cyan arrowhead (right-side, secondary) -->
-            <marker id="aCd" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-                <path d="M0,0 L8,4 L0,8 Z" fill="rgba(6,182,212,0.25)"/>
             </marker>
             <filter id="rGlow">
                 <feGaussianBlur stdDeviation="3" result="b"/>
                 <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
             </filter>
             <filter id="gGlow">
-                <feGaussianBlur stdDeviation="3" result="b"/>
+                <feGaussianBlur stdDeviation="2.5" result="b"/>
                 <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
             </filter>
         </defs>
 
-        <!-- ── MINER chip (scale 1.3, centred at (110,78)) ── -->
-        <!-- right rect edge x=201; side pins to x≈217 -->
-        <g transform="translate(110,78) scale(1.3)">
+        <!-- ══════════════════════════════════════════════════ -->
+        <!-- ── ATTACKER — top centre, trying to intercept ── -->
+        <!-- ══════════════════════════════════════════════════ -->
+        <!-- Box: centred at (450, 15), y=-18–48 -->
+        <g transform="translate(450,15)">
+            <rect x="-70" y="-33" width="140" height="66" rx="8"
+                  fill="rgba(69,10,10,0.85)" stroke="#EF4444" stroke-width="1.5"
+                  filter="url(#rGlow)"/>
+            <text x="0" y="-2" text-anchor="middle" font-size="24" fill="#F87171">&#x2620;</text>
+            <text x="0" y="17" text-anchor="middle" font-family="'JetBrains Mono',monospace"
+                  font-size="10" font-weight="700" fill="#FCA5A5" letter-spacing="1">ATTACKER</text>
+            <text x="0" y="28" text-anchor="middle" font-family="'JetBrains Mono',monospace"
+                  font-size="8" fill="rgba(248,113,113,0.6)">(MITM)</text>
+        </g>
+
+        <!-- Dashed red arrow: Attacker tries to intercept the channel (going DOWN), stopped early -->
+        <line x1="450" y1="48" x2="450" y2="70"
+              stroke="rgba(239,68,68,0.55)" stroke-width="1.8" stroke-dasharray="5,4"
+              marker-end="url(#aR)"/>
+
+        <!-- 🚫 NO ACCESS badge — blocks the attack arrow above the channel -->
+        <rect x="394" y="68" width="112" height="20" rx="5"
+              fill="rgba(69,10,10,0.95)" stroke="#EF4444" stroke-width="1.3"
+              filter="url(#rGlow)"/>
+        <text x="450" y="83" text-anchor="middle" font-family="'JetBrains Mono',monospace"
+              font-size="8.5" fill="#FCA5A5" font-weight="700">&#x1F6AB; NO ACCESS</text>
+
+        <!-- ══════════════════════════════════════════════════ -->
+        <!-- ── ENCRYPTED CHANNEL BAND (Miner ↔ Pool) ── -->
+        <!-- ══════════════════════════════════════════════════ -->
+        <!-- Subtle band showing the protected connection -->
+        <rect x="199" y="113" width="497" height="55" rx="6"
+              fill="rgba(6,182,212,0.04)" stroke="rgba(6,182,212,0.2)" stroke-width="1"
+              stroke-dasharray="6,3"/>
+
+        <!-- ══════════════════════════════════════════════════ -->
+        <!-- ── MINER chip (scale 1.3, centred at (110,140)) ── -->
+        <!-- right rect edge x=201; side pins to x≈217         -->
+        <!-- ══════════════════════════════════════════════════ -->
+        <g transform="translate(110,140) scale(1.3)">
             <rect x="-70" y="-29" width="140" height="58" rx="8"
                   fill="rgba(6,182,212,0.07)" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
             <line x1="-35" y1="-29" x2="-35" y2="-40" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
@@ -115,29 +148,11 @@
                   font-size="14" font-weight="bold" fill="rgba(6,182,212,0.9)">MINER</text>
         </g>
 
-        <!-- Miner "pinned pk_pool" badge — configured out-of-band before connection -->
-        <rect x="31" y="118" width="158" height="20" rx="5"
-              fill="rgba(2,20,12,0.85)" stroke="rgba(34,197,94,0.65)" stroke-width="1.2"
-              filter="url(#gGlow)"/>
-        <text x="110" y="132" text-anchor="middle" font-family="'JetBrains Mono',monospace"
-              font-size="8.5" fill="#4ade80" font-weight="700">&#x1F4CC; pinned: pk_pool</text>
-
-        <!-- ── ATTACKER — centred at (450,78), same baseline as Miner &amp; Pool ── -->
-        <!-- Box: x=380–520, y=45–111 (height=66). Style: sv2-security-by-design. -->
-        <g transform="translate(450,78)">
-            <rect x="-70" y="-33" width="140" height="66" rx="8"
-                  fill="rgba(69,10,10,0.85)" stroke="#EF4444" stroke-width="1.5"
-                  filter="url(#rGlow)"/>
-            <text x="0" y="-2" text-anchor="middle" font-size="24" fill="#F87171">&#x2620;</text>
-            <text x="0" y="17" text-anchor="middle" font-family="'JetBrains Mono',monospace"
-                  font-size="10" font-weight="700" fill="#FCA5A5" letter-spacing="1">ATTACKER</text>
-            <text x="0" y="28" text-anchor="middle" font-family="'JetBrains Mono',monospace"
-                  font-size="8" fill="rgba(248,113,113,0.6)">(MITM)</text>
-        </g>
-
-        <!-- ── POOL cloud (scale 1.2, centred at (792,78)) ── -->
-        <!-- left cloud edge ≈ x=695 -->
-        <g transform="translate(792,78) scale(1.2)">
+        <!-- ══════════════════════════════════════════════════ -->
+        <!-- ── POOL cloud (scale 1.2, centred at (792,140)) ── -->
+        <!-- left cloud edge ≈ x=695                           -->
+        <!-- ══════════════════════════════════════════════════ -->
+        <g transform="translate(792,140) scale(1.2)">
             <path d="M-81,20 Q-90,-13 -55,-20 Q-46,-48 -18,-41 Q-4,-62 27,-49 Q43,-62 69,-41 Q90,-27 84,4 Q97,14 88,34 Q76,50 50,46 L-50,46 Q-78,46 -81,20 Z"
                   fill="rgba(6,182,212,0.08)" stroke="rgba(6,182,212,0.55)" stroke-width="2"/>
             <text x="0" y="12" text-anchor="middle" font-family="'JetBrains Mono',monospace"
@@ -145,72 +160,44 @@
         </g>
 
         <!-- Pool "sk_pool" badge — static identity keypair -->
-        <rect x="713" y="118" width="158" height="20" rx="5"
-              fill="rgba(2,20,12,0.85)" stroke="rgba(34,197,94,0.65)" stroke-width="1.2"
+        <rect x="713" y="182" width="158" height="18" rx="5"
+              fill="rgba(2,20,12,0.85)" stroke="rgba(34,197,94,0.6)" stroke-width="1.2"
               filter="url(#gGlow)"/>
-        <text x="792" y="132" text-anchor="middle" font-family="'JetBrains Mono',monospace"
+        <text x="792" y="195" text-anchor="middle" font-family="'JetBrains Mono',monospace"
               font-size="8.5" fill="#4ade80" font-weight="700">&#x1F511; static: sk_pool</text>
 
-        <!-- ── TOP ARROWS (y=63) ── -->
+        <!-- ══════════════════════════════════════════════════ -->
+        <!-- ── CHANNEL ARROWS (Miner ↔ Pool, direct) ──      -->
+        <!-- ══════════════════════════════════════════════════ -->
 
-        <!-- pubkey_M: Miner → Attacker (cyan) — Miner sends its ephemeral pubkey -->
-        <line x1="201" y1="63" x2="378" y2="63"
+        <!-- pubkey_M: Miner → Pool (y=128, cyan) — Miner sends its ephemeral pubkey -->
+        <line x1="201" y1="128" x2="693" y2="128"
               stroke="rgba(6,182,212,0.65)" stroke-width="1.8" marker-end="url(#aC)"/>
-        <text x="290" y="56" text-anchor="middle" font-size="10" fill="#A5F3FC">pubkey_M</text>
+        <text x="447" y="121" text-anchor="middle" font-size="10" fill="#A5F3FC">pubkey_M</text>
 
-        <!-- pubkey_A': Attacker → Pool (dimmed — secondary story) -->
-        <line x1="522" y1="63" x2="693" y2="63"
-              stroke="rgba(239,68,68,0.22)" stroke-width="1.4" marker-end="url(#aRd)"/>
-        <text x="607" y="56" text-anchor="middle" font-size="10" fill="rgba(239,68,68,0.28)">pubkey_A&#x2032;</text>
+        <!-- 🔒 enc msg: Pool → Miner (y=153, cyan) -->
+        <!-- Encrypted with Miner's pubkey AND Pool's static key — only real Pool can create this -->
+        <line x1="695" y1="153" x2="203" y2="153"
+              stroke="rgba(6,182,212,0.65)" stroke-width="1.8" marker-end="url(#aC)"/>
+        <text x="447" y="168" text-anchor="middle" font-size="10" fill="#A5F3FC">
+            &#x1F512; enc(pk_M, sk_pool)
+        </text>
 
-        <!-- ── BOTTOM ARROWS (y=93) ── -->
-
-        <!-- pubkey_A (fake): Attacker → Miner (dashed red — BLOCKED) -->
-        <!-- Arrow terminates near miner; BLOCKED badge overlaid at miner end. -->
-        <line x1="380" y1="93" x2="203" y2="93"
-              stroke="rgba(239,68,68,0.55)" stroke-width="1.8" stroke-dasharray="5,4"
-              marker-end="url(#aR)"/>
-        <!-- BLOCKED badge overlaid at miner side (x=205–303) -->
-        <rect x="205" y="83" width="98" height="19" rx="4"
-              fill="rgba(69,10,10,0.95)" stroke="#EF4444" stroke-width="1.3"/>
-        <text x="254" y="97" text-anchor="middle" font-family="'JetBrains Mono',monospace"
-              font-size="8.5" fill="#FCA5A5" font-weight="700">&#x1F6AB; REJECTED</text>
-        <!-- Arrow label to the right of badge, before attacker -->
-        <text x="342" y="107" text-anchor="middle" font-size="10" fill="rgba(239,68,68,0.55)">pubkey_A (fake)</text>
-
-        <!-- pubkey_P: Pool → Attacker (dimmed — secondary story) -->
-        <line x1="695" y1="93" x2="523" y2="93"
-              stroke="rgba(6,182,212,0.2)" stroke-width="1.4" marker-end="url(#aCd)"/>
-        <text x="607" y="107" text-anchor="middle" font-size="10" fill="rgba(6,182,212,0.25)">pubkey_P</text>
-
+        <!-- ══════════════════════════════════════════════════ -->
         <!-- ── BOTTOM BOXES ── -->
+        <!-- ══════════════════════════════════════════════════ -->
 
-        <!-- Left (x=290): Verification FAILS — attack blocked -->
-        <rect x="218" y="120" width="144" height="52" rx="7"
-              fill="rgba(127,29,29,0.35)" stroke="rgba(239,68,68,0.7)" stroke-width="1.8"
-              filter="url(#rGlow)"/>
-        <text x="290" y="138" text-anchor="middle"
-              font-family="'Space Grotesk',sans-serif" font-size="11" fill="#fca5a5" font-weight="700">&#x26D4; Verify FAILS</text>
-        <text x="290" y="153" text-anchor="middle"
-              font-family="'JetBrains Mono',monospace" font-size="9" fill="#ef4444">pubkey_A &#x2260; signed(sk_pool)</text>
-        <text x="290" y="165" text-anchor="middle"
-              font-family="'JetBrains Mono',monospace" font-size="8" fill="rgba(239,68,68,0.6)">attacker lacks sk_pool</text>
-
-        <!-- Right (x=607): Identity anchored — pool's static key is the root of trust -->
-        <rect x="535" y="120" width="144" height="52" rx="7"
+        <!-- Centre (green): Direct secure channel established -->
+        <rect x="375" y="202" width="144" height="22" rx="6"
               fill="rgba(2,30,15,0.55)" stroke="rgba(34,197,94,0.6)" stroke-width="1.8"
               filter="url(#gGlow)"/>
-        <text x="607" y="138" text-anchor="middle"
-              font-family="'Space Grotesk',sans-serif" font-size="11" fill="#4ade80" font-weight="700">&#x2705; Identity Anchored</text>
-        <text x="607" y="153" text-anchor="middle"
-              font-family="'JetBrains Mono',monospace" font-size="9" fill="#86efac">miner knows pk_pool</text>
-        <text x="607" y="165" text-anchor="middle"
-              font-family="'JetBrains Mono',monospace" font-size="8" fill="rgba(134,239,172,0.7)">configured out-of-band</text>
+        <text x="447" y="217" text-anchor="middle"
+              font-family="'Space Grotesk',sans-serif" font-size="11" fill="#4ade80" font-weight="700">&#x2705; Miner &#x2194; Pool Only</text>
 
-        <!-- ── Bottom note ── -->
-        <text x="450" y="196" text-anchor="middle" font-size="9" font-weight="700"
-              fill="rgba(34,197,94,0.6)" letter-spacing="1">
-            &#x2714; MINER REJECTS ANY KEY NOT PROVABLY SIGNED BY THE PINNED sk_pool
+        <!-- Bottom note -->
+        <text x="450" y="246" text-anchor="middle" font-size="9" font-weight="700"
+              fill="rgba(34,197,94,0.55)" letter-spacing="1">
+            &#x2714; ATTACKER LACKS sk_pool &#x2014; CANNOT DECRYPT OR FORGE THE CHANNEL
         </text>
 
     </svg>

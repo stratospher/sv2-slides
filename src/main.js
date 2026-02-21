@@ -28,7 +28,6 @@ const SLIDES = [
   { file: "slides/how-to-encrypt-untrusted.html",  label: "How to Encrypt in Untrusted Env" },
   { file: "slides/diffie-hellman-insight.html",    label: "Diffie-Hellman Insight" },
   { file: "slides/we-can-encrypt-now.html",        label: "We Can Encrypt Now!" },
-  { file: "slides/key-authenticity.html",          label: "Key Authenticity" },
   { file: "slides/encryption-isnt-enough.html",   label: "Encryption Isn't Enough" },
   { file: "slides/key-authenticity-solution.html", label: "Key Authenticity: The Fix" },
   { file: "slides/data-integrity.html",            label: "Data Integrity" },

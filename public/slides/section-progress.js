@@ -3,7 +3,7 @@
         { label: '1 · Pooled Mining',  slides: ['1-how-pooled-mining.html','pooled-mining-and-shares.html','block-header-assembly.html','what-is-a-share.html'] },
         { label: '2 · Stratum V1',     slides: ['2-how-stratum-v1.html','sv1-architecture.html','sv1-intro.html','sv1-step1-tcp.html','mining-subscribe.html','mining-authorize.html','difficulty-and-shares.html','mining-notify.html','miner-knows-from-pool.html','mining-submit.html'] },
         { label: '3 · Exploits!',      slides: ['3-exploits.html','sv1-plaintext-weakness.html','blackhat-mitm-preconditions.html','job-injection-diagram.html','time-segment-timeline.html'] },
-        { label: '4 · Intro SV2',      slides: ['4-intro-sv2.html','sv2-security-by-design.html','noise-protocol.html','diffie-hellman-insight.html','key-authenticity.html'] },
+        { label: '4 · Intro SV2',      slides: ['4-intro-sv2.html','sv2-security-by-design.html','noise-protocol.html','diffie-hellman-insight.html'] },
         { label: '5 · SV2 Fixes',      slides: ['5-how-sv2-prevents-exploits.html'] },
         { label: '6 · Revenue',        slides: ['6-more-revenue-sv2.html','sv2-miner-profitability.html','conclusion-and-roadmap.html'] }
     ];
