@@ -27,6 +27,7 @@ window.SLIDES = [
     "noise-protocol.html",
     "diffie-hellman-insight.html",
     "6-more-revenue-sv2.html",
+    "case-study.html",
     "sv2-miner-profitability.html",
     "conclusion-and-roadmap.html"
   ];

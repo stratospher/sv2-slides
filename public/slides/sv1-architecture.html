@@ -58,19 +58,19 @@
         style="border-bottom: 1px solid rgba(6,182,212,0.2); background: rgba(0,0,0,0.5);">
     <div>
         <div class="flex items-center space-x-3 mb-2">
-            <span class="px-2 py-1 text-xs font-bold rounded mono-font"
-                  style="background: rgba(6,182,212,0.15); color: #22d3ee; border: 1px solid rgba(6,182,212,0.3);">
+            <span class="px-2 py-1 font-bold rounded mono-font"
+                  style="font-size:1.125rem; background: rgba(6,182,212,0.15); color: #22d3ee; border: 1px solid rgba(6,182,212,0.3);">
                 INFRASTRUCTURE
             </span>
-            <span class="text-xs mono-font" style="color: rgba(6,182,212,0.5);">// PORT 3333</span>
+            <span class="mono-font" style="font-size:1.125rem; color: rgba(6,182,212,0.5);">// PORT 3333</span>
         </div>
-        <h1 class="text-3xl font-black tracking-tight text-white uppercase"
-            style="font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em;">
+        <h1 class="font-black tracking-tight text-white uppercase"
+            style="font-size:2.81rem; font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em;">
             Stratum V1 <span style="color: var(--cyan-400);">Protocol</span>
         </h1>
     </div>
     <div class="text-right">
-        <p class="text-sm max-w-md text-right mono-font" style="color: rgba(148,163,184,0.7);">
+        <p class="max-w-md text-right mono-font" style="font-size:1.31rem; color: rgba(148,163,184,0.7);">
             Network topology of a typical Stratum V1 deployment
         </p>
     </div>
@@ -97,39 +97,39 @@
             <!-- TCP tunnel background -->
             <rect x="320" y="220" width="512" height="60" rx="4"
                   fill="rgba(0,0,0,0.5)" stroke="rgba(6,182,212,0.1)" stroke-width="1"/>
-            <text font-family="JetBrains Mono" font-size="11" fill="rgba(6,182,212,0.4)"
+            <text font-family="JetBrains Mono" font-size="17" fill="rgba(6,182,212,0.4)"
                   text-anchor="middle" x="576" y="212">TCP Socket Connection</text>
 
             <!-- ══ MINER node ══ -->
             <g transform="translate(100, 140)">
-                <rect x="0" y="0" width="220" height="220" rx="12"
+                <rect x="0" y="0" width="220" height="300" rx="12"
                       fill="rgba(6,182,212,0.06)" stroke="#06b6d4" stroke-width="2"
                       filter="drop-shadow(0 4px 12px rgba(6,182,212,0.2))"/>
                 <!-- icon bg -->
                 <rect x="85" y="28" width="50" height="50" rx="6"
                       fill="rgba(6,182,212,0.12)" stroke="rgba(6,182,212,0.3)" stroke-width="1"/>
-                <text x="110" y="62" text-anchor="middle" font-size="22" fill="#22d3ee">⬡</text>
+                <text x="110" y="62" text-anchor="middle" font-size="33" fill="#22d3ee">⬡</text>
                 <!-- Title -->
                 <text x="110" y="100" text-anchor="middle"
-                      font-family="Space Grotesk" font-size="16" font-weight="700" fill="#F8FAFC">
+                      font-family="Space Grotesk" font-size="24" font-weight="700" fill="#F8FAFC">
                     MINING DEVICE
                 </text>
                 <text x="110" y="118" text-anchor="middle"
-                      font-family="JetBrains Mono" font-size="10" fill="rgba(148,163,184,0.7)">
+                      font-family="JetBrains Mono" font-size="15" fill="rgba(148,163,184,0.7)">
                     Worker / ASIC
                 </text>
                 <!-- Capabilities -->
-                <foreignObject x="20" y="130" width="180" height="80">
+                <foreignObject x="20" y="130" width="180" height="160">
                     <div class="space-y-1 pt-2" xmlns="http://www.w3.org/1999/xhtml">
-                        <div class="flex items-center text-xs font-mono" style="color:#94a3b8;">
+                        <div class="flex items-center font-mono" style="font-size:1.125rem;" style="color:#94a3b8;">
                             <span style="width:7px;height:7px;background:#06b6d4;border-radius:50%;display:inline-block;margin-right:8px;flex-shrink:0;"></span>
                             Subscribe
                         </div>
-                        <div class="flex items-center text-xs font-mono" style="color:#94a3b8;">
+                        <div class="flex items-center font-mono" style="font-size:1.125rem;" style="color:#94a3b8;">
                             <span style="width:7px;height:7px;background:#06b6d4;border-radius:50%;display:inline-block;margin-right:8px;flex-shrink:0;"></span>
                             Authorize
                         </div>
-                        <div class="flex items-center text-xs font-mono" style="color:#94a3b8;">
+                        <div class="flex items-center font-mono" style="font-size:1.125rem;" style="color:#94a3b8;">
                             <span style="width:7px;height:7px;background:#22d3ee;border-radius:50%;display:inline-block;margin-right:8px;flex-shrink:0;"></span>
                             Submit Share
                         </div>
@@ -144,33 +144,33 @@
                 <text x="0" y="8" text-anchor="middle"
                       font-family="JetBrains Mono" font-size="17" font-weight="bold" fill="#22d3ee">POOL SERVER</text>
                 <text x="0" y="28" text-anchor="middle"
-                      font-family="JetBrains Mono" font-size="9" fill="rgba(148,163,184,0.45)">Job Coordinator</text>
+                      font-family="JetBrains Mono" font-size="14" fill="rgba(148,163,184,0.45)">Job Coordinator</text>
             </g>
 
             <!-- ══ Downstream arrow: Pool → Miner (mining.notify) ══ -->
             <path d="M 800 240 L 350 240"
                   stroke="#06b6d4" stroke-width="2" fill="none"
                   marker-end="url(#arrowCyan)"/>
-            <rect x="515" y="225" width="122" height="24" rx="5"
+            <rect x="489" y="224" width="175" height="30" rx="5"
                   fill="rgba(0,0,0,0.6)" stroke="rgba(6,182,212,0.35)" stroke-width="1"/>
-            <text font-family="JetBrains Mono" font-size="11" font-weight="500"
-                  fill="#06b6d4" text-anchor="middle" x="576" y="241">mining.notify</text>
+            <text font-family="JetBrains Mono" font-size="17" font-weight="500"
+                  fill="#06b6d4" text-anchor="middle" x="576" y="244">mining.notify</text>
 
             <!-- ══ Upstream arrow: Miner → Pool (mining.submit) ══ -->
             <path d="M 350 265 L 800 265"
                   stroke="#22d3ee" stroke-width="2" fill="none"
                   marker-end="url(#arrowCyanLight)"/>
-            <rect x="515" y="250" width="122" height="24" rx="5"
+            <rect x="489" y="255" width="175" height="30" rx="5"
                   fill="rgba(0,0,0,0.6)" stroke="rgba(34,211,238,0.35)" stroke-width="1"/>
-            <text font-family="JetBrains Mono" font-size="11" font-weight="500"
-                  fill="#22d3ee" text-anchor="middle" x="576" y="266">mining.submit</text>
+            <text font-family="JetBrains Mono" font-size="17" font-weight="500"
+                  fill="#22d3ee" text-anchor="middle" x="576" y="275">mining.submit</text>
 
             <!-- ══ Warning badge ══ -->
             <g transform="translate(576, 300)">
-                <rect x="-80" y="0" width="160" height="24" rx="12"
+                <rect x="-115" y="0" width="230" height="30" rx="12"
                       fill="rgba(239,68,68,0.08)" stroke="#EF4444" stroke-dasharray="3,2" stroke-width="1"/>
-                <text font-family="JetBrains Mono" font-size="10" fill="#EF4444"
-                      text-anchor="middle" x="0" y="16">⚠  Unencrypted Channel</text>
+                <text font-family="JetBrains Mono" font-size="15" fill="#EF4444"
+                      text-anchor="middle" x="0" y="20">⚠  Unencrypted Channel</text>
             </g>
         </svg>
     </div>

@@ -33,6 +33,7 @@ const SLIDES = [
   { file: "slides/data-integrity.html",            label: "Data Integrity" },
   { file: "slides/noise-protocol.html",            label: "Noise Protocol" },
   { file: "slides/6-more-revenue-sv2.html",     label: "more-revenue-sv2" },
+  { file: "slides/case-study.html",   label: "Case study" },
   { file: "slides/sv2-miner-profitability.html",   label: "SV2: Miner Profitability" },
   { file: "slides/conclusion-and-roadmap.html",    label: "Conclusion & Roadmap" },
 ];

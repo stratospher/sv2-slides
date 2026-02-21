@@ -39,17 +39,17 @@
         style="border-bottom: 1px solid rgba(6,182,212,0.2); background: rgba(0,0,0,0.5);">
     <div>
         <div class="flex items-center space-x-3 mb-2">
-            <span class="px-2 py-1 text-xs font-bold rounded mono-font"
-                  style="background: rgba(6,182,212,0.15); color: #22d3ee; border: 1px solid rgba(6,182,212,0.3);">
+            <span class="px-2 py-1 font-bold rounded mono-font"
+                  style="font-size:1.125rem; background: rgba(6,182,212,0.15); color: #22d3ee; border: 1px solid rgba(6,182,212,0.3);">
                 FOUNDATIONS
             </span>
         </div>
-        <h1 class="text-3xl font-black tracking-tight text-white uppercase"
-            style="font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em;">
+        <h1 class="font-black tracking-tight text-white uppercase"
+            style="font-size:2.81rem; font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em;">
             What is a <span style="color: var(--cyan-400);">Share?</span>
         </h1>
     </div>
-    <p class="text-sm mono-font" style="color: rgba(148,163,184,0.6);">
+    <p class="mono-font" style="font-size:1.31rem; color: rgba(148,163,184,0.6);">
         How miners prove ongoing work to the pool
     </p>
 </header>
@@ -58,7 +58,7 @@
 <main class="relative z-10 flex-1 flex flex-col justify-center" style="padding: 32px 100px;">
 
     <!-- Intro -->
-    <p class="mono-font text-sm mb-8" style="color: rgba(148,163,184,0.7); line-height: 1.6;">
+    <p class="mono-font mb-8" style="font-size:1.31rem; color: rgba(148,163,184,0.7); line-height: 1.6;">
         Every hash attempt produces a <span style="color:#22d3ee;">256-bit number</span>.
         Its value, compared to two targets, determines what it counts as:
     </p>
@@ -90,23 +90,23 @@
 
             <!-- Labels inside bar -->
             <text x="43"  y="51" text-anchor="middle"
-                  fill="#fcd34d" font-family="JetBrains Mono" font-size="12" font-weight="bold">BLOCK</text>
+                  fill="#fcd34d" font-family="JetBrains Mono" font-size="18" font-weight="bold">BLOCK</text>
             <text x="194" y="51" text-anchor="middle"
-                  fill="#22d3ee" font-family="JetBrains Mono" font-size="12" font-weight="bold">SHARE</text>
+                  fill="#22d3ee" font-family="JetBrains Mono" font-size="18" font-weight="bold">SHARE</text>
             <text x="691" y="51" text-anchor="middle"
-                  fill="rgba(100,116,139,0.7)" font-family="JetBrains Mono" font-size="12">INVALID — discard, try next nonce</text>
+                  fill="rgba(100,116,139,0.7)" font-family="JetBrains Mono" font-size="18">INVALID — discard, try next nonce</text>
 
             <!-- Axis labels -->
             <text x="0"    y="95" text-anchor="start"
-                  fill="rgba(100,116,139,0.5)" font-family="JetBrains Mono" font-size="10">0x0000…0  (hardest)</text>
+                  fill="rgba(100,116,139,0.5)" font-family="JetBrains Mono" font-size="15">0x0000…0  (hardest)</text>
             <text x="1080" y="95" text-anchor="end"
-                  fill="rgba(100,116,139,0.5)" font-family="JetBrains Mono" font-size="10">0xFFFF…F  (easiest)</text>
+                  fill="rgba(100,116,139,0.5)" font-family="JetBrains Mono" font-size="15">0xFFFF…F  (easiest)</text>
 
             <!-- Target annotations -->
             <text x="86"  y="11" text-anchor="middle"
-                  fill="rgba(245,158,11,0.7)" font-family="JetBrains Mono" font-size="9">network target</text>
+                  fill="rgba(245,158,11,0.7)" font-family="JetBrains Mono" font-size="14">network target</text>
             <text x="302" y="11" text-anchor="middle"
-                  fill="rgba(6,182,212,0.6)" font-family="JetBrains Mono" font-size="9">pool target (easier)</text>
+                  fill="rgba(6,182,212,0.6)" font-family="JetBrains Mono" font-size="14">pool target (easier)</text>
         </svg>
     </div>
 
@@ -121,9 +121,9 @@
                      style="background:rgba(55,65,81,0.3);">
                     <i class="fas fa-times" style="color:rgba(100,116,139,0.7);"></i>
                 </div>
-                <p class="mono-font font-bold" style="font-size:13px; color:rgba(100,116,139,0.7);">INVALID</p>
+                <p class="mono-font font-bold" style="font-size:20px; color:rgba(100,116,139,0.7);">INVALID</p>
             </div>
-            <p style="font-size:13px; color:rgba(100,116,139,0.55); line-height:1.55;">
+            <p style="font-size:20px; color:rgba(100,116,139,0.55); line-height:1.55;">
                 Above pool target — discard.
             </p>
         </div>
@@ -137,9 +137,9 @@
                      style="background:rgba(6,182,212,0.12);">
                     <i class="fas fa-check" style="color:#22d3ee;"></i>
                 </div>
-                <p class="mono-font font-bold" style="font-size:13px; color:#22d3ee;">SHARE</p>
+                <p class="mono-font font-bold" style="font-size:20px; color:#22d3ee;">SHARE</p>
             </div>
-            <p style="font-size:13px; color:rgba(148,163,184,0.8); line-height:1.55;">
+            <p style="font-size:20px; color:rgba(148,163,184,0.8); line-height:1.55;">
                 Below pool target — proves active work.
             </p>
         </div>
@@ -151,12 +151,12 @@
             <div class="flex items-center gap-3 mb-3">
                 <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
                      style="background:rgba(245,158,11,0.12);">
-                    <span style="font-size:17px; color:#fcd34d; font-weight:900;
+                    <span style="font-size:26px; color:#fcd34d; font-weight:900;
                                  font-family:'Space Grotesk',sans-serif;">₿</span>
                 </div>
-                <p class="mono-font font-bold" style="font-size:13px; color:#fcd34d;">BLOCK!</p>
+                <p class="mono-font font-bold" style="font-size:20px; color:#fcd34d;">BLOCK!</p>
             </div>
-            <p style="font-size:13px; color:rgba(148,163,184,0.8); line-height:1.55;">
+            <p style="font-size:20px; color:rgba(148,163,184,0.8); line-height:1.55;">
                 Below network target — earns the block reward.
             </p>
         </div>

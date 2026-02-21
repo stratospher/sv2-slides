@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Case Study: HashlabS / Demand Pool</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&amp;family=Space+Grotesk:wght@500;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { margin:0; padding:0; overflow:hidden; background-color:#09090b; font-family:'Inter',sans-serif; }
+    .bg-grid {
+        position:absolute; inset:0; z-index:1;
+        background-image:
+            linear-gradient(rgba(6,182,212,0.07) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(6,182,212,0.07) 1px, transparent 1px);
+        background-size:30px 30px; opacity:0.5;
+    }
+    .slide-container {
+        width:1280px; height:720px;
+        position:relative; display:flex; flex-direction:column;
+        align-items:center; justify-content:center;
+        color:#F8FAFC; overflow:hidden;
+    }
+    .mono-font { font-family:'JetBrains Mono',monospace; }
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+
+<div class="slide-container">
+    <div class="relative z-10 flex flex-col items-center" style="gap:36px; padding:0 100px; text-align:center; width:100%;">
+
+        <!-- Badge -->
+        <div style="display:flex; align-items:center; gap:14px;">
+            <div style="width:44px; height:44px; border-radius:50%;
+                        background:rgba(6,182,212,0.12); border:1px solid rgba(6,182,212,0.35);
+                        display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <i class="fas fa-flask" style="color:#22d3ee; font-size:18px;"></i>
+            </div>
+            <span class="mono-font" style="font-size:22px; font-weight:700; letter-spacing:0.15em;
+                  color:#22d3ee; text-transform:uppercase;">Case Study</span>
+        </div>
+
+        <!-- Title -->
+        <h1 style="font-family:'Space Grotesk',sans-serif; font-size:80px; font-weight:700;
+                   letter-spacing:-0.02em; color:#F8FAFC; line-height:1; margin:0;">
+            HashlabS &amp; Demand Pool
+        </h1>
+
+        <!-- Divider -->
+        <div style="width:160px; height:2px; background:linear-gradient(90deg, transparent, #22d3ee, transparent);"></div>
+
+        <!-- URL -->
+        <div style="background:rgba(0,0,0,0.55); backdrop-filter:blur(10px);
+                    border:1px solid rgba(6,182,212,0.25); border-radius:12px;
+                    padding:20px 40px;">
+            <p class="mono-font" style="font-size:26px; color:rgba(165,243,252,0.85); margin:0; letter-spacing:0.02em;">
+                stratumprotocol.org/blog/case-study/hashlabs/
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<script src="slides.js"></script>
+<script src="navigate.js"></script>
+</body>
+</html>

@@ -28,17 +28,17 @@
 
     <!-- Badge + step -->
     <div class="flex items-center" style="gap:12px;">
-        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;
+        <span style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;
                      letter-spacing:.18em;color:#22d3ee;border:1px solid rgba(6,182,212,0.45);
                      background:rgba(6,182,212,0.08);padding:5px 18px;border-radius:999px;">
             SV1 PROTOCOL
         </span>
-        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;
+        <span style="font-family:'JetBrains Mono',monospace;font-size:18px;
                      color:rgba(6,182,212,0.45);letter-spacing:.1em;">// STEP 1</span>
     </div>
 
     <!-- Title -->
-    <h1 style="font-family:'Space Grotesk',sans-serif;font-size:62px;font-weight:700;
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-size:93px;font-weight:700;
                letter-spacing:-0.02em;text-align:center;line-height:1.05;color:#F8FAFC;">
         TCP Connection <span style="color:#22d3ee;">Established</span>
     </h1>
@@ -63,7 +63,7 @@
             <rect x="-56" y="-19" width="112" height="38" rx="4"
                   fill="none" stroke="rgba(6,182,212,0.2)" stroke-width="1"/>
             <text x="0" y="5" text-anchor="middle" font-family="'JetBrains Mono',monospace"
-                  font-size="13" font-weight="bold" fill="rgba(6,182,212,0.9)">MINER</text>
+                  font-size="19.5" font-weight="bold" fill="rgba(6,182,212,0.9)">MINER</text>
         </g>
 
         <!-- Pool cloud centred at (835,80) -->
@@ -71,7 +71,7 @@
             <path d="M-81,20 Q-90,-13 -55,-20 Q-46,-48 -18,-41 Q-4,-62 27,-49 Q43,-62 69,-41 Q90,-27 84,4 Q97,14 88,34 Q76,50 50,46 L-50,46 Q-78,46 -81,20 Z"
                   fill="rgba(6,182,212,0.08)" stroke="rgba(6,182,212,0.55)" stroke-width="2"/>
             <text x="0" y="12" text-anchor="middle" font-family="'JetBrains Mono',monospace"
-                  font-size="14" font-weight="bold" fill="#22d3ee">POOL</text>
+                  font-size="21" font-weight="bold" fill="#22d3ee">POOL</text>
         </g>
 
         <!-- TCP connection line -->
@@ -82,15 +82,15 @@
         <rect x="460" y="63" width="100" height="34" rx="7"
               fill="#09090b" stroke="rgba(6,182,212,0.6)" stroke-width="1.5"/>
         <text x="510" y="85" text-anchor="middle" font-family="'JetBrains Mono',monospace"
-              font-size="15" font-weight="bold" fill="#22d3ee">TCP</text>
+              font-size="22.5" font-weight="bold" fill="#22d3ee">TCP</text>
 
         <!-- Port label -->
         <text x="510" y="140" text-anchor="middle" font-family="'JetBrains Mono',monospace"
-              font-size="12" fill="rgba(6,182,212,0.45)">port 3333</text>
+              font-size="18" fill="rgba(6,182,212,0.45)">port 3333</text>
     </svg>
 
     <!-- Note -->
-    <p style="font-family:'JetBrains Mono',monospace;font-size:13px;
+    <p style="font-family:'JetBrains Mono',monospace;font-size:19.5px;
               color:rgba(148,163,184,0.45);">
         Plain TCP socket — no encryption, no authentication
     </p>
@@ -98,18 +98,18 @@
 
 <!-- Step progress bar -->
 <div style="position:absolute;bottom:0;left:0;right:0;z-index:10;height:44px;display:flex;align-items:center;padding:0 80px;gap:7px;background:rgba(0,0,0,0.7);border-top:1px solid rgba(6,182,212,0.12);">
-    <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(6,182,212,0.3);letter-spacing:.15em;margin-right:6px;flex-shrink:0;">FLOW</span>
-    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;padding:4px 14px;border-radius:999px;flex-shrink:0;background:rgba(6,182,212,0.2);border:1px solid #22d3ee;color:#22d3ee;">1 · TCP</span>
-    <span style="color:rgba(6,182,212,0.2);font-size:12px;flex-shrink:0;">›</span>
-    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 14px;border-radius:999px;flex-shrink:0;background:transparent;border:1px solid rgba(6,182,212,0.1);color:rgba(6,182,212,0.2);">2 · subscribe</span>
-    <span style="color:rgba(6,182,212,0.2);font-size:12px;flex-shrink:0;">›</span>
-    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 14px;border-radius:999px;flex-shrink:0;background:transparent;border:1px solid rgba(6,182,212,0.1);color:rgba(6,182,212,0.2);">3 · authorize</span>
-    <span style="color:rgba(6,182,212,0.2);font-size:12px;flex-shrink:0;">›</span>
-    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 14px;border-radius:999px;flex-shrink:0;background:transparent;border:1px solid rgba(6,182,212,0.1);color:rgba(6,182,212,0.2);">4 · set_difficulty</span>
-    <span style="color:rgba(6,182,212,0.2);font-size:12px;flex-shrink:0;">›</span>
-    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 14px;border-radius:999px;flex-shrink:0;background:transparent;border:1px solid rgba(6,182,212,0.1);color:rgba(6,182,212,0.2);">5 · notify</span>
-    <span style="color:rgba(6,182,212,0.2);font-size:12px;flex-shrink:0;">›</span>
-    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 14px;border-radius:999px;flex-shrink:0;background:transparent;border:1px solid rgba(6,182,212,0.1);color:rgba(6,182,212,0.2);">6 · submit</span>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:13.5px;color:rgba(6,182,212,0.3);letter-spacing:.15em;margin-right:6px;flex-shrink:0;">FLOW</span>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:16.5px;font-weight:700;padding:4px 14px;border-radius:999px;flex-shrink:0;background:rgba(6,182,212,0.2);border:1px solid #22d3ee;color:#22d3ee;">1 · TCP</span>
+    <span style="color:rgba(6,182,212,0.2);font-size:18px;flex-shrink:0;">›</span>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:16.5px;padding:4px 14px;border-radius:999px;flex-shrink:0;background:transparent;border:1px solid rgba(6,182,212,0.1);color:rgba(6,182,212,0.2);">2 · subscribe</span>
+    <span style="color:rgba(6,182,212,0.2);font-size:18px;flex-shrink:0;">›</span>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:16.5px;padding:4px 14px;border-radius:999px;flex-shrink:0;background:transparent;border:1px solid rgba(6,182,212,0.1);color:rgba(6,182,212,0.2);">3 · authorize</span>
+    <span style="color:rgba(6,182,212,0.2);font-size:18px;flex-shrink:0;">›</span>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:16.5px;padding:4px 14px;border-radius:999px;flex-shrink:0;background:transparent;border:1px solid rgba(6,182,212,0.1);color:rgba(6,182,212,0.2);">4 · set_difficulty</span>
+    <span style="color:rgba(6,182,212,0.2);font-size:18px;flex-shrink:0;">›</span>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:16.5px;padding:4px 14px;border-radius:999px;flex-shrink:0;background:transparent;border:1px solid rgba(6,182,212,0.1);color:rgba(6,182,212,0.2);">5 · notify</span>
+    <span style="color:rgba(6,182,212,0.2);font-size:18px;flex-shrink:0;">›</span>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:16.5px;padding:4px 14px;border-radius:999px;flex-shrink:0;background:transparent;border:1px solid rgba(6,182,212,0.1);color:rgba(6,182,212,0.2);">6 · submit</span>
 </div>
 <script src="slides.js"></script>
 <script src="navigate.js"></script>
